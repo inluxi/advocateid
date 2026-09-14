@@ -11,7 +11,7 @@ import { Tag } from "@/components/Badge";
 import { IndexList } from "@/components/IndexList";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { JsonLd } from "@/components/JsonLd";
-import { siteUrl, siteName } from "@/lib/site";
+import { siteUrl } from "@/lib/site";
 import { getCategoriesWithCounts, getCitiesWithCounts, getCityPageData } from "@/lib/queries";
 
 export async function generateMetadata({
