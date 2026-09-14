@@ -1,0 +1,162 @@
+@import "tailwindcss";
+
+/*
+  Design tokens ported from design/professional-directory-design-system/design-tokens.json
+  Binding rules from that package: radius is 0 everywhere, Archivo only, flush-left
+  headings, 2px rules divide sections / 1px hairlines divide rows, portraits are 4:5.
+*/
+
+:root {
+  /* ground / neutral */
+  --color-bg: #f3f2f2;
+  --color-surface: #eae9e9;
+  --color-text: #201e1d;
+  --color-divider: rgba(32, 30, 29, 0.4);
+
+  /* ink ramp */
+  --ink-100: #f8f4f4;
+  --ink-200: #eae7e7;
+  --ink-300: #d7d3d3;
+  --ink-400: #bab6b6;
+  --ink-500: #9b9797;
+  --ink-600: #7d7979;
+  --ink-700: #605d5d;
+  --ink-800: #444141;
+  --ink-900: #2d2b2b;
+
+  /* platform (chrome-only default red) */
+  --platform: #ec3013;
+  --platform-dark: #dd2b0f;
+  --platform-ink: #ae1800;
+  --platform-light: #ffc4b8;
+
+  /* lawyer vertical accent -- the only vertical seeded in this phase, used as the site brand */
+  --brand: #0066cc;
+  --brand-dark: #004499;
+  --brand-ink: #004499;
+  --brand-light: #66b3ff;
+
+  /* semantic (never re-branded) */
+  --color-success: #27ae60;
+  --color-warning: #f39c12;
+  --color-error: #e74c3c;
+  --color-info: #3498db;
+
+  /* shadows */
+  --shadow-sm: 0 1px 2px rgba(45, 43, 43, 0.14);
+  --shadow-md: 0 3px 10px rgba(45, 43, 43, 0.16);
+  --shadow-lg: 0 12px 32px rgba(45, 43, 43, 0.22);
+}
+
+@theme {
+  --font-sans: var(--font-archivo), system-ui, sans-serif;
+
+  /* named breakpoints from the design tokens, additive to Tailwind's defaults */
+  --breakpoint-tablet: 768px;
+  --breakpoint-desktop: 1200px;
+  --breakpoint-wide: 1600px;
+
+  --color-bg: var(--color-bg);
+  --color-surface: var(--color-surface);
+  --color-ink: var(--color-text);
+  --color-ink-100: var(--ink-100);
+  --color-ink-200: var(--ink-200);
+  --color-ink-300: var(--ink-300);
+  --color-ink-400: var(--ink-400);
+  --color-ink-500: var(--ink-500);
+  --color-ink-600: var(--ink-600);
+  --color-ink-700: var(--ink-700);
+  --color-ink-800: var(--ink-800);
+  --color-ink-900: var(--ink-900);
+
+  --color-platform: var(--platform);
+  --color-platform-dark: var(--platform-dark);
+  --color-platform-ink: var(--platform-ink);
+  --color-platform-light: var(--platform-light);
+
+  --color-brand: var(--brand);
+  --color-brand-dark: var(--brand-dark);
+  --color-brand-ink: var(--brand-ink);
+  --color-brand-light: var(--brand-light);
+
+  --color-success: var(--color-success);
+  --color-warning: var(--color-warning);
+  --color-error: var(--color-error);
+  --color-info: var(--color-info);
+
+  /* spacing scale: xs 4 / sm 8 / md 16 / lg 24 / xl 32 / xxl 48 */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-xxl: 48px;
+
+  --container-measure: 720px;
+  --container-directory: 1200px;
+
+  --aspect-portrait: 4 / 5;
+
+  /* type scale (desktop values; components apply responsive text- classes per breakpoint) */
+  --text-kicker: 10px;
+  --text-kicker--line-height: 1;
+  --text-kicker--letter-spacing: 0.14em;
+
+  --text-micro: 12px;
+  --text-micro--line-height: 1.4;
+
+  --text-small: 13px;
+  --text-small--line-height: 1.5;
+
+  --text-body: 15px;
+  --text-body--line-height: 1.65;
+
+  --text-body-lg: 16px;
+  --text-body-lg--line-height: 1.6;
+
+  --text-h3: 16px;
+  --text-h3--line-height: 1.25;
+  --text-h3--font-weight: 700;
+
+  --text-h2: 38px;
+  --text-h2--line-height: 1.05;
+  --text-h2--letter-spacing: -0.03em;
+  --text-h2--font-weight: 800;
+
+  --text-h1: 56px;
+  --text-h1--line-height: 1;
+  --text-h1--letter-spacing: -0.035em;
+  --text-h1--font-weight: 800;
+
+  --text-display: 78px;
+  --text-display--line-height: 0.98;
+  --text-display--letter-spacing: -0.045em;
+  --text-display--font-weight: 800;
+}
+
+@layer base {
+  * {
+    border-radius: 0 !important;
+  }
+
+  body {
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    text-align: left;
+    font-weight: 800;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+  }
+}
