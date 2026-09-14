@@ -9,21 +9,49 @@ assumptions and keep going rather than stopping to ask.
 `design/professional-directory-design-system/` documents a richer product
 (3 verticals, 3 pricing tiers, white-label/custom domains, analytics
 dashboards) than this phase needs. Only the `lawyer` vertical and the
-`free`/`professional` `profile_type` split are in scope here, so:
+`free`/`professional` `profile_type` split are in scope here.
 
-- The site uses a single brand color throughout: the design system's
-  **lawyer** vertical accent (`#0066CC` / `#004499` dark / `#66B3FF`
-  light), wired as `--brand` / `--brand-ink` CSS custom properties in
-  `app/globals.css`. There's no per-tenant color customization system.
-- `free` profiles render the design system's **Basic** tier treatment
-  (ruled hero, FREE LISTING flag, competitor block, upsell band, 5-tag/
-  5-court caps). `professional` profiles render the **Professional** tier
-  treatment (masthead hero, credential strip, no competitor block, 10-tag/
-  10-court caps). There's no "Premium"/white-label tier since there's no
-  billing or tenant model in this phase.
-- The two `.dc.html` mockup files the design docs call "authoritative"
-  aren't present in this repo — the markdown specs and `design-tokens.json`
-  were the actual source of truth for this build.
+**Correction (see `other/UI mockups color palette/`):** the two `.dc.html`
+mockups the design docs call "authoritative" — `Directory Pages.dc.html`
+and `Directory Profile Tiers.dc.html` — turned up after the initial build
+and are the real source of truth, superseding an earlier guess based only
+on `design-tokens.json`'s per-vertical accents:
+
+- **Site-wide default brand is platform red** (`#EC3013` / dark `#DD2B0F`
+  / ink-safe text `#AE1800` / light `#FFC4B8`), not the lawyer-vertical
+  blue — confirmed by `Directory Pages.dc.html`, which uses platform red
+  for the homepage, search results, institution pages, and city index.
+  Wired as `--brand`/`--brand-dark`/`--brand-ink`/`--brand-light` in
+  `app/globals.css`.
+- **Profile tiers map directly to the mockup's own naming**: our `free`
+  `profile_type` = the mockup's "Free tier" (ruled hero, platform red,
+  competitor block, "Upgrade to Premium" upsell). Our `professional`
+  `profile_type` = the mockup's "Premium tier" (masthead hero, credential
+  strip, tabs, no competitors) — **not** a third "Professional" tier; the
+  mockup only has Free/Premium/CNAME, and BUILD_INSTRUCTIONS.md's enum
+  only has two values, so `professional` = Premium.
+- Premium-tier profiles hand the whole palette to the advocate's own
+  brand colour — the mockup demonstrates this with ink navy (`#16233F`).
+  We have no per-tenant color storage, so every professional profile uses
+  that same navy, scoped locally to the profile page's content (not the
+  site nav/footer) via inline CSS custom properties in
+  `app/[profileSlug]/page.tsx`. Note both `--brand` *and* `--color-brand`
+  (etc.) need overriding there — Tailwind v4 bakes `--color-brand:
+  var(--brand)` into a resolved hex at build time rather than keeping it
+  as a live indirection, so scoping `--brand` alone doesn't cascade into
+  the generated utility classes.
+- The mockup's Premium tier also gives the *navigation* its own
+  tenant-branded header (navy, tenant wordmark, "Book a consultation" CTA)
+  distinct from the platform header — this is skipped, matching the
+  explicit instruction to ignore the mockup's CNAME/white-label section:
+  all pages, including Premium profiles, keep the single platform
+  `SiteHeader`/`SiteFooter`.
+- The "FREE LISTING" flag shown on the mockup's Free tier is not shown on
+  our profile pages (explicit instruction).
+- Also skipped as out of scope for a read-only Phase 0 build with no
+  auth/tenant model: the Premium tier's owner-only analytics band, social
+  "FOLLOW" row (no social-link fields in the schema), and career-highlights
+  timeline (no such field in the schema).
 
 ## Routing / page-template mapping
 
@@ -65,6 +93,13 @@ they're pure navigation/read helpers, not writes:
   `/city/[city]/[category]` on submit.
 - `GeolocateButton` — reads `navigator.geolocation` and redirects to
   `/near-me?lat=..&lng=..`.
+
+## Repo layout
+
+The Next.js app lives under `webapp/` (not the repo root) so the root can
+hold project docs and design reference material alongside it without
+mixing into the app's own file tree. Run all `npm`/`prisma` commands from
+inside `webapp/`.
 
 ## `/near-me`
 

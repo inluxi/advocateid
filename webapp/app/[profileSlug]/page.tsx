@@ -5,7 +5,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { Portrait } from "@/components/Portrait";
-import { Tag, FilledBadge } from "@/components/Badge";
+import { Tag } from "@/components/Badge";
 import { StarRating } from "@/components/StarRating";
 import { Rule, Hairline } from "@/components/Rule";
 import { Kicker } from "@/components/Kicker";
@@ -16,6 +16,32 @@ import { RowCard } from "@/components/ProfileCard";
 import { JsonLd } from "@/components/JsonLd";
 import { siteUrl } from "@/lib/site";
 import { getCategoriesWithCounts, getCitiesWithCounts, getProfileBySlug } from "@/lib/queries";
+import type { CSSProperties } from "react";
+
+/**
+ * Professional (Premium) tier profiles hand the whole palette to the
+ * advocate's own brand colour, matching the mockup's example tenant
+ * (ink navy #16233F) — see Directory Profile Tiers.dc.html, "Premium tier".
+ * We have no per-tenant color storage, so every professional profile uses
+ * this same navy as the demonstrated example.
+ *
+ * Both --brand (read directly by a few raw `var(--brand)` usages) and
+ * --color-brand* (what Tailwind's bg-brand/text-brand-ink/etc. utilities
+ * actually compile to) need overriding: Tailwind v4 bakes
+ * `--color-brand: var(--brand)` into a resolved hex at build time rather
+ * than keeping it as a live indirection, so scoping --brand alone doesn't
+ * cascade into the generated utility classes.
+ */
+const premiumBrandVars = {
+  "--brand": "#16233f",
+  "--brand-dark": "#0f1830",
+  "--brand-ink": "#16233f",
+  "--brand-light": "#3d4f7a",
+  "--color-brand": "#16233f",
+  "--color-brand-dark": "#0f1830",
+  "--color-brand-ink": "#16233f",
+  "--color-brand-light": "#3d4f7a",
+} as CSSProperties;
 
 export async function generateMetadata({
   params,
@@ -49,6 +75,7 @@ export default async function ProfilePage({
 
   const city = profile.primaryLocality.parent?.name ?? profile.primaryLocality.name;
   const isProfessional = profile.profileType === "professional";
+  const practice = profile.profileCategories[0]?.category.name ?? "Advocate";
   const tagLimit = isProfessional ? 10 : 5;
   const courtLimit = isProfessional ? 10 : 5;
   const primaryOffice = profile.offices[0];
@@ -89,6 +116,7 @@ export default async function ProfilePage({
         }}
       />
       <SiteHeader categories={categories} cities={cities} />
+      <div style={isProfessional ? premiumBrandVars : undefined} className="contents">
       <main className="flex-1 pb-24 desktop:pb-0">
         <section className="px-[18px] pt-4 desktop:px-9 desktop:pt-6">
           <div className="mx-auto max-w-container">
@@ -200,9 +228,17 @@ export default async function ProfilePage({
         {!isProfessional && profile.competitors.length > 0 ? (
           <>
             <Rule />
-            <section className="px-[18px] py-8 desktop:px-9">
+            <section className="bg-surface px-[18px] py-8 desktop:px-9">
               <div className="mx-auto max-w-container">
-                <Kicker>Other advocates nearby</Kicker>
+                <Kicker>
+                  <span className="text-brand-ink">
+                    Other {practice.toLowerCase()} advocates in {city}
+                  </span>
+                </Kicker>
+                <p className="-mt-3 mb-4 text-small text-ink-700">
+                  Showing {profile.competitors.length} others. Competitor listings appear on free
+                  profiles.
+                </p>
                 <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 desktop:grid-cols-3">
                   {profile.competitors.map((c) => (
                     <RowCard key={c.slug} profile={c} />
@@ -212,12 +248,13 @@ export default async function ProfilePage({
             </section>
             <section className="border-t-2 border-ink bg-brand px-[18px] py-8 text-white desktop:px-9">
               <div className="mx-auto max-w-container">
-                <p className="text-kicker font-semibold uppercase text-white/80">For advocates</p>
-                <h2 className="mt-2 text-h2 text-white">Hide competitors. Own the page.</h2>
+                <h2 className="text-h2 text-white">Hide competitors. Own the page.</h2>
                 <p className="mt-2 max-w-measure text-body-lg text-white/90">
-                  Upgrade to a professional listing to remove other advocates from your profile and
-                  unlock career highlights, analytics, and multiple offices.
+                  Premium removes rival listings, applies your brand colour and unlocks analytics.
                 </p>
+                <span className="mt-4 inline-flex w-fit items-center gap-2 bg-white px-4 py-3 text-small font-bold text-ink">
+                  Upgrade to Premium →
+                </span>
               </div>
             </section>
           </>
@@ -226,6 +263,7 @@ export default async function ProfilePage({
 
       <div className="fixed inset-x-0 bottom-0 z-10 desktop:hidden">
         <ContactBar whatsappNumber={profile.whatsappNumber} contactHours={profile.contactHours} />
+      </div>
       </div>
 
       <SiteFooter />
@@ -241,12 +279,7 @@ function RuledHero({ profile, city }: { profile: ProfileData; city: string }) {
     <section className="px-[18px] pb-8 pt-4 desktop:px-9">
       <div className="mx-auto grid max-w-container grid-cols-1 gap-8 desktop:grid-cols-[440px_1fr] desktop:divide-x-2 desktop:divide-ink">
         <div className="desktop:pr-8">
-          <div className="relative">
-            <Portrait src={profile.photoUrl} alt={`${profile.name}, ${practice} advocate in ${city}`} priority />
-            <span className="absolute left-0 top-0">
-              <FilledBadge>Free listing</FilledBadge>
-            </span>
-          </div>
+          <Portrait src={profile.photoUrl} alt={`${profile.name}, ${practice} advocate in ${city}`} priority />
           <ul className="mt-4 space-y-3">
             {profile.offices.map((o) => (
               <li key={o.id} className="text-small text-ink-800">
@@ -296,7 +329,25 @@ function MastheadHero({ profile, city }: { profile: ProfileData; city: string })
                 {practice} · {city}
               </span>
             </Kicker>
-            <h1 className="text-display uppercase text-white">{profile.name}</h1>
+            <div className="flex items-center gap-3">
+              <h1 className="text-display uppercase text-white">{profile.name}</h1>
+              <svg
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="#fff"
+                aria-label="Verified"
+                className="shrink-0"
+              >
+                <path d="M12 2l2.4 1.8 3-.2.9 2.9 2.4 1.8-1.1 2.8 1.1 2.8-2.4 1.8-.9 2.9-3-.2L12 22l-2.4-1.8-3 .2-.9-2.9L3.3 15.7 4.4 13 3.3 10.2l2.4-1.8.9-2.9 3 .2z" />
+                <path
+                  d="m8.5 12.2 2.4 2.4 4.6-4.8"
+                  stroke="var(--brand)"
+                  strokeWidth="1.8"
+                  fill="none"
+                />
+              </svg>
+            </div>
             <p className="mt-3 text-body-lg text-white/90">{profile.tagline}</p>
             <p className="mt-3 flex items-center gap-2 text-body text-white">
               {profile.rating !== null ? (

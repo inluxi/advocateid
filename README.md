@@ -4,12 +4,16 @@ A read-only, fully-seeded legal directory demo. See
 [BUILD_INSTRUCTIONS.md](./BUILD_INSTRUCTIONS.md) for the full spec and
 [NOTES.md](./NOTES.md) for build decisions made along the way.
 
+The app itself lives in [webapp/](./webapp) — all commands below run from
+inside that directory.
+
 ## Setup
 
 1. Start XAMPP's MySQL service.
 2. Copy the env file and adjust credentials if needed (default XAMPP MySQL
    has no root password):
    ```bash
+   cd webapp
    cp .env.example .env
    ```
 3. Install dependencies:
@@ -36,7 +40,14 @@ Inspect seeded data any time at `http://localhost/phpmyadmin`.
 
 Next.js (App Router) + Tailwind v4 + Prisma (MySQL, via the
 `@prisma/adapter-mariadb` driver adapter — Prisma 7 requires an explicit
-adapter for `PrismaClient`, see `prisma.config.ts` and `lib/db.ts`).
+adapter for `PrismaClient`, see `webapp/prisma.config.ts` and
+`webapp/lib/db.ts`).
+
+## Design reference
+
+`other/UI mockups color palette/Directory Pages.dc.html` and
+`Directory Profile Tiers.dc.html` are the authoritative visual mockups —
+see [NOTES.md](./NOTES.md) for how the app's styling maps to them.
 
 ## Routes
 

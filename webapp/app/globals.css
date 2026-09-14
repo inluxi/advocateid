@@ -30,11 +30,18 @@
   --platform-ink: #ae1800;
   --platform-light: #ffc4b8;
 
-  /* lawyer vertical accent -- the only vertical seeded in this phase, used as the site brand */
-  --brand: #0066cc;
-  --brand-dark: #004499;
-  --brand-ink: #004499;
-  --brand-light: #66b3ff;
+  /*
+    Site-wide default brand = platform red, matching the authoritative
+    mockups (other/UI mockups color palette/Directory Pages.dc.html and
+    Directory Profile Tiers.dc.html "Free tier"). Professional-tier profile
+    pages override --brand/--brand-dark/--brand-ink/--brand-light locally
+    (scoped to that page's content, matching the mockups' "Premium tier"
+    ink-navy example) — see app/[profileSlug]/page.tsx.
+  */
+  --brand: #ec3013;
+  --brand-dark: #dd2b0f;
+  --brand-ink: #ae1800;
+  --brand-light: #ffc4b8;
 
   /* semantic (never re-branded) */
   --color-success: #27ae60;
