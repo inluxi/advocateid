@@ -226,6 +226,7 @@ export async function getNearbyOffices(lat: number, lng: number, limit = 20) {
       profileSlug: string;
       profilePhotoUrl: string;
       tagline: string | null;
+      whatsappNumber: string;
       distanceKm: number;
     }>
   >`
@@ -238,6 +239,7 @@ export async function getNearbyOffices(lat: number, lng: number, limit = 20) {
       p.slug AS profileSlug,
       p.photo_url AS profilePhotoUrl,
       p.tagline AS tagline,
+      p.whatsapp_number AS whatsappNumber,
       (${EARTH_RADIUS_KM} * ACOS(
         COS(RADIANS(${lat})) * COS(RADIANS(o.latitude)) * COS(RADIANS(o.longitude) - RADIANS(${lng}))
         + SIN(RADIANS(${lat})) * SIN(RADIANS(o.latitude))
