@@ -4,7 +4,7 @@
     {
       "name": "advocateid-dev",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev"],
+      "runtimeArgs": ["--prefix", "webapp", "run", "dev"],
       "port": 3000,
       "autoPort": true
     }

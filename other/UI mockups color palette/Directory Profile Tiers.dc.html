@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="stylesheet" href="_ds/modernist-b1a10b4b-d86e-40fc-a479-cd78a8717826/styles.css">
+<script src="_ds/modernist-b1a10b4b-d86e-40fc-a479-cd78a8717826/_ds_bundle.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;700&family=Noto+Sans+Kannada:wght@400;500;700&family=Noto+Sans+Tamil:wght@400;500;700&display=swap">
+<script src="./image-slot.js"></script>
+<style>
+body{margin:0;background:#dedbd8;font-family:"Archivo",system-ui,sans-serif;color:#201e1d}
+a{color:#ae1800;text-decoration:none}a:hover{color:#7c1405}
+.dv{font:500 10px/1 "Archivo";letter-spacing:.14em;text-transform:uppercase}
+.hi{font-family:"Noto Sans Devanagari","Archivo",sans-serif}
+.kn{font-family:"Noto Sans Kannada","Archivo",sans-serif}
+.ta{font-family:"Noto Sans Tamil","Archivo",sans-serif}
+.kick{display:flex;align-items:baseline;gap:8px;margin:0 0 12px;font:600 10px/1 "Archivo";letter-spacing:.16em;text-transform:uppercase;color:#605d5d}
+.sec{border-top:2px solid #201e1d;padding:20px 18px}
+.secd{border-top:1px solid #d7d3d3;padding:24px 36px}
+.tag{background:#f8f4f4;padding:5px 9px;font:500 12px/1 "Archivo"}
+.tag-outline{color:var(--ink)}
+
+.mark{width:14px;height:14px;background:var(--brand);display:block}
+.bezel{width:407px;padding:14px;background:#201e1d;border-radius:38px;box-shadow:0 12px 32px rgba(45,43,43,.22)}
+.screen{position:relative;width:375px;height:760px;background:#f3f2f2;overflow:hidden}
+.scroll{position:absolute;inset:0;overflow:auto}
+.chrome{width:1220px;background:#201e1d;padding:10px 10px 0;box-shadow:0 12px 32px rgba(45,43,43,.22)}
+.dots{display:flex;align-items:center;gap:10px;padding:0 2px 10px}
+.dot{width:9px;height:9px;border-radius:50%}
+.url{flex:1;margin-left:8px;background:#444141;color:#d7d3d3;padding:5px 10px;font:400 11px/1.2 "Archivo"}
+.page{width:1200px;height:820px;background:#f3f2f2;overflow:auto}
+
+.pair{display:flex;gap:40px;align-items:flex-start;flex-wrap:wrap}
+.turn{padding:36px 44px 48px;border-bottom:2px solid rgba(32,30,29,.25)}
+.thd{display:flex;align-items:baseline;gap:12px;margin:0 0 6px}
+.tid{background:#201e1d;color:#f3f2f2;padding:4px 8px;font:600 11px/1 "Archivo";letter-spacing:.12em;text-decoration:none}
+.langtog{display:flex;border:1px solid var(--brand)}
+.langtog span:first-child{padding:4px 7px;background:var(--brand);color:#fff;font:600 10px/1 "Archivo";letter-spacing:.06em}
+.langtog span:last-child{padding:4px 7px;font:500 10px/1;color:var(--brand)}
+.rowli{display:flex;justify-content:space-between;padding:10px 0;font:500 14px/1.3 "Archivo"}
+.meta{color:#605d5d;font-weight:400;font-size:12px}
+.outbadge{background:var(--brand);color:#fff;padding:4px 7px;font:600 10px/1 "Archivo";letter-spacing:.1em}
+</style>
+</helmet>
+
+<section style="padding:28px 44px 0">
+  <h1 style="margin:0 0 6px;font:800 26px/1.1 'Archivo';letter-spacing:-.025em">Professional directory — profile page, three tiers</h1>
+  <p style="margin:0 0 18px;max-width:760px;font:400 13px/1.6 'Archivo';color:#605d5d">Direction <a href="#t1">A (ruled)</a>, lawyer vertical throughout. Free runs platform red; Premium and CNAME hand the whole palette — nav, rules, tags, CTAs — to the professional's brand colour (ink navy #16233F). Case outcomes sit on white cards, borrowed from B. Page is 90% English with the name and one bio line in the local language. Free carries a Posts tab and photo-led competitor rows; Premium is a new, bolder layout — masthead, stat strip, and tabs for posts, reviews and offices. CNAME is unchanged, pending your notes.</p>
+  <div style="display:flex;align-items:center;gap:10px;margin:0 0 4px">
+    <span class="dv" style="color:#605d5d">Show</span>
+    <button style="{{ bAll }}" onClick="{{ showAll }}">All tiers</button>
+    <button style="{{ bFree }}" onClick="{{ showFree }}">Free</button>
+    <button style="{{ bPrem }}" onClick="{{ showPrem }}">Premium</button>
+    <button style="{{ bCname }}" onClick="{{ showCname }}">CNAME</button>
+  </div>
+</section>
+
+<sc-if value="{{ isFree }}" hint-placeholder-val="{{ true }}">
+<section class="turn" id="t1" style="--brand:#ec3013;--color-accent:#ec3013;--ink:#ae1800">
+  <div class="thd"><a class="tid" href="#t1">1</a><h2 style="margin:0;font:800 20px/1.1 'Archivo';letter-spacing:-.02em">Free tier</h2><span class="dv" style="color:#605d5d">Platform red · competitors shown · upsell</span></div>
+  <div class="pair" style="margin-top:20px">
+
+    <div>
+      <div class="dv" style="color:#605d5d;margin:0 0 10px">Mobile · 375</div>
+      <div class="bezel"><div class="screen">
+        <div class="scroll">
+          <div style="display:flex;align-items:center;justify-content:space-between;height:52px;padding:0 16px;border-bottom:2px solid #201e1d">
+            <span style="display:flex;align-items:center;gap:7px"><span class="mark"></span><span style="font:800 13px/1 'Archivo'">TOPLAWYER<span style="color:#605d5d;font-weight:500">.in</span></span></span>
+            <span style="display:flex;align-items:center;gap:10px">
+              <span class="langtog"><span>EN</span><span class="hi">हिन्दी</span></span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#201e1d" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+            </span>
+          </div>
+          <div style="position:relative;width:375px;aspect-ratio:4/5;background:#fff">
+            <image-slot id="t-free-m" shape="rect" fit="cover" placeholder="Portrait — 4:5 formal"></image-slot>
+            <div style="position:absolute;left:0;bottom:0;background:#ec3013;color:#fff;padding:6px 10px;font:600 10px/1 'Archivo';letter-spacing:.14em;pointer-events:none">FREE LISTING</div>
+          </div>
+          <div style="padding:18px;border-top:2px solid #201e1d">
+            <div class="dv" style="color:#605d5d;margin:0 0 8px">Advocate · New Delhi</div>
+            <h1 style="margin:0;font:800 30px/1.05 'Archivo';letter-spacing:-.03em">J. Gupta</h1>
+            <div class="hi" style="margin:4px 0 0;font:500 17px/1.2;color:#444141">जे. गुप्ता</div>
+            <div style="margin:10px 0 0;font:500 15px/1.3 'Archivo'">IP Law Specialist</div>
+            <div style="display:flex;align-items:center;gap:8px;margin:12px 0 0">
+              <span style="font:700 15px/1 'Archivo'">4.8</span><span style="letter-spacing:1px;color:#ec3013;font-size:13px">★★★★★</span>
+              <span style="font:400 13px/1 'Archivo';color:#605d5d">12 reviews</span>
+              <span style="width:1px;height:12px;background:#bab6b6"></span>
+              <span style="font:500 12px/1 'Archivo';color:#605d5d">Phone verified</span>
+            </div>
+          </div>
+          <div style="display:flex;border-top:2px solid #201e1d;border-bottom:2px solid #201e1d;background:#fff"><button style="{{ tFtProfile }}" onClick="{{ goFtProfile }}">Profile</button><button style="{{ tFtPosts }}" onClick="{{ goFtPosts }}">Posts</button></div>
+          <sc-if value="{{ ftProfile }}" hint-placeholder-val="{{ true }}">
+          <div class="sec">
+            <div class="kick">Expertise <span class="hi" style="letter-spacing:0;text-transform:none;font-size:11px">विशेषज्ञता</span></div>
+            <div style="display:flex;flex-wrap:wrap;gap:6px"><span class="tag tag-outline">Intellectual Property</span><span class="tag tag-outline">Patent Law</span><span class="tag tag-outline">Trademark</span><span class="tag tag-outline">Copyright</span><span class="tag tag-outline">Trade Secrets</span></div>
+          </div>
+          <div class="sec">
+            <div class="kick">Courts of practice</div>
+            <div class="rowli"><span>Delhi High Court</span><span class="meta">since 2015</span></div>
+            <div class="rowli" style="border-top:1px solid #d7d3d3"><span>IP Appellate Board</span><span class="meta">since 2018</span></div>
+            <div class="rowli" style="border-top:1px solid #d7d3d3"><span>District Court, Saket</span><span class="meta">since 2016</span></div>
+            <div class="rowli" style="border-top:1px solid #d7d3d3"><span>Commercial Court, Tis Hazari</span><span class="meta">since 2019</span></div>
+            <div class="rowli" style="border-top:1px solid #d7d3d3"><span>Supreme Court of India</span><span class="meta">since 2022</span></div>
+          </div>
+          <div class="sec">
+            <div class="kick">Bio</div>
+            <p class="hi" style="margin:0 0 10px;font:500 16px/1.5;border-left:2px solid #ec3013;padding-left:12px">मैं पिछले 10 वर्षों से बौद्धिक संपदा कानून में प्रैक्टिस कर रहा हूँ।</p>
+            <p style="margin:0;font:400 14px/1.6 'Archivo';color:#444141;text-wrap:pretty">I am an IP lawyer with 10+ years of experience in intellectual property law, specializing in patents, trademarks, and copyrights. I have successfully handled 100+ cases across Delhi High Court and IP Appellate Board.</p>
+          </div>
+          <div class="sec" style="background:#eae9e9">
+            <div class="kick">Case outcomes</div>
+            <div style="display:grid;gap:10px">
+              <div class="card elev-sm" style="background:#fff;padding:16px">
+                <div style="display:flex;justify-content:space-between;gap:8px"><h3 style="margin:0;font:700 15px/1.25 'Archivo'">Patent Infringement Dispute</h3><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#605d5d" stroke-width="2" style="flex:none;margin-top:2px"><path d="M6 9l6 6 6-6"/></svg></div>
+                <p style="margin:8px 0 0;font:400 13px/1.55 'Archivo';color:#444141">Represented a technology startup in a patent infringement case against a competing firm.</p>
+                <div style="display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin:10px 0 0"><span class="tag tag-outline">Patent Law</span><span class="outbadge">FAVOURABLE</span><span style="font:400 11px/1 'Archivo';color:#605d5d">Delhi High Court · 2023</span></div>
+              </div>
+              <div class="card elev-sm" style="background:#fff;display:flex;justify-content:space-between;align-items:center;padding:13px 16px"><span style="font:500 14px/1.2 'Archivo'">Trademark Opposition</span><span style="display:flex;align-items:center;gap:8px"><span class="tag tag-outline">Trademark</span><span style="font:400 11px/1 'Archivo';color:#605d5d">IP Appellate Board · 2022</span></span></div>
+              <div class="card elev-sm" style="background:#fff;display:flex;justify-content:space-between;align-items:center;padding:13px 16px"><span style="font:500 14px/1.2 'Archivo'">Copyright Infringement</span><span style="display:flex;align-items:center;gap:8px"><span class="tag tag-outline">Copyright</span><span style="font:400 11px/1 'Archivo';color:#605d5d">Delhi High Court · 2021</span></span></div>
+            </div>
+          </div>
+          <div class="sec">
+            <div class="kick">Chambers</div>
+            <p style="margin:0;font:400 14px/1.6 'Archivo';color:#444141">45 Rajendra Place, New Delhi 110008<br>+91 98765 43210 · jgupta@email.com</p>
+          </div>
+          <sc-if value="{{ comp }}" hint-placeholder-val="{{ true }}">
+          <div class="sec" style="background:#eae9e9">
+            <div class="kick" style="color:#ae1800">Other IP lawyers in Delhi</div>
+            <p style="margin:-6px 0 12px;font:400 12px/1.5 'Archivo';color:#605d5d">Showing 4 others. Competitor listings appear on free profiles.</p>
+            <div style="display:flex;align-items:center;gap:10px;padding:10px 0;border-top:1px solid #bab6b6"><span style="width:42px;height:42px;flex:none;background:#d7d3d3;display:block"><image-slot id="cmp-m-1" shape="rect" fit="cover" placeholder=" "></image-slot></span><span><span style="display:block;font:600 13px/1.2 'Archivo'">A. Menon</span><span style="display:block;margin-top:3px;font:400 11px/1 'Archivo';color:#605d5d">Best IP Law · 4.7 ★</span></span><span style="margin-left:auto;font:500 11px/1 'Archivo';color:#ae1800">View</span></div>
+            <div style="display:flex;align-items:center;gap:10px;padding:10px 0;border-top:1px solid #bab6b6"><span style="width:42px;height:42px;flex:none;background:#d7d3d3;display:block"><image-slot id="cmp-m-2" shape="rect" fit="cover" placeholder=" "></image-slot></span><span><span style="display:block;font:600 13px/1.2 'Archivo'">S. Rathi</span><span style="display:block;margin-top:3px;font:400 11px/1 'Archivo';color:#605d5d">Patent Expert · 4.5 ★</span></span><span style="margin-left:auto;font:500 11px/1 'Archivo';color:#ae1800">View</span></div>
+            <div style="display:flex;align-items:center;gap:10px;padding:10px 0;border-top:1px solid #bab6b6"><span style="width:42px;height:42px;flex:none;background:#d7d3d3;display:block"><image-slot id="cmp-m-3" shape="rect" fit="cover" placeholder=" "></image-slot></span><span><span style="display:block;font:600 13px/1.2 'Archivo'">K. Verma</span><span style="display:block;margin-top:3px;font:400 11px/1 'Archivo';color:#605d5d">IP Solutions · 4.2 ★</span></span><span style="margin-left:auto;font:500 11px/1 'Archivo';color:#ae1800">View</span></div>
+          </div>
+          <div style="background:#ec3013;color:#fff;padding:22px 18px 24px">
+            <h2 style="margin:0;font:800 24px/1.1 'Archivo';letter-spacing:-.02em">Hide competitors.<br>Own the page.</h2>
+            <p style="margin:8px 0 16px;font:400 13px/1.55 'Archivo';color:rgba(255,255,255,.92)">Premium removes rival listings, applies your brand colour and unlocks analytics.</p>
+            <span style="display:inline-flex;align-items:center;gap:8px;background:#fff;color:#201e1d;padding:12px 14px;font:700 13px/1 'Archivo'">Upgrade to Premium<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#201e1d" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </div>
+          </sc-if>
+          </sc-if>
+          <sc-if value="{{ ftPosts }}" hint-placeholder-val="{{ false }}">
+          <div class="sec" style="border:0;background:#eae9e9">
+            <div class="kick">Recent posts from J. Gupta</div>
+            <div style="display:grid;gap:10px"><div class="card elev-sm" style="background:#fff;padding:14px;border-top:3px solid #ec3013"><div class="kick" style="margin:0 0 8px">12 Sept 2026 · Article</div><h3 style="margin:0;font:800 17px/1.2 'Archivo';letter-spacing:-.02em">Delhi HC on divisional applications: what changed</h3><p style="margin:8px 0 0;font:400 13px/1.6 'Archivo';color:#444141">The court clarified when a divisional application may be filed on a plurality of inventions.</p></div><div class="card elev-sm" style="background:#fff;padding:14px;border-top:3px solid #ec3013"><div class="kick" style="margin:0 0 8px">28 Aug 2026 · Article</div><h3 style="margin:0;font:800 15px/1.2 'Archivo';letter-spacing:-.02em">Trademark oppositions: the four-month window</h3><p style="margin:8px 0 0;font:400 13px/1.6 'Archivo';color:#444141">Missing the opposition period is the most common avoidable loss. A checklist for watching the journal.</p></div><div class="card elev-sm" style="background:#fff;padding:14px;border-top:3px solid #ec3013"><div class="kick" style="margin:0 0 8px">09 Aug 2026 · Article</div><h3 style="margin:0;font:800 15px/1.2 'Archivo';letter-spacing:-.02em">Filing a patent as a startup: costs in 2026</h3><p style="margin:8px 0 0;font:400 13px/1.6 'Archivo';color:#444141">Official fees, attorney fees and the 80% startup rebate, with a worked example.</p></div></div>
+          </div>
+          </sc-if>
+          <div style="height:78px"></div>
+        </div>
+        <div style="position:absolute;left:0;right:0;bottom:0;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:1px;background:#201e1d;border-top:2px solid #201e1d">
+          <button class="btn btn-primary" style="height:48px;padding:0 22px;gap:8px;font:600 13px/1 'Archivo'"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3 21l2.1-5.4A8.5 8.5 0 1 1 21 11.5z"/></svg>WhatsApp</button>
+          <button class="btn btn-secondary" style="height:48px;padding:0 20px;gap:8px;font:600 13px/1 'Archivo';background:#f3f2f2;border-color:var(--brand);color:var(--ink)">Call</button>
+          <button class="btn btn-secondary" style="height:48px;padding:0 20px;gap:8px;font:600 13px/1 'Archivo';background:#f3f2f2;border-color:var(--brand);color:var(--ink)">Email</button>
+        </div>
+      </div></div>
+    </div>
+
+    <div>
+      <div class="dv" style="color:#605d5d;margin:0 0 10px">Desktop · 1200</div>
+      <div class="chrome">
+        <div class="dots"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><span class="url">toplawyer.in/lawyer/j-gupta-ip-delhi</span></div>
+        <div class="page">
+          <div style="display:flex;align-items:center;justify-content:space-between;height:64px;padding:0 32px;border-bottom:2px solid #201e1d">
+            <span style="display:flex;align-items:center;gap:8px"><span class="mark" style="width:16px;height:16px"></span><span style="font:800 16px/1 'Archivo'">TOPLAWYER<span style="color:#605d5d;font-weight:500">.in</span></span></span>
+            <div style="display:flex;align-items:center;gap:26px;font:500 13px/1 'Archivo'">
+              <span>Find a lawyer</span><span>Chartered accountants</span><span>Tax experts</span><span>Cities</span>
+              <span class="langtog"><span>EN</span><span class="hi">हिन्दी</span></span>
+              <span style="border:1px solid #201e1d;padding:8px 12px;font:600 12px/1 'Archivo'">List your practice</span>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:440px 1fr">
+            <div style="border-right:2px solid #201e1d">
+              <div style="position:relative;aspect-ratio:4/5;background:#fff">
+                <image-slot id="t-free-d" shape="rect" fit="cover" placeholder="Portrait — 4:5 formal"></image-slot>
+                <div style="position:absolute;left:0;bottom:0;background:#ec3013;color:#fff;padding:7px 12px;font:600 11px/1 'Archivo';letter-spacing:.14em;pointer-events:none">FREE LISTING</div>
+              </div>
+              <div style="border-top:2px solid #201e1d;padding:20px 28px">
+                <div class="kick">Chambers</div>
+                <p style="margin:0;font:400 14px/1.65 'Archivo';color:#444141">45 Rajendra Place<br>New Delhi 110008<br>+91 98765 43210<br>jgupta@email.com</p>
+              </div>
+              <div style="border-top:1px solid #d7d3d3;padding:20px 28px">
+                <div class="kick">Courts of practice</div>
+                <div class="rowli" style="padding:8px 0"><span>Delhi High Court</span><span class="meta">2015</span></div>
+                <div class="rowli" style="padding:8px 0;border-top:1px solid #d7d3d3"><span>IP Appellate Board</span><span class="meta">2018</span></div>
+                <div class="rowli" style="padding:8px 0;border-top:1px solid #d7d3d3"><span>District Court, Saket</span><span class="meta">2016</span></div>
+                <div class="rowli" style="padding:8px 0;border-top:1px solid #d7d3d3"><span>Commercial Court, Tis Hazari</span><span class="meta">2019</span></div>
+                <div class="rowli" style="padding:8px 0;border-top:1px solid #d7d3d3"><span>Supreme Court of India</span><span class="meta">2022</span></div>
+              </div>
+            </div>
+            <div>
+              <div style="padding:32px 36px 28px">
+                <div class="dv" style="color:#605d5d;margin:0 0 10px">Advocate · New Delhi · Enrolled D/1142/2014</div>
+                <h1 style="margin:0;font:800 56px/.98 'Archivo';letter-spacing:-.035em">J. Gupta</h1>
+                <div class="hi" style="margin:8px 0 0;font:500 24px/1.2;color:#444141">जे. गुप्ता</div>
+                <div style="display:flex;align-items:baseline;gap:16px;margin:16px 0 0">
+                  <span style="font:500 20px/1.2 'Archivo'">IP Law Specialist</span><span style="width:1px;height:16px;background:#bab6b6"></span>
+                  <span style="font:700 17px/1 'Archivo'">4.8</span><span style="letter-spacing:1px;color:#ec3013">★★★★★</span>
+                  <span style="font:400 14px/1 'Archivo';color:#605d5d">12 reviews</span>
+                </div>
+                <div style="display:flex;gap:1px;margin:24px 0 0;background:#201e1d;width:max-content">
+                  <button class="btn btn-primary" style="height:48px;padding:0 22px;gap:8px;font:600 13px/1 'Archivo'"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3 21l2.1-5.4A8.5 8.5 0 1 1 21 11.5z"/></svg>WhatsApp chat</button>
+                  <button class="btn btn-secondary" style="height:48px;padding:0 20px;gap:8px;font:600 13px/1 'Archivo';background:#f3f2f2;border-color:var(--brand);color:var(--ink)">Call +91 98765 43210</button>
+                  <button class="btn btn-secondary" style="height:48px;padding:0 20px;gap:8px;font:600 13px/1 'Archivo';background:#f3f2f2;border-color:var(--brand);color:var(--ink)">Email</button>
+                </div>
+              </div>
+              <div style="display:flex;border-top:2px solid #201e1d;border-bottom:2px solid #201e1d;background:#fff"><button style="{{ tFtProfile }}" onClick="{{ goFtProfile }}">Profile</button><button style="{{ tFtPosts }}" onClick="{{ goFtPosts }}">Posts</button></div>
+              <sc-if value="{{ ftProfile }}" hint-placeholder-val="{{ true }}">
+              <div class="secd" style="border-top:2px solid #201e1d">
+                <div class="kick">Expertise <span class="hi" style="letter-spacing:0;text-transform:none;font-size:12px">विशेषज्ञता</span></div>
+                <div style="display:flex;flex-wrap:wrap;gap:7px"><span class="tag tag-outline">Intellectual Property</span><span class="tag tag-outline">Patent Law</span><span class="tag tag-outline">Trademark</span><span class="tag tag-outline">Copyright</span><span class="tag tag-outline">Trade Secrets</span></div>
+              </div>
+              <div class="secd">
+                <div class="kick">Bio</div>
+                <p class="hi" style="margin:0 0 12px;font:500 20px/1.5;border-left:2px solid #ec3013;padding-left:14px;max-width:620px">मैं पिछले 10 वर्षों से बौद्धिक संपदा कानून में प्रैक्टिस कर रहा हूँ।</p>
+                <p style="margin:0;max-width:620px;font:400 15px/1.65 'Archivo';color:#444141;text-wrap:pretty">I am an IP lawyer with 10+ years of experience in intellectual property law, specializing in patents, trademarks, and copyrights. I have successfully handled 100+ cases across Delhi High Court and IP Appellate Board.</p>
+              </div>
+              <div class="secd" style="background:#eae9e9">
+                <div class="kick">Case outcomes</div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+                  <div class="card elev-sm" style="background:#fff;padding:18px">
+                    <h3 style="margin:0;font:700 16px/1.25 'Archivo'">Patent Infringement Dispute</h3>
+                    <p style="margin:8px 0 0;font:400 13px/1.55 'Archivo';color:#444141">Represented a technology startup in a patent infringement case against a competing firm.</p>
+                    <div style="display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin:14px 0 0"><span class="tag tag-outline">Patent Law</span><span class="outbadge">FAVOURABLE</span><span style="font:400 11px/1 'Archivo';color:#605d5d">Delhi High Court · 2023</span></div>
+                  </div>
+                  <div class="card elev-sm" style="background:#fff;padding:18px">
+                    <h3 style="margin:0;font:700 16px/1.25 'Archivo'">Trademark Opposition</h3>
+                    <p style="margin:8px 0 0;font:400 13px/1.55 'Archivo';color:#444141">Opposed a trademark application that was similar to our client's registered mark.</p>
+                    <div style="display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin:14px 0 0"><span class="tag tag-outline">Trademark</span><span class="outbadge">SUSTAINED</span><span style="font:400 11px/1 'Archivo';color:#605d5d">IP Appellate Board · 2022</span></div>
+                  </div>
+                </div>
+              </div>
+              <sc-if value="{{ comp }}" hint-placeholder-val="{{ true }}">
+              <div class="secd" style="border-top:2px solid #201e1d;background:#eae9e9">
+                <div class="kick" style="color:#ae1800">Other IP lawyers in Delhi</div>
+                <p style="margin:-6px 0 14px;font:400 13px/1.5 'Archivo';color:#605d5d">Showing 4 others. Competitor listings appear on free profiles.</p>
+                <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#bab6b6">
+                  <div style="background:#f3f2f2;padding:14px;display:flex;align-items:center;gap:12px"><span style="width:52px;height:52px;flex:none;background:#d7d3d3;display:block"><image-slot id="cmp-d-1" shape="rect" fit="cover" placeholder=" "></image-slot></span><span><span style="display:block;font:700 14px/1.2 'Archivo'">A. Menon</span><span style="display:block;margin-top:4px;font:400 12px/1.3 'Archivo';color:#605d5d">Best IP Law<br>4.7 ★ · 31 reviews</span></span></div>
+                  <div style="background:#f3f2f2;padding:14px;display:flex;align-items:center;gap:12px"><span style="width:52px;height:52px;flex:none;background:#d7d3d3;display:block"><image-slot id="cmp-d-2" shape="rect" fit="cover" placeholder=" "></image-slot></span><span><span style="display:block;font:700 14px/1.2 'Archivo'">S. Rathi</span><span style="display:block;margin-top:4px;font:400 12px/1.3 'Archivo';color:#605d5d">Patent Expert<br>4.5 ★ · 19 reviews</span></span></div>
+                  <div style="background:#f3f2f2;padding:14px;display:flex;align-items:center;gap:12px"><span style="width:52px;height:52px;flex:none;background:#d7d3d3;display:block"><image-slot id="cmp-d-3" shape="rect" fit="cover" placeholder=" "></image-slot></span><span><span style="display:block;font:700 14px/1.2 'Archivo'">K. Verma</span><span style="display:block;margin-top:4px;font:400 12px/1.3 'Archivo';color:#605d5d">IP Solutions<br>4.2 ★ · 8 reviews</span></span></div>
+                </div>
+              </div>
+              <div style="background:#ec3013;color:#fff;padding:30px 36px 34px;display:flex;align-items:flex-end;justify-content:space-between;gap:24px">
+                <div>
+                  <h2 style="margin:0;font:800 34px/1.05 'Archivo';letter-spacing:-.025em">Hide competitors. Own the page.</h2>
+                  <p style="margin:10px 0 0;max-width:520px;font:400 14px/1.55 'Archivo';color:rgba(255,255,255,.92)">Premium removes rival listings, applies your brand colour across the profile and unlocks analytics.</p>
+                </div>
+                <span style="flex:none;display:inline-flex;align-items:center;gap:8px;background:#fff;color:#201e1d;padding:14px 18px;font:700 14px/1 'Archivo'">Upgrade to Premium<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#201e1d" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+              </div>
+              </sc-if>
+              </sc-if>
+              <sc-if value="{{ ftPosts }}" hint-placeholder-val="{{ false }}">
+              <div class="secd" style="border:0;background:#eae9e9">
+                <div class="kick">Recent posts from J. Gupta <span style="letter-spacing:0;text-transform:none;font-weight:400">updated weekly</span></div>
+                <div style="display:grid;gap:14px"><div class="card elev-sm" style="background:#fff;padding:20px;border-top:3px solid #ec3013"><div class="kick" style="margin:0 0 8px">12 Sept 2026 · Article</div><h3 style="margin:0;font:800 22px/1.2 'Archivo';letter-spacing:-.02em">Delhi HC on divisional applications: what changed</h3><p style="margin:8px 0 0;font:400 14px/1.6 'Archivo';color:#444141">The court clarified when a divisional application may be filed on a plurality of inventions.</p></div><div class="card elev-sm" style="background:#fff;padding:20px;border-top:3px solid #ec3013"><div class="kick" style="margin:0 0 8px">28 Aug 2026 · Article</div><h3 style="margin:0;font:800 18px/1.2 'Archivo';letter-spacing:-.02em">Trademark oppositions: the four-month window</h3><p style="margin:8px 0 0;font:400 14px/1.6 'Archivo';color:#444141">Missing the opposition period is the most common avoidable loss. A checklist for watching the journal.</p></div><div class="card elev-sm" style="background:#fff;padding:20px;border-top:3px solid #ec3013"><div class="kick" style="margin:0 0 8px">09 Aug 2026 · Article</div><h3 style="margin:0;font:800 18px/1.2 'Archivo';letter-spacing:-.02em">Filing a patent as a startup: costs in 2026</h3><p style="margin:8px 0 0;font:400 14px/1.6 'Archivo';color:#444141">Official fees, attorney fees and the 80% startup rebate, with a worked example.</p></div></div>
+              </div>
+              </sc-if>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+</sc-if>
+
+<sc-if value="{{ isPrem }}" hint-placeholder-val="{{ true }}">
+<section class="turn" id="t2" style="--brand:#16233f;--color-accent:#16233f;--ink:#16233f">
+  <div class="thd"><a class="tid" href="#t2">2</a><h2 style="margin:0;font:800 20px/1.1 'Archivo';letter-spacing:-.02em">Premium tier</h2><span class="dv" style="color:#605d5d">New layout · masthead · tabs · offices &amp; map · timeline</span></div>
+  <p style="margin:0 0 20px;max-width:700px;font:400 13px/1.55 'Archivo';color:#605d5d">Authoritative read: the name runs as a masthead over the brand colour, a stat strip carries the credentials, and the page below is tabbed — overview, posts, reviews, offices. Competitors are gone; analytics stay private to the owner.</p>
+  <div class="pair">
+
+    <div>
+      <div class="dv" style="color:#605d5d;margin:0 0 10px">Mobile · 375</div>
+      <div class="bezel"><div class="screen">
+        <div class="scroll">
+          <div style="display:flex;align-items:center;justify-content:space-between;height:52px;padding:0 16px;background:#16233f">
+            <span style="font:800 13px/1 'Archivo';color:#fff;letter-spacing:.02em">GUPTA IP LAW</span>
+            <span style="display:flex;align-items:center;gap:10px">
+              <span style="display:flex;border:1px solid rgba(255,255,255,.45)"><span style="padding:4px 7px;background:#fff;color:#16233f;font:600 10px/1 'Archivo'">EN</span><span class="hi" style="padding:4px 7px;font:500 10px/1;color:#fff">हिन्दी</span></span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+            </span>
+          </div>
+          <div style="position:relative;width:375px;aspect-ratio:4/5;background:#fff">
+            <image-slot id="t-prem-m" shape="rect" fit="cover" placeholder="Portrait — 4:5 formal"></image-slot>
+          </div>
+          <div style="background:#16233f;color:#fff;padding:20px 18px 22px">
+            <div class="dv" style="color:rgba(255,255,255,.65);margin:0 0 10px">Advocate · New Delhi · D/1142/2014</div>
+            <div style="display:flex;align-items:center;gap:8px"><h1 style="margin:0;font:800 36px/.98 'Archivo';letter-spacing:-.04em;text-transform:uppercase">J. Gupta</h1><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M12 2l2.4 1.8 3-.2.9 2.9 2.4 1.8-1.1 2.8 1.1 2.8-2.4 1.8-.9 2.9-3-.2L12 22l-2.4-1.8-3 .2-.9-2.9L3.3 15.7 4.4 13 3.3 10.2l2.4-1.8.9-2.9 3 .2z"/><path d="m8.5 12.2 2.4 2.4 4.6-4.8" stroke="#16233f" stroke-width="1.8" fill="none"/></svg></div>
+            <div class="hi" style="margin:6px 0 0;font:500 18px/1.2;color:rgba(255,255,255,.85)">जे. गुप्ता</div>
+            <div style="height:2px;background:rgba(255,255,255,.3);margin:16px 0"></div>
+            <div style="font:500 15px/1.3 'Archivo'">IP Law Specialist</div>
+            <div style="display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin:10px 0 0">
+              <span style="font:700 15px/1 'Archivo'">4.8</span><span style="letter-spacing:1px;font-size:13px">★★★★★</span>
+              <span style="font:400 13px/1 'Archivo';color:rgba(255,255,255,.7)">12 reviews</span>
+              <span style="width:1px;height:12px;background:rgba(255,255,255,.4)"></span>
+              <span style="font:500 12px/1 'Archivo';color:rgba(255,255,255,.85)">Fully verified</span>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:#16233f;border-bottom:2px solid #16233f"><div style="background:#f3f2f2;padding:14px 16px"><div style="font:800 26px/1 'Archivo';color:#16233f;letter-spacing:-.03em">12</div><div style="margin-top:8px;font:600 10px/1.2 'Archivo';letter-spacing:.12em;text-transform:uppercase;color:#605d5d">Years in practice</div></div><div style="background:#f3f2f2;padding:14px 16px"><div style="font:800 26px/1 'Archivo';color:#16233f;letter-spacing:-.03em">100+</div><div style="margin-top:8px;font:600 10px/1.2 'Archivo';letter-spacing:.12em;text-transform:uppercase;color:#605d5d">Matters concluded</div></div><div style="background:#f3f2f2;padding:14px 16px"><div style="font:800 26px/1 'Archivo';color:#16233f;letter-spacing:-.03em">10</div><div style="margin-top:8px;font:600 10px/1.2 'Archivo';letter-spacing:.12em;text-transform:uppercase;color:#605d5d">Courts of record</div></div><div style="background:#f3f2f2;padding:14px 16px"><div style="font:800 26px/1 'Archivo';color:#16233f;letter-spacing:-.03em">&lt;2h</div><div style="margin-top:8px;font:600 10px/1.2 'Archivo';letter-spacing:.12em;text-transform:uppercase;color:#605d5d">Median response</div></div></div>
+          <div style="display:flex;overflow-x:auto;border-bottom:2px solid #16233f;background:#fff">
+            <button style="{{ tPtOver }}" onClick="{{ goPtOver }}">Overview</button>
+            <button style="{{ tPtPosts }}" onClick="{{ goPtPosts }}">Posts</button>
+            <button style="{{ tPtRev }}" onClick="{{ goPtRev }}">Reviews</button>
+            <button style="{{ tPtOff }}" onClick="{{ goPtOff }}">Offices</button>
+          </div>
+          <sc-if value="{{ ptOver }}" hint-placeholder-val="{{ true }}">
+            <div class="sec" style="border:0">
+              <div class="kick">Expertise <span class="hi" style="letter-spacing:0;text-transform:none;font-size:11px">विशेषज्ञता</span></div>
+              <div style="display:flex;flex-wrap:wrap;gap:7px"><span class="tag tag-outline">Intellectual Property</span><span class="tag tag-outline">Patent Law</span><span class="tag tag-outline">Trademark</span><span class="tag tag-outline">Copyright</span><span class="tag tag-outline">Trade Secrets</span><span class="tag tag-outline">Patent Prosecution</span><span class="tag tag-outline">IP Licensing</span><span class="tag tag-outline">Design Registration</span><span class="tag tag-outline">Domain Disputes</span><span class="tag tag-outline">Anti-Counterfeiting</span></div>
+            </div>
+            <div class="sec" style="border-color:#16233f">
+              <div class="kick">Courts of practice</div>
+              <div class="rowli"><span>Delhi High Court</span><span class="meta">since 2015</span></div>
+              <div class="rowli" style="border-top:1px solid #d7d3d3"><span>IP Appellate Board</span><span class="meta">since 2018</span></div>
+              <div class="rowli" style="border-top:1px solid #d7d3d3"><span>District Court, Saket</span><span class="meta">since 2016</span></div>
+              <div class="rowli" style="border-top:1px solid #d7d3d3"><span>Commercial Court, Tis Hazari</span><span class="meta">since 2019</span></div>
+              <div class="rowli" style="border-top:1px solid #d7d3d3"><span>Supreme Court of India</span><span class="meta">since 2022</span></div>
+              <div class="rowli" style="border-top:1px solid #d7d3d3"><span>Bombay High Court</span><span class="meta">since 2020</span></div>
+              <div class="rowli" style="border-top:1px solid #d7d3d3"><span>NCLT, New Delhi</span><span class="meta">since 2021</span></div>
+              <div class="rowli" style="border-top:1px solid #d7d3d3"><span>Trade Marks Registry, Delhi</span><span class="meta">since 2015</span></div>
+              <div class="rowli" style="border-top:1px solid #d7d3d3"><span>Patent Office, Delhi</span><span class="meta">since 2016</span></div>
+              <div class="rowli" style="border-top:1px solid #d7d3d3"><span>Customs IP Cell</span><span class="meta">since 2023</span></div>
+            </div>
+            <div class="sec" style="border-color:#16233f">
+              <div class="kick">Bio</div>
+              <p class="hi" style="margin:0 0 10px;font:500 16px/1.5;border-left:2px solid #16233f;padding-left:12px;color:#16233f">मैं पिछले 10 वर्षों से बौद्धिक संपदा कानून में प्रैक्टिस कर रहा हूँ।</p>
+              <p style="margin:0;font:400 14px/1.6 'Archivo';color:#444141;text-wrap:pretty">I am an IP lawyer with 10+ years of experience in intellectual property law, specializing in patents, trademarks, and copyrights. I have successfully handled 100+ cases across Delhi High Court and IP Appellate Board.</p>
+            </div>
+            <div class="sec" style="border-color:#16233f">
+              <div class="kick">Career</div>
+              <div style="display:grid;grid-template-columns:62px 1fr"><div style="font:700 13px/1 'Archivo';color:#16233f;padding:14px 0">2014</div><div style="position:relative;border-left:2px solid #16233f;padding:14px 0 14px 16px"><span style="position:absolute;left:-5px;top:16px;width:8px;height:8px;background:#16233f"></span><div style="font:600 14px/1.3 'Archivo'">Enrolled, Bar Council of Delhi</div><div style="margin-top:4px;font:400 12px/1.5 'Archivo';color:#605d5d">Advocate enrolment D/1142/2014.</div></div><div style="font:700 13px/1 'Archivo';color:#16233f;padding:14px 0">2015</div><div style="position:relative;border-left:2px solid #16233f;padding:14px 0 14px 16px"><span style="position:absolute;left:-5px;top:16px;width:8px;height:8px;background:#16233f"></span><div style="font:600 14px/1.3 'Archivo'">Junior counsel, IP litigation</div><div style="margin-top:4px;font:400 12px/1.5 'Archivo';color:#605d5d">Patent and trademark disputes before Delhi High Court.</div></div><div style="font:700 13px/1 'Archivo';color:#16233f;padding:14px 0">2018</div><div style="position:relative;border-left:2px solid #16233f;padding:14px 0 14px 16px"><span style="position:absolute;left:-5px;top:16px;width:8px;height:8px;background:#16233f"></span><div style="font:600 14px/1.3 'Archivo'">Registered, IP Appellate Board</div><div style="margin-top:4px;font:400 12px/1.5 'Archivo';color:#605d5d">Opposition and rectification practice begins.</div></div><div style="font:700 13px/1 'Archivo';color:#16233f;padding:14px 0">2021</div><div style="position:relative;border-left:2px solid #16233f;padding:14px 0 14px 16px"><span style="position:absolute;left:-5px;top:16px;width:8px;height:8px;background:#16233f"></span><div style="font:600 14px/1.3 'Archivo'">Founded Gupta IP Law</div><div style="margin-top:4px;font:400 12px/1.5 'Archivo';color:#605d5d">Independent chambers at Rajendra Place, New Delhi.</div></div><div style="font:700 13px/1 'Archivo';color:#16233f;padding:14px 0">2023</div><div style="position:relative;border-left:2px solid #16233f;padding:14px 0 14px 16px"><span style="position:absolute;left:-5px;top:16px;width:8px;height:8px;background:#16233f"></span><div style="font:600 14px/1.3 'Archivo'">100th matter concluded</div><div style="margin-top:4px;font:400 12px/1.5 'Archivo';color:#605d5d">Preliminary injunction granted, Delhi High Court.</div></div><div style="font:700 13px/1 'Archivo';color:#16233f;padding:14px 0">2026</div><div style="position:relative;border-left:2px solid #16233f;padding:14px 0 14px 16px"><span style="position:absolute;left:-5px;top:16px;width:8px;height:8px;background:#16233f"></span><div style="font:600 14px/1.3 'Archivo'">Startup IP clinic</div><div style="margin-top:4px;font:400 12px/1.5 'Archivo';color:#605d5d">Empanelled counsel, Delhi startup IP assistance scheme.</div></div></div>
+            </div>
+            <div class="sec" style="border-color:#16233f;background:#eae9e9">
+              <div class="kick">Case outcomes</div>
+              <div class="card elev-sm" style="background:#fff;padding:16px;border-top:3px solid #16233f"><h3 style="margin:0;font:700 15px/1.25 'Archivo'">Patent Infringement Dispute</h3><p style="margin:8px 0 0;font:400 13px/1.55 'Archivo';color:#444141">Represented a technology startup in a patent infringement case against a competing firm.</p><div style="display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin:10px 0 0"><span class="tag tag-outline">Patent Law</span><span class="outbadge">FAVOURABLE</span><span style="font:400 11px/1 'Archivo';color:#605d5d">Delhi High Court · 2023</span></div></div>
+            </div>
+          </sc-if>
+          <sc-if value="{{ ptPosts }}" hint-placeholder-val="{{ false }}">
+            <div class="sec" style="border:0;background:#eae9e9">
+              <div class="kick">Recent posts from J. Gupta</div>
+              <div style="display:grid;gap:10px"><div class="card elev-sm" style="background:#fff;padding:14px;border-top:3px solid #16233f"><div class="kick" style="margin:0 0 8px">12 Sept 2026 · Article</div><h3 style="margin:0;font:800 17px/1.2 'Archivo';letter-spacing:-.02em">Delhi HC on divisional applications: what changed</h3><p style="margin:8px 0 0;font:400 13px/1.6 'Archivo';color:#444141">The court clarified when a divisional application may be filed on a plurality of inventions. Three practical consequences for pending prosecutions.</p><div style="margin:14px 0 0"><span class="btn btn-secondary" style="height:40px;padding:0 14px;gap:7px;font:600 12px/1 'Archivo';background:#f3f2f2;border-color:#16233f;color:#16233f;justify-content:flex-start">Read <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16233f" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></div><div class="card elev-sm" style="background:#fff;padding:14px;border-top:3px solid #16233f"><div class="kick" style="margin:0 0 8px">28 Aug 2026 · Article</div><h3 style="margin:0;font:800 15px/1.2 'Archivo';letter-spacing:-.02em">Trademark oppositions: the four-month window</h3><p style="margin:8px 0 0;font:400 13px/1.6 'Archivo';color:#444141">Missing the opposition period is the most common avoidable loss. A checklist for watching the journal.</p><div style="margin:14px 0 0"><span class="btn btn-secondary" style="height:40px;padding:0 14px;gap:7px;font:600 12px/1 'Archivo';background:#f3f2f2;border-color:#16233f;color:#16233f;justify-content:flex-start">Read <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16233f" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></div><div class="card elev-sm" style="background:#fff;padding:14px;border-top:3px solid #16233f"><div class="kick" style="margin:0 0 8px">09 Aug 2026 · Article</div><h3 style="margin:0;font:800 15px/1.2 'Archivo';letter-spacing:-.02em">Filing a patent as a startup: costs in 2026</h3><p style="margin:8px 0 0;font:400 13px/1.6 'Archivo';color:#444141">Official fees, attorney fees and the 80% startup rebate, with a worked example for a software-adjacent claim.</p><div style="margin:14px 0 0"><span class="btn btn-secondary" style="height:40px;padding:0 14px;gap:7px;font:600 12px/1 'Archivo';background:#f3f2f2;border-color:#16233f;color:#16233f;justify-content:flex-start">Read <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16233f" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></div></div>
+            </div>
+          </sc-if>
+          <sc-if value="{{ ptRev }}" hint-placeholder-val="{{ false }}">
+            <div class="sec" style="border:0"><div><div style="display:flex;align-items:baseline;gap:10px"><span style="font:800 56px/1 'Archivo';color:#16233f;letter-spacing:-.04em">4.8</span><span style="letter-spacing:2px;color:#16233f;font-size:16px">★★★★★</span></div><div style="margin:8px 0 16px;font:400 13px/1 'Archivo';color:#605d5d">12 verified client reviews</div><div style="display:grid;gap:7px"><div style="display:flex;align-items:center;gap:8px"><span style="font:500 11px/1 'Archivo';width:10px">5</span><span style="flex:1;height:8px;background:#d7d3d3;display:block"><span style="display:block;height:8px;width:75%;background:#16233f"></span></span><span style="font:400 11px/1 'Archivo';color:#605d5d;width:14px">9</span></div><div style="display:flex;align-items:center;gap:8px"><span style="font:500 11px/1 'Archivo';width:10px">4</span><span style="flex:1;height:8px;background:#d7d3d3;display:block"><span style="display:block;height:8px;width:16.666666666666668%;background:#16233f"></span></span><span style="font:400 11px/1 'Archivo';color:#605d5d;width:14px">2</span></div><div style="display:flex;align-items:center;gap:8px"><span style="font:500 11px/1 'Archivo';width:10px">3</span><span style="flex:1;height:8px;background:#d7d3d3;display:block"><span style="display:block;height:8px;width:8.333333333333334%;background:#16233f"></span></span><span style="font:400 11px/1 'Archivo';color:#605d5d;width:14px">1</span></div><div style="display:flex;align-items:center;gap:8px"><span style="font:500 11px/1 'Archivo';width:10px">2</span><span style="flex:1;height:8px;background:#d7d3d3;display:block"><span style="display:block;height:8px;width:0%;background:#16233f"></span></span><span style="font:400 11px/1 'Archivo';color:#605d5d;width:14px">0</span></div><div style="display:flex;align-items:center;gap:8px"><span style="font:500 11px/1 'Archivo';width:10px">1</span><span style="flex:1;height:8px;background:#d7d3d3;display:block"><span style="display:block;height:8px;width:0%;background:#16233f"></span></span><span style="font:400 11px/1 'Archivo';color:#605d5d;width:14px">0</span></div></div></div></div>
+            <div class="sec" style="border-color:#16233f;background:#eae9e9">
+              <div class="kick">Recent reviews</div>
+              <div style="display:grid;gap:10px"><div class="card elev-sm" style="background:#fff;padding:14px"><div style="letter-spacing:2px;color:#16233f;font-size:13px">★★★★★</div><p style="margin:10px 0 0;font:500 14px/1.55 'Archivo'">Excellent service, very responsive, detailed explanations at every stage of the opposition.</p><div style="margin:10px 0 0;font:400 12px/1 'Archivo';color:#605d5d">Anonymous · 2 months ago</div><div style="margin:14px 0 0;border-left:3px solid #16233f;background:#eae9e9;padding:12px 14px"><div class="kick" style="margin:0 0 6px">Response from J. Gupta</div><p style="margin:0;font:400 12px/1.6 'Archivo';color:#444141">Thank you. The journal watch we set up for your marks continues — you will hear from us before each renewal window.</p></div></div><div class="card elev-sm" style="background:#fff;padding:14px"><div style="letter-spacing:2px;color:#16233f;font-size:13px">★★★★★</div><p style="margin:10px 0 0;font:500 14px/1.55 'Archivo'">Highly knowledgeable in IP law, helped us secure two patents for our hardware startup.</p><div style="margin:10px 0 0;font:400 12px/1 'Archivo';color:#605d5d">Anonymous · 1 month ago</div></div></div>
+            </div>
+          </sc-if>
+          <sc-if value="{{ ptOff }}" hint-placeholder-val="{{ false }}">
+            <div class="sec" style="border:0;background:#eae9e9">
+              <div class="kick">Offices · 2 locations</div>
+              <div style="display:grid;grid-template-columns:1fr;gap:12px"><div class="card elev-sm" style="background:#fff;padding:14px"><div style="display:flex;align-items:center;gap:8px"><h3 style="margin:0;font:700 15px/1.2 'Archivo'">Rajendra Place, New Delhi</h3><span class="tag tag-outline">PRINCIPAL</span></div><p style="margin:8px 0 0;font:400 13px/1.55 'Archivo';color:#444141">45 Rajendra Place, New Delhi 110008</p><div style="margin:6px 0 0;font:400 12px/1 'Archivo';color:#605d5d">Mon–Fri · 10:00–18:00</div><div style="position:relative;height:170px;background:#eae9e9;margin:14px 0 0"><image-slot id="prem-map-1-m" shape="rect" placeholder="Map — Rajendra Place, New Delhi"></image-slot><span style="position:absolute;left:0;bottom:0;background:#16233f;color:#fff;padding:5px 9px;font:600 10px/1 'Archivo';letter-spacing:.1em;pointer-events:none">MAP</span></div><div style="display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 0"><span class="btn btn-primary" style="height:40px;padding:0 14px;gap:7px;font:600 12px/1 'Archivo';justify-content:flex-start">Open in Google Maps</span><span class="btn btn-secondary" style="height:40px;padding:0 14px;gap:7px;font:600 12px/1 'Archivo';background:#f3f2f2;border-color:#16233f;color:#16233f;justify-content:flex-start">Share location</span></div></div><div class="card elev-sm" style="background:#fff;padding:14px"><div style="display:flex;align-items:center;gap:8px"><h3 style="margin:0;font:700 15px/1.2 'Archivo'">Sector 44, Gurugram</h3><span class="tag tag-outline">BRANCH</span></div><p style="margin:8px 0 0;font:400 13px/1.55 'Archivo';color:#444141">3rd Floor, Tower B, Sector 44, Gurugram 122003</p><div style="margin:6px 0 0;font:400 12px/1 'Archivo';color:#605d5d">Sat · by appointment</div><div style="position:relative;height:170px;background:#eae9e9;margin:14px 0 0"><image-slot id="prem-map-2-m" shape="rect" placeholder="Map — Sector 44, Gurugram"></image-slot><span style="position:absolute;left:0;bottom:0;background:#16233f;color:#fff;padding:5px 9px;font:600 10px/1 'Archivo';letter-spacing:.1em;pointer-events:none">MAP</span></div><div style="display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 0"><span class="btn btn-primary" style="height:40px;padding:0 14px;gap:7px;font:600 12px/1 'Archivo';justify-content:flex-start">Open in Google Maps</span><span class="btn btn-secondary" style="height:40px;padding:0 14px;gap:7px;font:600 12px/1 'Archivo';background:#f3f2f2;border-color:#16233f;color:#16233f;justify-content:flex-start">Share location</span></div></div></div>
+            </div>
+          </sc-if>
+          <sc-if value="{{ anal }}" hint-placeholder-val="{{ true }}">
+          <div class="sec" style="border-color:#16233f;background:#16233f;color:#fff">
+            <div class="kick" style="color:rgba(255,255,255,.6)">Your profile performance</div>
+            <div style="display:flex;gap:22px;align-items:baseline">
+              <span><span style="font:800 28px/1 'Archivo'">127</span><span style="display:block;margin-top:4px;font:400 11px/1 'Archivo';color:rgba(255,255,255,.7)">views · Sept</span></span>
+              <span><span style="font:800 28px/1 'Archivo'">12</span><span style="display:block;margin-top:4px;font:400 11px/1 'Archivo';color:rgba(255,255,255,.7)">WhatsApp taps</span></span>
+              <span><span style="font:800 28px/1 'Archivo'">60%</span><span style="display:block;margin-top:4px;font:400 11px/1 'Archivo';color:rgba(255,255,255,.7)">from Google</span></span>
+            </div>
+            <p style="margin:14px 0 0;font:500 12px/1 'Archivo';color:rgba(255,255,255,.85)">Visible to you only · View full analytics →</p>
+          </div>
+          </sc-if>
+          <div style="height:80px"></div>
+        </div>
+        <div style="position:absolute;left:0;right:0;bottom:0;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:1px;background:#16233f;border-top:2px solid #16233f">
+          <button class="btn btn-primary" style="height:48px;padding:0 14px;gap:8px;font:600 13px/1 'Archivo';justify-content:flex-start;white-space:nowrap"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3 21l2.1-5.4A8.5 8.5 0 1 1 21 11.5z"/></svg>WhatsApp</button>
+          <button class="btn btn-secondary" style="height:48px;padding:0 14px;font:600 13px/1 'Archivo';background:#f3f2f2;border-color:#16233f;color:#16233f">Call</button>
+          <button class="btn btn-secondary" style="height:48px;padding:0 14px;font:600 13px/1 'Archivo';background:#f3f2f2;border-color:#16233f;color:#16233f">Email</button>
+        </div>
+      </div></div>
+    </div>
+
+    <div>
+      <div class="dv" style="color:#605d5d;margin:0 0 10px">Desktop · 1200</div>
+      <div class="chrome">
+        <div class="dots"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><span class="url">toplawyer.in/lawyer/j-gupta-ip-delhi</span></div>
+        <div class="page">
+          <div style="display:flex;align-items:center;justify-content:space-between;height:64px;padding:0 32px;background:#16233f">
+            <span style="display:flex;align-items:center;gap:9px"><span style="width:16px;height:16px;background:#fff;display:block"></span><span style="font:800 16px/1 'Archivo';color:#fff;letter-spacing:.02em">GUPTA IP LAW</span></span>
+            <div style="display:flex;align-items:center;gap:26px;font:500 13px/1 'Archivo';color:rgba(255,255,255,.9)">
+              <span>Practice</span><span>Matters</span><span>Posts</span><span>Contact</span>
+              <span style="display:flex;border:1px solid rgba(255,255,255,.45)"><span style="padding:5px 8px;background:#fff;color:#16233f;font:600 10px/1 'Archivo'">EN</span><span class="hi" style="padding:5px 8px;font:500 10px/1;color:#fff">हिन्दी</span></span>
+              <span style="background:#fff;color:#16233f;padding:9px 13px;font:700 12px/1 'Archivo'">Book a consultation</span>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:420px 1fr;background:#16233f;color:#fff">
+            <div style="position:relative;background:#fff;min-height:500px;aspect-ratio:4/5">
+              <image-slot id="t-prem-d" shape="rect" fit="cover" placeholder="Portrait — 4:5 formal"></image-slot>
+              <span style="position:absolute;left:0;bottom:0;background:#16233f;color:#fff;padding:7px 12px;font:600 11px/1 'Archivo';letter-spacing:.14em;pointer-events:none">GUPTA IP LAW</span>
+            </div>
+            <div style="padding:40px 36px 34px;display:flex;flex-direction:column;justify-content:center">
+              <div class="dv" style="color:rgba(255,255,255,.65);margin:0 0 14px">Advocate · New Delhi · Enrolled D/1142/2014</div>
+              <div style="display:flex;align-items:center;gap:14px"><h1 style="margin:0;font:800 78px/.92 'Archivo';letter-spacing:-.045em;text-transform:uppercase">J. Gupta</h1><svg width="30" height="30" viewBox="0 0 24 24" fill="#fff"><path d="M12 2l2.4 1.8 3-.2.9 2.9 2.4 1.8-1.1 2.8 1.1 2.8-2.4 1.8-.9 2.9-3-.2L12 22l-2.4-1.8-3 .2-.9-2.9L3.3 15.7 4.4 13 3.3 10.2l2.4-1.8.9-2.9 3 .2z"/><path d="m8.5 12.2 2.4 2.4 4.6-4.8" stroke="#16233f" stroke-width="1.8" fill="none"/></svg></div>
+              <div class="hi" style="margin:10px 0 0;font:500 26px/1.2;color:rgba(255,255,255,.85)">जे. गुप्ता</div>
+              <div style="height:2px;background:rgba(255,255,255,.3);margin:24px 0 18px"></div>
+              <div style="display:flex;align-items:baseline;gap:18px;flex-wrap:wrap">
+                <span style="font:500 22px/1.2 'Archivo'">IP Law Specialist</span>
+                <span style="width:1px;height:16px;background:rgba(255,255,255,.4)"></span>
+                <span style="font:700 18px/1 'Archivo'">4.8</span><span style="letter-spacing:1px">★★★★★</span>
+                <span style="font:400 14px/1 'Archivo';color:rgba(255,255,255,.72)">12 reviews</span>
+                <span style="width:1px;height:16px;background:rgba(255,255,255,.4)"></span>
+                <span style="font:400 14px/1 'Archivo';color:rgba(255,255,255,.72)">Email · Phone · Admin verified</span>
+              </div>
+              <div style="display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin:26px 0 0">
+                <span style="font:600 10px/1 'Archivo';letter-spacing:.14em;color:rgba(255,255,255,.65);margin-right:4px">FOLLOW</span>
+                <a href="#" title="LinkedIn" style="width:36px;height:36px;border:1px solid rgba(255,255,255,.55);display:flex;align-items:center;justify-content:center;color:#fff;font:700 12px/1 'Archivo';text-decoration:none">in</a>
+                <a href="#" title="Facebook" style="width:36px;height:36px;border:1px solid rgba(255,255,255,.55);display:flex;align-items:center;justify-content:center;color:#fff;font:700 12px/1 'Archivo';text-decoration:none">f</a>
+                <a href="#" title="Instagram" style="width:36px;height:36px;border:1px solid rgba(255,255,255,.55);display:flex;align-items:center;justify-content:center;color:#fff;font:700 12px/1 'Archivo';text-decoration:none">IG</a>
+                <a href="#" title="X" style="width:36px;height:36px;border:1px solid rgba(255,255,255,.55);display:flex;align-items:center;justify-content:center;color:#fff;font:700 12px/1 'Archivo';text-decoration:none">X</a>
+                <a href="#" title="Google Business" style="width:36px;height:36px;border:1px solid rgba(255,255,255,.55);display:flex;align-items:center;justify-content:center;color:#fff;font:700 12px/1 'Archivo';text-decoration:none">G</a>
+              </div>
+            </div>
+            
+          </div>
+          <div style="display:flex;align-items:center;flex-wrap:wrap;gap:10px;padding:18px 36px;background:#f3f2f2;border-bottom:2px solid #16233f">
+            <button class="btn btn-primary" style="height:48px;padding:0 22px;gap:8px;font:600 13px/1 'Archivo';justify-content:flex-start;white-space:nowrap"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3 21l2.1-5.4A8.5 8.5 0 1 1 21 11.5z"/></svg>WhatsApp chat</button>
+            <button class="btn btn-secondary" style="height:48px;padding:0 20px;gap:8px;font:600 13px/1 'Archivo';background:#f3f2f2;border-color:#16233f;color:#16233f;justify-content:flex-start;white-space:nowrap">Call +91 98765 43210</button>
+            <button class="btn btn-secondary" style="height:48px;padding:0 20px;gap:8px;font:600 13px/1 'Archivo';background:#f3f2f2;border-color:#16233f;color:#16233f;justify-content:flex-start">Email</button>
+            <span style="margin-left:auto;font:400 12px/1 'Archivo';color:#605d5d">Typically replies within 2 hours</span>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#16233f;border-bottom:2px solid #16233f"><div style="background:#f3f2f2;padding:20px 24px"><div style="font:800 36px/1 'Archivo';color:#16233f;letter-spacing:-.03em">12</div><div style="margin-top:8px;font:600 10px/1.2 'Archivo';letter-spacing:.12em;text-transform:uppercase;color:#605d5d">Years in practice</div></div><div style="background:#f3f2f2;padding:20px 24px"><div style="font:800 36px/1 'Archivo';color:#16233f;letter-spacing:-.03em">100+</div><div style="margin-top:8px;font:600 10px/1.2 'Archivo';letter-spacing:.12em;text-transform:uppercase;color:#605d5d">Matters concluded</div></div><div style="background:#f3f2f2;padding:20px 24px"><div style="font:800 36px/1 'Archivo';color:#16233f;letter-spacing:-.03em">10</div><div style="margin-top:8px;font:600 10px/1.2 'Archivo';letter-spacing:.12em;text-transform:uppercase;color:#605d5d">Courts of record</div></div><div style="background:#f3f2f2;padding:20px 24px"><div style="font:800 36px/1 'Archivo';color:#16233f;letter-spacing:-.03em">&lt;2h</div><div style="margin-top:8px;font:600 10px/1.2 'Archivo';letter-spacing:.12em;text-transform:uppercase;color:#605d5d">Median response</div></div></div>
+          <div style="display:flex;border-bottom:2px solid #16233f;background:#fff">
+            <button style="{{ tPtOver }}" onClick="{{ goPtOver }}">Overview</button>
+            <button style="{{ tPtPosts }}" onClick="{{ goPtPosts }}">Posts</button>
+            <button style="{{ tPtRev }}" onClick="{{ goPtRev }}">Reviews</button>
+            <button style="{{ tPtOff }}" onClick="{{ goPtOff }}">Offices</button>
+          </div>
+          <sc-if value="{{ ptOver }}" hint-placeholder-val="{{ true }}">
+            <div style="display:grid;grid-template-columns:1fr 360px">
+              <div>
+                <div class="secd" style="border:0">
+                  <div class="kick">Expertise <span class="hi" style="letter-spacing:0;text-transform:none;font-size:12px">विशेषज्ञता</span></div>
+                  <div style="display:flex;flex-wrap:wrap;gap:7px"><span class="tag tag-outline">Intellectual Property</span><span class="tag tag-outline">Patent Law</span><span class="tag tag-outline">Trademark</span><span class="tag tag-outline">Copyright</span><span class="tag tag-outline">Trade Secrets</span><span class="tag tag-outline">Patent Prosecution</span><span class="tag tag-outline">IP Licensing</span><span class="tag tag-outline">Design Registration</span><span class="tag tag-outline">Domain Disputes</span><span class="tag tag-outline">Anti-Counterfeiting</span></div>
+                </div>
+                <div class="secd">
+                  <div class="kick">Bio</div>
+                  <p class="hi" style="margin:0 0 12px;font:500 20px/1.5;border-left:2px solid #16233f;padding-left:14px;max-width:620px;color:#16233f">मैं पिछले 10 वर्षों से बौद्धिक संपदा कानून में प्रैक्टिस कर रहा हूँ।</p><p style="margin:0;max-width:620px;font:400 15px/1.65 'Archivo';color:#444141;text-wrap:pretty">I am an IP lawyer with 10+ years of experience in intellectual property law, specializing in patents, trademarks, and copyrights. I have successfully handled 100+ cases across Delhi High Court and IP Appellate Board.</p>
+                </div>
+                <div class="secd">
+                  <div class="kick">Career highlights</div>
+                  <div style="display:grid;grid-template-columns:84px 1fr"><div style="font:700 14px/1 'Archivo';color:#16233f;padding:16px 0">2014</div><div style="position:relative;border-left:2px solid #16233f;padding:16px 0 16px 20px"><span style="position:absolute;left:-5px;top:18px;width:8px;height:8px;background:#16233f"></span><div style="font:600 15px/1.3 'Archivo'">Enrolled, Bar Council of Delhi</div><div style="margin-top:4px;font:400 13px/1.5 'Archivo';color:#605d5d">Advocate enrolment D/1142/2014.</div></div><div style="font:700 14px/1 'Archivo';color:#16233f;padding:16px 0">2015</div><div style="position:relative;border-left:2px solid #16233f;padding:16px 0 16px 20px"><span style="position:absolute;left:-5px;top:18px;width:8px;height:8px;background:#16233f"></span><div style="font:600 15px/1.3 'Archivo'">Junior counsel, IP litigation</div><div style="margin-top:4px;font:400 13px/1.5 'Archivo';color:#605d5d">Patent and trademark disputes before Delhi High Court.</div></div><div style="font:700 14px/1 'Archivo';color:#16233f;padding:16px 0">2018</div><div style="position:relative;border-left:2px solid #16233f;padding:16px 0 16px 20px"><span style="position:absolute;left:-5px;top:18px;width:8px;height:8px;background:#16233f"></span><div style="font:600 15px/1.3 'Archivo'">Registered, IP Appellate Board</div><div style="margin-top:4px;font:400 13px/1.5 'Archivo';color:#605d5d">Opposition and rectification practice begins.</div></div><div style="font:700 14px/1 'Archivo';color:#16233f;padding:16px 0">2021</div><div style="position:relative;border-left:2px solid #16233f;padding:16px 0 16px 20px"><span style="position:absolute;left:-5px;top:18px;width:8px;height:8px;background:#16233f"></span><div style="font:600 15px/1.3 'Archivo'">Founded Gupta IP Law</div><div style="margin-top:4px;font:400 13px/1.5 'Archivo';color:#605d5d">Independent chambers at Rajendra Place, New Delhi.</div></div><div style="font:700 14px/1 'Archivo';color:#16233f;padding:16px 0">2023</div><div style="position:relative;border-left:2px solid #16233f;padding:16px 0 16px 20px"><span style="position:absolute;left:-5px;top:18px;width:8px;height:8px;background:#16233f"></span><div style="font:600 15px/1.3 'Archivo'">100th matter concluded</div><div style="margin-top:4px;font:400 13px/1.5 'Archivo';color:#605d5d">Preliminary injunction granted, Delhi High Court.</div></div><div style="font:700 14px/1 'Archivo';color:#16233f;padding:16px 0">2026</div><div style="position:relative;border-left:2px solid #16233f;padding:16px 0 16px 20px"><span style="position:absolute;left:-5px;top:18px;width:8px;height:8px;background:#16233f"></span><div style="font:600 15px/1.3 'Archivo'">Startup IP clinic</div><div style="margin-top:4px;font:400 13px/1.5 'Archivo';color:#605d5d">Empanelled counsel, Delhi startup IP assistance scheme.</div></div></div>
+                </div>
+                <div class="secd" style="background:#eae9e9">
+                  <div class="kick">Case outcomes</div>
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px"><div class="card elev-sm" style="background:#fff;padding:18px;border-top:3px solid #16233f"><h3 style="margin:0;font:700 16px/1.25 'Archivo'">Patent Infringement Dispute</h3><p style="margin:8px 0 0;font:400 13px/1.55 'Archivo';color:#444141">Represented a technology startup in a patent infringement case against a competing firm.</p><div style="display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin:14px 0 0"><span class="tag tag-outline">Patent Law</span><span class="outbadge">FAVOURABLE</span><span style="font:400 11px/1 'Archivo';color:#605d5d">Delhi High Court · 2023</span></div></div><div class="card elev-sm" style="background:#fff;padding:18px;border-top:3px solid #16233f"><h3 style="margin:0;font:700 16px/1.25 'Archivo'">Trademark Opposition</h3><p style="margin:8px 0 0;font:400 13px/1.55 'Archivo';color:#444141">Opposed a trademark application that was similar to our client's registered mark.</p><div style="display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin:14px 0 0"><span class="tag tag-outline">Trademark</span><span class="outbadge">SUSTAINED</span><span style="font:400 11px/1 'Archivo';color:#605d5d">IP Appellate Board · 2022</span></div></div></div>
+                </div>
+              </div>
+              <div style="border-left:2px solid #16233f">
+                <div style="padding:24px 28px">
+                  <div class="kick">Courts of practice</div>
+                  <div class="rowli" style="padding:8px 0"><span>Delhi High Court</span><span class="meta">2015</span></div>
+                  <div class="rowli" style="padding:8px 0;border-top:1px solid #d7d3d3"><span>IP Appellate Board</span><span class="meta">2018</span></div>
+                  <div class="rowli" style="padding:8px 0;border-top:1px solid #d7d3d3"><span>District Court, Saket</span><span class="meta">2016</span></div>
+                  <div class="rowli" style="padding:8px 0;border-top:1px solid #d7d3d3"><span>Commercial Court, Tis Hazari</span><span class="meta">2019</span></div>
+                  <div class="rowli" style="padding:8px 0;border-top:1px solid #d7d3d3"><span>Supreme Court of India</span><span class="meta">2022</span></div>
+                  <div class="rowli" style="padding:8px 0;border-top:1px solid #d7d3d3"><span>Bombay High Court</span><span class="meta">2020</span></div>
+                  <div class="rowli" style="padding:8px 0;border-top:1px solid #d7d3d3"><span>NCLT, New Delhi</span><span class="meta">2021</span></div>
+                  <div class="rowli" style="padding:8px 0;border-top:1px solid #d7d3d3"><span>Trade Marks Registry, Delhi</span><span class="meta">2015</span></div>
+                  <div class="rowli" style="padding:8px 0;border-top:1px solid #d7d3d3"><span>Patent Office, Delhi</span><span class="meta">2016</span></div>
+                  <div class="rowli" style="padding:8px 0;border-top:1px solid #d7d3d3"><span>Customs IP Cell</span><span class="meta">2023</span></div>
+                </div>
+                <div style="border-top:1px solid #d7d3d3;padding:24px 28px">
+                  <div class="kick">Principal office</div>
+                  <p style="margin:0;font:400 14px/1.65 'Archivo';color:#444141">45 Rajendra Place<br>New Delhi 110008<br>+91 98765 43210<br>jgupta@guptaip.in</p>
+                  <div style="margin:14px 0 0"><span class="btn btn-secondary" style="height:40px;padding:0 14px;gap:7px;font:600 12px/1 'Archivo';background:#f3f2f2;border-color:#16233f;color:#16233f;justify-content:flex-start">Open in Google Maps</span></div>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+          <sc-if value="{{ ptPosts }}" hint-placeholder-val="{{ false }}">
+            <div class="secd" style="border:0;background:#eae9e9">
+              <div class="kick">Recent posts from J. Gupta <span style="letter-spacing:0;text-transform:none;font-weight:400">updated weekly</span></div>
+              <div style="display:grid;gap:14px"><div class="card elev-sm" style="background:#fff;padding:20px;border-top:3px solid #16233f"><div class="kick" style="margin:0 0 8px">12 Sept 2026 · Article</div><h3 style="margin:0;font:800 22px/1.2 'Archivo';letter-spacing:-.02em">Delhi HC on divisional applications: what changed</h3><p style="margin:8px 0 0;font:400 14px/1.6 'Archivo';color:#444141">The court clarified when a divisional application may be filed on a plurality of inventions. Three practical consequences for pending prosecutions.</p><div style="margin:14px 0 0"><span class="btn btn-secondary" style="height:40px;padding:0 14px;gap:7px;font:600 12px/1 'Archivo';background:#f3f2f2;border-color:#16233f;color:#16233f;justify-content:flex-start">Read <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16233f" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></div><div class="card elev-sm" style="background:#fff;padding:20px;border-top:3px solid #16233f"><div class="kick" style="margin:0 0 8px">28 Aug 2026 · Article</div><h3 style="margin:0;font:800 18px/1.2 'Archivo';letter-spacing:-.02em">Trademark oppositions: the four-month window</h3><p style="margin:8px 0 0;font:400 14px/1.6 'Archivo';color:#444141">Missing the opposition period is the most common avoidable loss. A checklist for watching the journal.</p><div style="margin:14px 0 0"><span class="btn btn-secondary" style="height:40px;padding:0 14px;gap:7px;font:600 12px/1 'Archivo';background:#f3f2f2;border-color:#16233f;color:#16233f;justify-content:flex-start">Read <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16233f" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></div><div class="card elev-sm" style="background:#fff;padding:20px;border-top:3px solid #16233f"><div class="kick" style="margin:0 0 8px">09 Aug 2026 · Article</div><h3 style="margin:0;font:800 18px/1.2 'Archivo';letter-spacing:-.02em">Filing a patent as a startup: costs in 2026</h3><p style="margin:8px 0 0;font:400 14px/1.6 'Archivo';color:#444141">Official fees, attorney fees and the 80% startup rebate, with a worked example for a software-adjacent claim.</p><div style="margin:14px 0 0"><span class="btn btn-secondary" style="height:40px;padding:0 14px;gap:7px;font:600 12px/1 'Archivo';background:#f3f2f2;border-color:#16233f;color:#16233f;justify-content:flex-start">Read <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16233f" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></div></div>
+            </div>
+          </sc-if>
+          <sc-if value="{{ ptRev }}" hint-placeholder-val="{{ false }}">
+            <div class="secd" style="border:0;background:#eae9e9">
+              <div style="display:grid;grid-template-columns:300px 1fr;gap:28px;align-items:start">
+                <div><div style="display:flex;align-items:baseline;gap:10px"><span style="font:800 56px/1 'Archivo';color:#16233f;letter-spacing:-.04em">4.8</span><span style="letter-spacing:2px;color:#16233f;font-size:16px">★★★★★</span></div><div style="margin:8px 0 16px;font:400 13px/1 'Archivo';color:#605d5d">12 verified client reviews</div><div style="display:grid;gap:7px"><div style="display:flex;align-items:center;gap:8px"><span style="font:500 11px/1 'Archivo';width:10px">5</span><span style="flex:1;height:8px;background:#d7d3d3;display:block"><span style="display:block;height:8px;width:75%;background:#16233f"></span></span><span style="font:400 11px/1 'Archivo';color:#605d5d;width:14px">9</span></div><div style="display:flex;align-items:center;gap:8px"><span style="font:500 11px/1 'Archivo';width:10px">4</span><span style="flex:1;height:8px;background:#d7d3d3;display:block"><span style="display:block;height:8px;width:16.666666666666668%;background:#16233f"></span></span><span style="font:400 11px/1 'Archivo';color:#605d5d;width:14px">2</span></div><div style="display:flex;align-items:center;gap:8px"><span style="font:500 11px/1 'Archivo';width:10px">3</span><span style="flex:1;height:8px;background:#d7d3d3;display:block"><span style="display:block;height:8px;width:8.333333333333334%;background:#16233f"></span></span><span style="font:400 11px/1 'Archivo';color:#605d5d;width:14px">1</span></div><div style="display:flex;align-items:center;gap:8px"><span style="font:500 11px/1 'Archivo';width:10px">2</span><span style="flex:1;height:8px;background:#d7d3d3;display:block"><span style="display:block;height:8px;width:0%;background:#16233f"></span></span><span style="font:400 11px/1 'Archivo';color:#605d5d;width:14px">0</span></div><div style="display:flex;align-items:center;gap:8px"><span style="font:500 11px/1 'Archivo';width:10px">1</span><span style="flex:1;height:8px;background:#d7d3d3;display:block"><span style="display:block;height:8px;width:0%;background:#16233f"></span></span><span style="font:400 11px/1 'Archivo';color:#605d5d;width:14px">0</span></div></div></div>
+                <div>
+                  <div class="kick">Recent reviews</div>
+                  <div style="display:grid;gap:14px"><div class="card elev-sm" style="background:#fff;padding:18px"><div style="letter-spacing:2px;color:#16233f;font-size:13px">★★★★★</div><p style="margin:10px 0 0;font:500 15px/1.55 'Archivo'">Excellent service, very responsive, detailed explanations at every stage of the opposition.</p><div style="margin:10px 0 0;font:400 12px/1 'Archivo';color:#605d5d">Anonymous · 2 months ago</div><div style="margin:14px 0 0;border-left:3px solid #16233f;background:#eae9e9;padding:12px 14px"><div class="kick" style="margin:0 0 6px">Response from J. Gupta</div><p style="margin:0;font:400 13px/1.6 'Archivo';color:#444141">Thank you. The journal watch we set up for your marks continues — you will hear from us before each renewal window.</p></div></div><div class="card elev-sm" style="background:#fff;padding:18px"><div style="letter-spacing:2px;color:#16233f;font-size:13px">★★★★★</div><p style="margin:10px 0 0;font:500 15px/1.55 'Archivo'">Highly knowledgeable in IP law, helped us secure two patents for our hardware startup.</p><div style="margin:10px 0 0;font:400 12px/1 'Archivo';color:#605d5d">Anonymous · 1 month ago</div></div><div class="card elev-sm" style="background:#fff;padding:18px"><div style="letter-spacing:2px;color:#16233f;font-size:13px">★★★★☆</div><p style="margin:10px 0 0;font:500 15px/1.55 'Archivo'">Good guidance, but could have communicated more frequently during the drafting stage.</p><div style="margin:10px 0 0;font:400 12px/1 'Archivo';color:#605d5d">Anonymous · 3 weeks ago</div><div style="margin:14px 0 0;border-left:3px solid #16233f;background:#eae9e9;padding:12px 14px"><div class="kick" style="margin:0 0 6px">Response from J. Gupta</div><p style="margin:0;font:400 13px/1.6 'Archivo';color:#444141">Fair comment. We have since moved to fortnightly written updates on all pending drafts.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+          <sc-if value="{{ ptOff }}" hint-placeholder-val="{{ false }}">
+            <div class="secd" style="border:0;background:#eae9e9">
+              <div class="kick">Offices · 2 locations</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px"><div class="card elev-sm" style="background:#fff;padding:18px"><div style="display:flex;align-items:center;gap:8px"><h3 style="margin:0;font:700 16px/1.2 'Archivo'">Rajendra Place, New Delhi</h3><span class="tag tag-outline">PRINCIPAL</span></div><p style="margin:8px 0 0;font:400 14px/1.55 'Archivo';color:#444141">45 Rajendra Place, New Delhi 110008</p><div style="margin:6px 0 0;font:400 12px/1 'Archivo';color:#605d5d">Mon–Fri · 10:00–18:00</div><div style="position:relative;height:170px;background:#eae9e9;margin:14px 0 0"><image-slot id="prem-map-1-d" shape="rect" placeholder="Map — Rajendra Place, New Delhi"></image-slot><span style="position:absolute;left:0;bottom:0;background:#16233f;color:#fff;padding:5px 9px;font:600 10px/1 'Archivo';letter-spacing:.1em;pointer-events:none">MAP</span></div><div style="display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 0"><span class="btn btn-primary" style="height:40px;padding:0 14px;gap:7px;font:600 12px/1 'Archivo';justify-content:flex-start">Open in Google Maps</span><span class="btn btn-secondary" style="height:40px;padding:0 14px;gap:7px;font:600 12px/1 'Archivo';background:#f3f2f2;border-color:#16233f;color:#16233f;justify-content:flex-start">Share location</span></div></div><div class="card elev-sm" style="background:#fff;padding:18px"><div style="display:flex;align-items:center;gap:8px"><h3 style="margin:0;font:700 16px/1.2 'Archivo'">Sector 44, Gurugram</h3><span class="tag tag-outline">BRANCH</span></div><p style="margin:8px 0 0;font:400 14px/1.55 'Archivo';color:#444141">3rd Floor, Tower B, Sector 44, Gurugram 122003</p><div style="margin:6px 0 0;font:400 12px/1 'Archivo';color:#605d5d">Sat · by appointment</div><div style="position:relative;height:170px;background:#eae9e9;margin:14px 0 0"><image-slot id="prem-map-2-d" shape="rect" placeholder="Map — Sector 44, Gurugram"></image-slot><span style="position:absolute;left:0;bottom:0;background:#16233f;color:#fff;padding:5px 9px;font:600 10px/1 'Archivo';letter-spacing:.1em;pointer-events:none">MAP</span></div><div style="display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 0"><span class="btn btn-primary" style="height:40px;padding:0 14px;gap:7px;font:600 12px/1 'Archivo';justify-content:flex-start">Open in Google Maps</span><span class="btn btn-secondary" style="height:40px;padding:0 14px;gap:7px;font:600 12px/1 'Archivo';background:#f3f2f2;border-color:#16233f;color:#16233f;justify-content:flex-start">Share location</span></div></div></div>
+            </div>
+          </sc-if>
+          <sc-if value="{{ anal }}" hint-placeholder-val="{{ true }}">
+          <div style="border-top:2px solid #16233f;background:#16233f;color:#fff;padding:28px 36px 32px">
+            <div class="kick" style="color:rgba(255,255,255,.6)">Your profile performance <span style="letter-spacing:0;text-transform:none;font-weight:400">visible to you only</span></div>
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.25)">
+              <div style="background:#16233f;padding:14px 16px"><div style="font:800 32px/1 'Archivo'">127</div><div style="margin-top:6px;font:400 12px/1 'Archivo';color:rgba(255,255,255,.7)">Profile views</div></div>
+              <div style="background:#16233f;padding:14px 16px"><div style="font:800 32px/1 'Archivo'">12</div><div style="margin-top:6px;font:400 12px/1 'Archivo';color:rgba(255,255,255,.7)">WhatsApp taps</div></div>
+              <div style="background:#16233f;padding:14px 16px"><div style="font:800 32px/1 'Archivo'">8</div><div style="margin-top:6px;font:400 12px/1 'Archivo';color:rgba(255,255,255,.7)">Call taps</div></div>
+              <div style="background:#16233f;padding:14px 16px"><div style="font:800 32px/1 'Archivo'">60%</div><div style="margin-top:6px;font:400 12px/1 'Archivo';color:rgba(255,255,255,.7)">From Google</div></div>
+            </div>
+            <div style="display:flex;gap:10px;margin:18px 0 0">
+              <span style="background:#fff;color:#16233f;padding:11px 14px;font:700 13px/1 'Archivo'">View full analytics</span>
+              <span style="border:1px solid rgba(255,255,255,.6);color:#fff;padding:11px 14px;font:600 13px/1 'Archivo'">Manage settings</span>
+            </div>
+          </div>
+          </sc-if>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+</sc-if>
+
+<sc-if value="{{ isCname }}" hint-placeholder-val="{{ true }}">
+<section class="turn" id="t3" style="--brand:#16233f;--color-accent:#16233f;--ink:#16233f">
+  <div class="thd"><a class="tid" href="#t3">3</a><h2 style="margin:0;font:800 20px/1.1 'Archivo';letter-spacing:-.02em">CNAME white-label</h2><span class="dv" style="color:#605d5d">guptaip.in · no platform chrome · own nav and footer</span></div>
+  <div class="pair" style="margin-top:20px">
+
+    <div>
+      <div class="dv" style="color:#605d5d;margin:0 0 10px">Mobile · 375</div>
+      <div class="bezel"><div class="screen">
+        <div class="scroll">
+          <div style="display:flex;align-items:center;justify-content:space-between;height:56px;padding:0 16px;background:#16233f">
+            <span style="display:flex;align-items:baseline;gap:8px"><span style="font:800 14px/1 'Archivo';color:#fff;letter-spacing:.02em">GUPTA IP LAW</span></span>
+            <span style="display:flex;align-items:center;gap:10px">
+              <span style="display:flex;border:1px solid rgba(255,255,255,.45)"><span style="padding:4px 7px;background:#fff;color:#16233f;font:600 10px/1 'Archivo'">EN</span><span class="hi" style="padding:4px 7px;font:500 10px/1;color:#fff">हिन्दी</span></span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+            </span>
+          </div>
+          <div style="position:relative;width:375px;aspect-ratio:4/5;background:#fff">
+            <image-slot id="t-cn-m" shape="rect" fit="cover" placeholder="Portrait — 4:5 formal"></image-slot>
+          </div>
+          <div style="padding:18px;border-top:2px solid #16233f">
+            <div class="dv" style="color:#605d5d;margin:0 0 8px">Intellectual property chambers · New Delhi</div>
+            <div style="display:flex;align-items:center;gap:8px">
+              <h1 style="margin:0;font:800 30px/1.05 'Archivo';letter-spacing:-.03em;color:#16233f">J. Gupta</h1>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="#16233f"><path d="M12 2l2.4 1.8 3-.2.9 2.9 2.4 1.8-1.1 2.8 1.1 2.8-2.4 1.8-.9 2.9-3-.2L12 22l-2.4-1.8-3 .2-.9-2.9L3.3 15.7 4.4 13 3.3 10.2l2.4-1.8.9-2.9 3 .2z"/><path d="m8.5 12.2 2.4 2.4 4.6-4.8" stroke="#fff" stroke-width="1.8" fill="none"/></svg>
+            </div>
+            <div class="hi" style="margin:4px 0 0;font:500 17px/1.2;color:#444141">जे. गुप्ता</div>
+            <div style="margin:10px 0 0;font:500 15px/1.3 'Archivo'">IP Law Specialist</div>
+            <div style="display:flex;align-items:center;gap:8px;margin:12px 0 0">
+              <span style="font:700 15px/1 'Archivo'">4.8</span><span style="letter-spacing:1px;color:#16233f;font-size:13px">★★★★★</span>
+              <span style="font:400 13px/1 'Archivo';color:#605d5d">12 client reviews</span>
+            </div>
+          </div>
+          <div class="sec" style="border-color:#16233f">
+            <div class="kick">Practice areas <span class="hi" style="letter-spacing:0;text-transform:none;font-size:11px">विशेषज्ञता</span></div>
+            <div style="display:flex;flex-wrap:wrap;gap:6px"><span class="tag tag-outline">Intellectual Property</span><span class="tag tag-outline">Patent Law</span><span class="tag tag-outline">Trademark</span><span class="tag tag-outline">Copyright</span><span class="tag tag-outline">Trade Secrets</span></div>
+          </div>
+          <div class="sec" style="border-color:#16233f">
+            <div class="kick">Courts of practice</div>
+            <div class="rowli"><span>Delhi High Court</span><span class="meta">since 2015</span></div>
+            <div class="rowli" style="border-top:1px solid #d7d3d3"><span>IP Appellate Board</span><span class="meta">since 2018</span></div>
+          </div>
+          <div class="sec" style="border-color:#16233f">
+            <div class="kick">About</div>
+            <p class="hi" style="margin:0 0 10px;font:500 16px/1.5;border-left:2px solid #16233f;padding-left:12px;color:#16233f">मैं पिछले 10 वर्षों से बौद्धिक संपदा कानून में प्रैक्टिस कर रहा हूँ।</p>
+            <p style="margin:0;font:400 14px/1.6 'Archivo';color:#444141;text-wrap:pretty">I am an IP lawyer with 10+ years of experience in intellectual property law, specializing in patents, trademarks, and copyrights. I have successfully handled 100+ cases across Delhi High Court and IP Appellate Board.</p>
+          </div>
+          <div class="sec" style="border-color:#16233f;background:#eae9e9">
+            <div class="kick">Notable matters</div>
+            <div style="display:grid;gap:10px">
+              <div class="card elev-sm" style="background:#fff;border-top:3px solid #16233f">
+                <h3 style="margin:0;font:700 15px/1.25 'Archivo'">Patent Infringement Dispute</h3>
+                <p style="margin:8px 0 0;font:400 13px/1.55 'Archivo';color:#444141">Represented a technology startup in a patent infringement case against a competing firm.</p>
+                <div style="display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin:10px 0 0"><span class="tag tag-outline">Patent Law</span><span class="outbadge">FAVOURABLE</span><span style="font:400 11px/1 'Archivo';color:#605d5d">Delhi High Court · 2023</span></div>
+              </div>
+              <div class="card elev-sm" style="background:#fff;display:flex;justify-content:space-between;align-items:center;padding:13px 16px"><span style="font:500 14px/1.2 'Archivo'">Trademark Opposition</span><span style="display:flex;align-items:center;gap:8px"><span class="tag tag-outline">Trademark</span><span style="font:400 11px/1 'Archivo';color:#605d5d">IP Appellate Board · 2022</span></span></div>
+              <div class="card elev-sm" style="background:#fff;display:flex;justify-content:space-between;align-items:center;padding:13px 16px"><span style="font:500 14px/1.2 'Archivo'">Copyright Infringement</span><span style="display:flex;align-items:center;gap:8px"><span class="tag tag-outline">Copyright</span><span style="font:400 11px/1 'Archivo';color:#605d5d">Delhi High Court · 2021</span></span></div>
+            </div>
+          </div>
+          <div style="background:#16233f;color:#fff;padding:24px 18px 26px">
+            <div class="kick" style="color:rgba(255,255,255,.55)">Contact</div>
+            <p style="margin:0;font:400 14px/1.7 'Archivo';color:rgba(255,255,255,.9)">45 Rajendra Place, New Delhi 110008<br>+91 98765 43210<br>jgupta@guptaip.in</p>
+            <div style="display:flex;gap:8px;margin:18px 0 20px">
+              <span style="width:32px;height:32px;border:1px solid rgba(255,255,255,.5);display:flex;align-items:center;justify-content:center;font:700 11px/1 'Archivo'">in</span>
+              <span style="width:32px;height:32px;border:1px solid rgba(255,255,255,.5);display:flex;align-items:center;justify-content:center;font:700 11px/1 'Archivo'">X</span>
+              <span style="width:32px;height:32px;border:1px solid rgba(255,255,255,.5);display:flex;align-items:center;justify-content:center;font:700 11px/1 'Archivo'">↗</span>
+            </div>
+            <p style="margin:0;padding-top:16px;border-top:1px solid rgba(255,255,255,.25);font:400 11px/1.5 'Archivo';color:rgba(255,255,255,.6)">© 2026 J. Gupta Law Practice · New Delhi<br>Advocate enrolment D/1142/2014</p>
+          </div>
+          <div style="height:78px"></div>
+        </div>
+        <div style="position:absolute;left:0;right:0;bottom:0;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:1px;background:#16233f;border-top:2px solid #16233f">
+          <button class="btn btn-primary" style="height:48px;padding:0 22px;gap:8px;font:600 13px/1 'Archivo'"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3 21l2.1-5.4A8.5 8.5 0 1 1 21 11.5z"/></svg>WhatsApp</button>
+          <button class="btn btn-secondary" style="height:48px;padding:0 20px;gap:8px;font:600 13px/1 'Archivo';background:#f3f2f2;border-color:var(--brand);color:var(--ink)">Call</button>
+          <button class="btn btn-secondary" style="height:48px;padding:0 20px;gap:8px;font:600 13px/1 'Archivo';background:#f3f2f2;border-color:var(--brand);color:var(--ink)">Email</button>
+        </div>
+      </div></div>
+    </div>
+
+    <div>
+      <div class="dv" style="color:#605d5d;margin:0 0 10px">Desktop · 1200</div>
+      <div class="chrome">
+        <div class="dots"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><span class="url">guptaip.in</span></div>
+        <div class="page">
+          <div style="display:flex;align-items:center;justify-content:space-between;height:70px;padding:0 32px;background:#16233f">
+            <span style="font:800 18px/1 'Archivo';color:#fff;letter-spacing:.01em">GUPTA IP LAW</span>
+            <div style="display:flex;align-items:center;gap:26px;font:500 13px/1 'Archivo';color:rgba(255,255,255,.9)">
+              <span>About</span><span>Practice areas</span><span>Matters</span><span>Articles</span><span>Contact</span>
+              <span style="display:flex;border:1px solid rgba(255,255,255,.45)"><span style="padding:5px 8px;background:#fff;color:#16233f;font:600 10px/1 'Archivo'">EN</span><span class="hi" style="padding:5px 8px;font:500 10px/1;color:#fff">हिन्दी</span></span>
+              <span style="background:#fff;color:#16233f;padding:9px 13px;font:700 12px/1 'Archivo'">Book a consultation</span>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:440px 1fr">
+            <div style="border-right:2px solid #16233f">
+              <div style="position:relative;aspect-ratio:4/5;background:#fff">
+                <image-slot id="t-cn-d" shape="rect" fit="cover" placeholder="Portrait — 4:5 formal"></image-slot>
+              </div>
+              <div style="border-top:2px solid #16233f;padding:20px 28px">
+                <div class="kick">Courts of practice</div>
+                <div class="rowli" style="padding:8px 0"><span>Delhi High Court</span><span class="meta">2015</span></div>
+                <div class="rowli" style="padding:8px 0;border-top:1px solid #d7d3d3"><span>IP Appellate Board</span><span class="meta">2018</span></div>
+              </div>
+            </div>
+            <div>
+              <div style="padding:32px 36px 28px">
+                <div class="dv" style="color:#605d5d;margin:0 0 10px">Intellectual property chambers · New Delhi</div>
+                <div style="display:flex;align-items:center;gap:12px">
+                  <h1 style="margin:0;font:800 56px/.98 'Archivo';letter-spacing:-.035em;color:#16233f">J. Gupta</h1>
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="#16233f"><path d="M12 2l2.4 1.8 3-.2.9 2.9 2.4 1.8-1.1 2.8 1.1 2.8-2.4 1.8-.9 2.9-3-.2L12 22l-2.4-1.8-3 .2-.9-2.9L3.3 15.7 4.4 13 3.3 10.2l2.4-1.8.9-2.9 3 .2z"/><path d="m8.5 12.2 2.4 2.4 4.6-4.8" stroke="#fff" stroke-width="1.8" fill="none"/></svg>
+                </div>
+                <div class="hi" style="margin:8px 0 0;font:500 24px/1.2;color:#444141">जे. गुप्ता</div>
+                <div style="display:flex;align-items:baseline;gap:16px;margin:16px 0 0">
+                  <span style="font:500 20px/1.2 'Archivo'">IP Law Specialist</span><span style="width:1px;height:16px;background:#bab6b6"></span>
+                  <span style="font:700 17px/1 'Archivo'">4.8</span><span style="letter-spacing:1px;color:#16233f">★★★★★</span>
+                  <span style="font:400 14px/1 'Archivo';color:#605d5d">12 client reviews</span>
+                </div>
+                <div style="display:flex;gap:1px;margin:24px 0 0;background:#16233f;width:max-content">
+                  <button class="btn btn-primary" style="height:48px;padding:0 22px;gap:8px;font:600 13px/1 'Archivo'"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3 21l2.1-5.4A8.5 8.5 0 1 1 21 11.5z"/></svg>WhatsApp chat</button>
+                  <button class="btn btn-secondary" style="height:48px;padding:0 20px;gap:8px;font:600 13px/1 'Archivo';background:#f3f2f2;border-color:var(--brand);color:var(--ink)">Call +91 98765 43210</button>
+                  <button class="btn btn-secondary" style="height:48px;padding:0 20px;gap:8px;font:600 13px/1 'Archivo';background:#f3f2f2;border-color:var(--brand);color:var(--ink)">Email</button>
+                </div>
+              </div>
+              <div class="secd" style="border-top:2px solid #16233f">
+                <div class="kick">Practice areas <span class="hi" style="letter-spacing:0;text-transform:none;font-size:12px">विशेषज्ञता</span></div>
+                <div style="display:flex;flex-wrap:wrap;gap:7px"><span class="tag tag-outline">Intellectual Property</span><span class="tag tag-outline">Patent Law</span><span class="tag tag-outline">Trademark</span><span class="tag tag-outline">Copyright</span><span class="tag tag-outline">Trade Secrets</span></div>
+              </div>
+              <div class="secd">
+                <div class="kick">About</div>
+                <p class="hi" style="margin:0 0 12px;font:500 20px/1.5;border-left:2px solid #16233f;padding-left:14px;max-width:620px;color:#16233f">मैं पिछले 10 वर्षों से बौद्धिक संपदा कानून में प्रैक्टिस कर रहा हूँ।</p>
+                <p style="margin:0;max-width:620px;font:400 15px/1.65 'Archivo';color:#444141;text-wrap:pretty">I am an IP lawyer with 10+ years of experience in intellectual property law, specializing in patents, trademarks, and copyrights. I have successfully handled 100+ cases across Delhi High Court and IP Appellate Board.</p>
+              </div>
+              <div class="secd" style="background:#eae9e9">
+                <div class="kick">Notable matters</div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+                  <div class="card elev-sm" style="background:#fff;padding:18px;border-top:3px solid #16233f">
+                    <h3 style="margin:0;font:700 16px/1.25 'Archivo'">Patent Infringement Dispute</h3>
+                    <p style="margin:8px 0 0;font:400 13px/1.55 'Archivo';color:#444141">Represented a technology startup in a patent infringement case against a competing firm.</p>
+                    <div style="display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin:14px 0 0"><span class="tag tag-outline">Patent Law</span><span class="outbadge">FAVOURABLE</span><span style="font:400 11px/1 'Archivo';color:#605d5d">Delhi High Court · 2023</span></div>
+                  </div>
+                  <div class="card elev-sm" style="background:#fff;padding:18px;border-top:3px solid #16233f">
+                    <h3 style="margin:0;font:700 16px/1.25 'Archivo'">Copyright Infringement</h3>
+                    <p style="margin:8px 0 0;font:400 13px/1.55 'Archivo';color:#444141">Secured copyright protection and pursued infringement damages against unauthorized users.</p>
+                    <div style="display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin:14px 0 0"><span class="tag tag-outline">Copyright</span><span class="outbadge">SETTLED</span><span style="font:400 11px/1 'Archivo';color:#605d5d">Delhi High Court · 2021</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="background:#16233f;color:#fff;padding:36px 32px 30px">
+            <div style="display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap">
+              <div>
+                <div style="font:800 18px/1 'Archivo';margin:0 0 14px">GUPTA IP LAW</div>
+                <p style="margin:0;font:400 14px/1.7 'Archivo';color:rgba(255,255,255,.85)">45 Rajendra Place, New Delhi 110008<br>+91 98765 43210 · jgupta@guptaip.in</p>
+              </div>
+              <div style="display:flex;gap:48px">
+                <div>
+                  <div class="kick" style="color:rgba(255,255,255,.55)">Practice</div>
+                  <p style="margin:0;font:400 13px/1.9 'Archivo';color:rgba(255,255,255,.85)">Patents<br>Trademarks<br>Copyright</p>
+                </div>
+                <div>
+                  <div class="kick" style="color:rgba(255,255,255,.55)">Firm</div>
+                  <p style="margin:0;font:400 13px/1.9 'Archivo';color:rgba(255,255,255,.85)">About<br>Matters<br>Articles</p>
+                </div>
+                <div>
+                  <div class="kick" style="color:rgba(255,255,255,.55)">Elsewhere</div>
+                  <div style="display:flex;gap:8px">
+                    <span style="width:32px;height:32px;border:1px solid rgba(255,255,255,.5);display:flex;align-items:center;justify-content:center;font:700 11px/1 'Archivo'">in</span>
+                    <span style="width:32px;height:32px;border:1px solid rgba(255,255,255,.5);display:flex;align-items:center;justify-content:center;font:700 11px/1 'Archivo'">X</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p style="margin:28px 0 0;padding-top:18px;border-top:1px solid rgba(255,255,255,.25);font:400 11px/1.5 'Archivo';color:rgba(255,255,255,.6)">© 2026 J. Gupta Law Practice · Advocate enrolment D/1142/2014 · Canonical: toplawyer.in/lawyer/j-gupta-ip-delhi</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showCompetitors&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Free tier&quot;},&quot;showAnalytics&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Premium tier&quot;}}">
+class Component extends DCLogic {
+  state = { tier: 'all', ft: 'profile', pt: 'overview' };
+  tab(on, brand) {
+    return {
+      padding: '14px 18px', font: "700 12px/1 'Archivo'", letterSpacing: '.1em',
+      textTransform: 'uppercase', cursor: 'pointer', border: 0, borderRadius: 0,
+      whiteSpace: 'nowrap', background: on ? brand : 'transparent',
+      color: on ? '#fff' : '#605d5d'
+    };
+  }
+  setFt(v) { return () => this.setState({ ft: v }); }
+  setPt(v) { return () => this.setState({ pt: v }); }
+  btn(on) {
+    return {
+      padding: '7px 12px', font: "600 12px/1 'Archivo'", cursor: 'pointer', whiteSpace: 'nowrap',
+      border: '1px solid #201e1d', borderRadius: 0,
+      background: on ? '#201e1d' : 'transparent',
+      color: on ? '#f3f2f2' : '#201e1d'
+    };
+  }
+  set(t) { return () => this.setState({ tier: t }); }
+  renderVals() {
+    const t = this.state.tier;
+    return {
+      isFree: t === 'all' || t === 'free',
+      isPrem: t === 'all' || t === 'prem',
+      isCname: t === 'all' || t === 'cname',
+      comp: this.props.showCompetitors ?? true,
+      ftProfile: this.state.ft === 'profile', ftPosts: this.state.ft === 'posts',
+      tFtProfile: this.tab(this.state.ft === 'profile', '#ec3013'),
+      tFtPosts: this.tab(this.state.ft === 'posts', '#ec3013'),
+      goFtProfile: this.setFt('profile'), goFtPosts: this.setFt('posts'),
+      ptOver: this.state.pt === 'overview', ptPosts: this.state.pt === 'posts',
+      ptRev: this.state.pt === 'reviews', ptOff: this.state.pt === 'offices',
+      tPtOver: this.tab(this.state.pt === 'overview', '#16233f'),
+      tPtPosts: this.tab(this.state.pt === 'posts', '#16233f'),
+      tPtRev: this.tab(this.state.pt === 'reviews', '#16233f'),
+      tPtOff: this.tab(this.state.pt === 'offices', '#16233f'),
+      goPtOver: this.setPt('overview'), goPtPosts: this.setPt('posts'),
+      goPtRev: this.setPt('reviews'), goPtOff: this.setPt('offices'),
+      anal: this.props.showAnalytics ?? true,
+      bAll: this.btn(t === 'all'), bFree: this.btn(t === 'free'),
+      bPrem: this.btn(t === 'prem'), bCname: this.btn(t === 'cname'),
+      showAll: this.set('all'), showFree: this.set('free'),
+      showPrem: this.set('prem'), showCname: this.set('cname')
+    };
+  }
+}
+</script>
+</body>
+</html>
