@@ -289,3 +289,11 @@ html{scroll-behavior:smooth}
 .premium .own-hero a,.premium .own-footer a{color:var(--on-brand)}
 .premium .tab[aria-selected=true]{border-bottom-color:var(--brand)}
 .premium .btn-wa{background:#1f7a4d;color:#fff}
+/* contrast on dark mastheads and premium heroes */
+.masthead .pro-meta,.masthead .pro-meta span,.own-hero .pro-meta,.own-hero .pro-meta span,.masthead .inline-note,.own-hero .inline-note{color:rgba(255,255,255,.92)}
+.masthead .pro-meta svg,.own-hero .pro-meta svg{opacity:.9}
+.masthead .crumbs a,.masthead .crumbs span{color:#f0e4c6}
+/* header on phones */
+.site-header .btn,.lang-pill{white-space:nowrap}
+@media(max-width:599px){.brand small{display:none}.hdr-actions{gap:6px}.lang-pill{padding:5px 9px;font-size:12.5px}}
+@media(max-width:799px){body:has(.connect-bar){padding-bottom:76px}body:has(.connect-bar) .compare-tray{bottom:88px}}

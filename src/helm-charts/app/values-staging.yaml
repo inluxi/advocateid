@@ -1,0 +1,11 @@
+replicaCount: 1
+image:
+  tag: "latest"
+env:
+  SITE_ORIGIN: https://staging.advocateid.in
+ingress:
+  hosts:
+    - staging.advocateid.in
+  tlsSecret: advocateid-staging-tls
+autoscaling:
+  enabled: false

@@ -1,0 +1,52 @@
+replicaCount: 2
+
+image:
+  repository: advocateid/advocateid-in
+  tag: "latest" # replaced by CI with the commit sha
+  pullPolicy: IfNotPresent
+
+service:
+  port: 3000
+
+env:
+  SITE_ORIGIN: https://advocateid.in
+  ROOT_DOMAIN: advocateid.in
+  SMS_PROVIDER: msg91
+  STORAGE_PROVIDER: firebase
+  STORAGE_PUBLIC_BASE: https://storage.googleapis.com/advocateid-images
+  FIREBASE_BUCKET: advocateid-images
+
+# Names of Kubernetes Secrets created by hand (never in Git):
+#   kubectl create secret generic advocateid-secrets \
+#     --from-literal=DATABASE_URL=... --from-literal=APP_SECRET=... --from-literal=MSG91_AUTH_KEY=... \
+#     --from-literal=MSG91_TEMPLATE_ID=... --from-literal=JOB_TOKEN=... --from-literal=ADMIN_MOBILES=...
+#   kubectl create secret generic advocateid-firebase --from-file=FIREBASE_SERVICE_ACCOUNT=./service-account.json
+secrets:
+  app: advocateid-secrets
+  firebase: advocateid-firebase
+
+resources:
+  requests: { cpu: 100m, memory: 256Mi }
+  limits: { cpu: 500m, memory: 512Mi }
+
+autoscaling:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 70
+
+ingress:
+  enabled: true
+  className: nginx
+  clusterIssuer: letsencrypt-prod
+  # Main site and premium CNAME targets. Customer domains arrive with their own Host header and are routed by the app.
+  hosts:
+    - advocateid.in
+    - www.advocateid.in
+  tlsSecret: advocateid-tls
+  # Extra hosts (customer domains) are added by the domain onboarding job as separate Ingress objects with their own certificate.
+  extraHosts: []
+
+nightly:
+  enabled: true
+  schedule: "30 20 * * *" # 02:00 IST

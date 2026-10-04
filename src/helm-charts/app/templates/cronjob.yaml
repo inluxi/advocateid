@@ -1,0 +1,24 @@
+{{- if .Values.nightly.enabled }}
+# Nightly: roll up events, recompute scores, rebuild search index, purge personal data past retention (DPDP), re-check domains
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: {{ include "advocateid.name" . }}-nightly
+spec:
+  schedule: {{ .Values.nightly.schedule | quote }}
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 2
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      backoffLimit: 1
+      template:
+        spec:
+          restartPolicy: Never
+          containers:
+            - name: nightly
+              image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+              command: ["npm", "run", "job:nightly"]
+              env:
+                {{- include "advocateid.env" . | nindent 16 }}
+{{- end }}

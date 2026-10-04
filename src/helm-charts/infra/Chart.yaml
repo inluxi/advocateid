@@ -1,0 +1,5 @@
+apiVersion: v2
+name: advocateid-infra
+description: One-time cluster setup for advocateid.in (ClusterIssuer, ArgoCD applications). Third-party charts are installed with the commands in README.md
+type: application
+version: 0.1.0

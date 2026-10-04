@@ -1,0 +1,47 @@
+name: Build and deploy
+
+# main = production, staging = preview. ArgoCD watches src/helm-charts/app/values*.yaml and rolls the new image out.
+on:
+  push:
+    branches: [staging, main]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      IMAGE: ${{ secrets.DOCKER_USERNAME }}/advocateid-in
+      ENV_NAME: ${{ github.ref_name == 'main' && 'production' || 'staging' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run lint && npm run typecheck && npm test
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: |
+            ${{ env.IMAGE }}:${{ github.sha }}
+            ${{ env.IMAGE }}:${{ env.ENV_NAME }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+      - name: Update the image tag in the Helm values
+        run: |
+          file="src/helm-charts/app/values-${ENV_NAME}.yaml"
+          sed -i "s|^  tag:.*|  tag: \"${{ github.sha }}\"|" "$file"
+          git config user.name "github-actions"
+          git config user.email "actions@users.noreply.github.com"
+          git add "$file"
+          git diff --cached --quiet || git commit -m "chore: ${ENV_NAME} image ${{ github.sha }} [skip ci]"
+          git push

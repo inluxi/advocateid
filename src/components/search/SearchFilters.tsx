@@ -18,7 +18,7 @@ export async function SearchFilters({ district, current, lang }: { district: Loc
   ]);
   const nearHref = searchUrl({ ...current, n: "1", s: "nearest", after: undefined, page: undefined }, lang);
   return (
-    <form method="get" action={lang === "ml" ? "/ml/search" : "/search"} className="filters card pad" role="search" aria-label={t("search.filters")}>
+    <form method="get" action={lang === "ml" ? "/ml/search" : "/search"} className="filters pad" role="search" aria-label={t("search.filters")}>
       <input type="hidden" name="d" value={district.code} />
       {current.first ? <input type="hidden" name="first" value={current.first} /> : null}
       <div>

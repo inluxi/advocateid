@@ -1,5 +1,3 @@
-import type { NextConfig } from "next";
-
 const securityHeaders = [
   { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains; preload" },
   { key: "X-Content-Type-Options", value: "nosniff" },
@@ -8,12 +6,12 @@ const securityHeaders = [
   { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(self)" },
 ];
 
-const nextConfig: NextConfig = {
-  output: "standalone",
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   // `next dev` would otherwise append its own block to the project's AGENTS.md
   agentRules: false,
   poweredByHeader: false,
-  serverExternalPackages: ["pg"],
+  serverExternalPackages: ["pg", "@google-cloud/storage"],
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },

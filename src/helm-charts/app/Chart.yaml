@@ -1,0 +1,6 @@
+apiVersion: v2
+name: advocateid
+description: advocateid.in Next.js application (web, nightly job, migrations)
+type: application
+version: 0.1.0
+appVersion: "0.1.0"
