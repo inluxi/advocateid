@@ -61,10 +61,6 @@ export async function findOrCreateAccount(mobile: string): Promise<{ id: number;
   const existing = await db.select().from(accounts).where(eq(accounts.mobile, mobile)).limit(1);
   if (existing[0]) {
     const a = existing[0];
-    // Logging in again cancels a pending deletion request (grace period)
-    if (a.deletionRequestedAt && !a.deletedAt) {
-      await db.update(accounts).set({ deletionRequestedAt: null, updatedAt: new Date() }).where(eq(accounts.id, a.id));
-    }
     return { id: a.id, isNew: false, role: a.role, status: a.status };
   }
   const role = config.adminMobiles.includes(mobile) ? "admin" : "user";
