@@ -46,6 +46,8 @@ export interface RouteOptions {
   auth?: "user" | "admin";
   /** Rate limit: [bucket, limit, windowSeconds] keyed by hashed client IP. */
   limit?: [string, number, number];
+  /** Skip the CSRF token (login endpoints; the origin check still applies). */
+  noCsrf?: boolean;
 }
 
 export interface Ctx<P = Record<string, string>> {
@@ -74,7 +76,7 @@ export function route<P = Record<string, string>>(handler: Handler<P>, opts: Rou
       if (opts.auth && !session) throw new ApiError(401, "unauthenticated");
       if (opts.auth === "admin" && session?.role !== "admin") throw new ApiError(403, "forbidden");
 
-      if (mutating && session) {
+      if (mutating && session && !opts.noCsrf) {
         const sent = req.headers.get("x-csrf-token") ?? "";
         if (!sent || !safeEqual(sent, csrfTokenFor(session))) throw new ApiError(403, "bad_csrf");
       }

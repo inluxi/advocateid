@@ -307,3 +307,28 @@ export async function importCourtsCsv(text: string): Promise<ImportResult> {
   return result;
 }
 
+
+/* ------------------------------------------------- admin: categories, localities */
+
+export async function upsertCategory(input: { code: string; slug: string; name: string; ml?: string | null; id?: number }): Promise<Category> {
+  const db = getDb();
+  if (!/^[a-z0-9]{2,6}$/.test(input.code)) throw new Error("code must be 2 to 6 lowercase letters or digits");
+  if (!/^[a-z0-9-]{2,60}$/.test(input.slug) || input.slug === "updates") throw new Error("invalid slug");
+  let row: Category;
+  if (input.id) {
+    [row] = await db.update(categories).set({ code: input.code, slug: input.slug, name: input.name }).where(eq(categories.id, input.id)).returning();
+  } else {
+    [row] = await db.insert(categories).values({ code: input.code, slug: input.slug, name: input.name }).returning();
+  }
+  if (input.ml !== undefined) {
+    if (input.ml) await db.insert(categoryTranslations).values({ categoryId: row.id, language: "ml", name: input.ml }).onConflictDoUpdate({ target: [categoryTranslations.categoryId, categoryTranslations.language], set: { name: input.ml } });
+    else await db.delete(categoryTranslations).where(and(eq(categoryTranslations.categoryId, row.id), eq(categoryTranslations.language, "ml")));
+  }
+  return row;
+}
+
+export async function addLocality(input: { code: string; name: string; localName?: string | null; parentId: number; level: "city" | "locality"; lat?: number | null; lng?: number | null }): Promise<Locality> {
+  if (!/^[a-z0-9]{2,8}$/.test(input.code)) throw new Error("code must be 2 to 8 lowercase letters or digits");
+  const [row] = await getDb().insert(localities).values({ ...input, localName: input.localName ?? null, lat: input.lat ?? null, lng: input.lng ?? null }).returning();
+  return row;
+}

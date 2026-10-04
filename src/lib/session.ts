@@ -28,3 +28,8 @@ export async function requireSession(): Promise<SessionInfo> {
   if (!s) throw new Error("UNAUTHENTICATED");
   return s;
 }
+
+/** Essential cookies only (DPDP): session, bookmarks, compare, near-me position, rotating visitor id, language. */
+export const BOOKMARK_COOKIE = "aid_bm";
+export const COMPARE_COOKIE = "aid_cmp";
+export const NEAR_COOKIE = "aid_near";
