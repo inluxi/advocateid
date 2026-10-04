@@ -11,7 +11,7 @@ export const RESERVED_SLUGS = new Set([
   "manage", "admin", "api", "pricing", "about", "contact", "terms", "privacy", "grievance", "report", "sitemap",
   "sitemaps", "robots", "lawyers", "offices", "ml", "connect", "static", "uploads", "manifest", "offline", "favicon",
   "advocateid", "advocate", "advocates", "firm", "firms", "support", "help", "www", "mail", "app", "assets", "images",
-  "domain", "domains", "home", "index", "new", "edit", "settings", "bookmarks", "download", "updates", "update",
+  "domain", "domains", "sites", "home", "index", "new", "edit", "settings", "bookmarks", "download", "updates", "update",
 ]);
 
 export type SlugCheck = { ok: true } | { ok: false; reason: "length" | "chars" | "hyphen" | "reserved" };

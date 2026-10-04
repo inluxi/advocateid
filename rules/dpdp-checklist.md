@@ -940,3 +940,12 @@ POST /api/otp (body: { mobile: "..." }) // Mobile in POST body, encrypted in tra
 - **DPDP Rules 2025 (notified 13 Nov 2025):** https://www.meity.gov.in/
 - **Data Protection Board (contacts and process):** TBD by counsel (T6)
 - **Cloudflare Data Processing Addendum:** https://www.cloudflare.com/dpa/
+
+
+---
+
+## 17. As built (MVP 1 implementation notes)
+
+Processors (stack per MVP1-INSTRUCTIONS.md; replace the Cloudflare rows in section 10.1 once the stack is final): VPS host (CloudPE or Hetzner), Render PostgreSQL, Firebase Storage, SMS provider (MSG91 adapter), Cloudflare DNS. Each needs a data processing agreement and an entry in `/privacy`.
+
+Implemented in code: OTP and session hashing (HMAC-SHA-256 with `APP_SECRET`), rate limits (OTP send 3 per 15 minutes per IP and per mobile; verify; report; grievance; contact; image upload), CSRF token plus origin check on signed-in mutations, no mobile numbers in URLs (Connect goes through `/connect/{id}`), logger that redacts mobiles, emails and tokens, consent records (`account_consents`), data download (`/api/account/download`), deletion with a 30-day grace period (pages hidden at once, login cancels it, nightly job erases), nightly purges (OTP logs 7 days, raw events 30 days, daily counters 1 year, contact messages 90 days, resolved grievances 3 years, audit log 1 year, soft-deleted pages 30 days, expired sessions and rate limits).

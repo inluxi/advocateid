@@ -548,3 +548,16 @@ lighthouse https://advocateid.in/c/kl-hc-001/high-court-of-kerala --output=json
 - [ ] Thin pages (< 3 advocates, no updates) are noindex.
 - [ ] 301 redirects for old slugs active for 12 months.
 - [ ] Language switching via URL (/ml/...), not auto-redirect.
+
+
+---
+
+## 13. As built (MVP 1 implementation notes)
+
+- Readable paths: `/d/{district-code}`, `/d/{district-code}/practice-area/{practice-slug}`, `/c/{id}/{seo}`, `/c/{id}/{seo}/{practice-slug}`, `/l/{id}/{seo}`, `/l/{id}/{seo}/{practice-slug}`. The practice segment accepts the slug or the short code; the canonical uses the slug.
+- Filters (`d, q, p, c, l, g, x, t, s, n, first, after, page`) are query parameters on `/search` (always noindex, canonical = the readable path). Any extra query parameter on a readable path makes it noindex with a canonical to the base path.
+- Thin pages (fewer than 3 listings and no court update) are noindex; pages beyond page 5 are noindex.
+- Wrong `{seo}` segments redirect with a permanent redirect (HTTP 308). Old and reserved slugs: 308 redirect for 12 months, then 404 (App Router cannot send 410).
+- Internal routes not for crawlers: `/connect/{pageId}` (redirect that records a Connect tap), `/api/*`, `/sites/{host}/*` (internal tree for custom domains, unreachable directly), `/uploads/*` (development images).
+- Custom domains: `src/proxy.ts` rewrites any non-advocateid.in host to `/sites/{host}/...`. Each domain serves its own `/sitemap.xml` and `/robots.txt`. `{slug}.p.advocateid.in` serves the same pages with `noindex` and `Disallow: /`.
+- Sitemaps are generated on request and cached for an hour (`Cache-Control: public, max-age=3600`); Premium pages with an active domain are excluded from advocateid.in sitemaps.
