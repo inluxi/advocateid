@@ -1,6 +1,6 @@
 # Database schema
 
-PostgreSQL via Drizzle (`src/db/schema.ts`, migrations in `src/db/migrations`). Portability rules: no arrays, jsonb or enums; code lists are delimited text matched with LIKE; every table holding user data has `deleted_at`/`deleted_by`; every list has `sort`. There are no foreign-key constraints (soft delete and purge jobs manage references); ids are integer identity columns.
+PostgreSQL via Drizzle (`src/webapp/db/schema.ts`, migrations in `src/webapp/db/migrations`). Portability rules: no arrays, jsonb or enums; code lists are delimited text matched with LIKE; every table holding user data has `deleted_at`/`deleted_by`; every list has `sort`. There are no foreign-key constraints (soft delete and purge jobs manage references); ids are integer identity columns.
 
 | Table | Purpose | Personal data and retention |
 |---|---|---|

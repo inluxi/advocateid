@@ -119,9 +119,11 @@ Advocates may not solicit work or advertise (Rule 36, Part VI, Chapter II, BCI R
 ```
 /src/
   helm-charts/
-    infra/          — Cloudflare infrastructure
+    infra/          — Cluster infrastructure (ClusterIssuer, ArgoCD apps)
     app/            — Application deployment
-  app/              — Next.js application code
+  webapp/           — the whole Next.js project (package.json, configs, run npm here)
+    app/            — routes (App Router)
+    components/ db/ repo/ lib/ messages/ jobs/ e2e/ public/
 /rules/             — Detailed governance
   schema.md
   seo.md

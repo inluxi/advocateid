@@ -13,7 +13,7 @@ export const DEFAULT_LANG: Lang = "en";
 
 type Dict = Record<string, string>;
 
-/** All UI text lives in src/messages. UI stays English until MVP 2; Malayalam falls back key by key. */
+/** All UI text lives in messages/. UI stays English until MVP 2; Malayalam falls back key by key. */
 export const EN: Dict = { ...enCommon, ...enPublic, ...enProfile, ...enManage, ...enAccount, ...enAdmin, ...enLegal };
 const DICTS: Record<Lang, Dict> = { en: EN, ml: mlCommon as Dict };
 

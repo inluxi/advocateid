@@ -12,17 +12,23 @@ Next.js 16 (App Router, `proxy.ts`), TypeScript, Drizzle ORM on PostgreSQL, Dock
 Images go through a storage adapter (`local` for development, `firebase` for production). OTP SMS goes through an adapter (`msg91`).
 
 ```
-src/app/            routes (App Router): (site) public pages, sites/[host] Premium domain tree, admin, api
-src/components/     UI (server components by default; client components only for forms and editors)
-src/db/             Drizzle schema, migrations, seeds, client
-src/repo/           repository layer: ALL database access lives here
-src/lib/            pure rules and helpers: entitlements, wording, ranking, slug, seo, i18n, session, api wrapper
-src/messages/       translation files (all UI text); English now, Malayalam keys fall back to English
-src/jobs/           nightly job
-src/helm-charts/    app chart (Deployment, Service, Ingress, HPA, nightly CronJob) and infra chart (ClusterIssuer, ArgoCD apps)
-rules/              detailed governance (DPDP, Bar Council wording, SEO, analytics, git)
-e2e/                end-to-end API tests against a running server
+src/webapp/         the whole Next.js project (package.json, configs, node_modules live here; run every npm command from this folder)
+src/helm-charts/    Kubernetes: app chart and infra chart
+rules/  docs/       governance, API and schema reference
 design/             read-only prototype and mockups
+Dockerfile          build context is the repo root
+```
+Inside `src/webapp/`:
+
+```
+app/            routes (App Router): (site) public pages, sites/[host] Premium domain tree, admin, api
+components/     UI (server components by default; client components only for forms and editors)
+db/             Drizzle schema, migrations, seeds, client
+repo/           repository layer: ALL database access lives here
+lib/            pure rules and helpers: entitlements, wording, ranking, slug, seo, i18n, session, api wrapper
+messages/       translation files (all UI text); English now, Malayalam keys fall back to English
+jobs/           nightly job
+e2e/                end-to-end API tests against a running server
 ```
 
 ## Run locally
@@ -30,9 +36,10 @@ design/             read-only prototype and mockups
 Needs Node 22 and PostgreSQL 15+.
 
 ```bash
+cd src/webapp
 cp .env.example .env              # set DATABASE_URL, APP_SECRET (32+ chars)
 npm install
-npm run db:migrate                # applies src/db/migrations
+npm run db:migrate                # applies src/webapp/db/migrations
 npm run db:seed -- --demo         # districts, categories, courts and made-up sample pages
 npm run dev                       # http://localhost:3000
 ```
@@ -46,7 +53,7 @@ by listing your mobile in `ADMIN_MOBILES` (E.164, e.g. `+919000000001`) before y
 |---|---|
 | `npm run lint` / `typecheck` / `test` / `build` | the four checks CI runs (`test` uses PGlite, no database needed) |
 | `npm run test:e2e` | API flows against a running server: `E2E=1 npm run dev`, then `E2E_BASE_URL=http://localhost:3000 npm run test:e2e` |
-| `npm run db:generate` | create a migration after changing `src/db/schema.ts` |
+| `npm run db:generate` | create a migration after changing `src/webapp/db/schema.ts` |
 | `npm run db:migrate` / `db:seed` | apply migrations / seed reference data (`-- --demo` adds sample pages) |
 | `npm run job:nightly` | rollups, scoring, search index rebuild, DPDP purges, domain re-check |
 
@@ -74,7 +81,7 @@ Rollback: revert the values commit (or `argocd app rollback`); migrations are fo
 
 ## Monitoring
 
-`/api/health` (readiness and liveness), JSON logs on stdout without personal data (`src/lib/logger.ts`),
+`/api/health` (readiness and liveness), JSON logs on stdout without personal data (`src/webapp/lib/logger.ts`),
 the admin dashboard (`/admin`: impressions, views and Connect taps per host, open reports and grievances, audit log).
 Sentry and Cloudflare analytics are not wired in code (see NOTES.md).
 

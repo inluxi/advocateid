@@ -559,5 +559,5 @@ lighthouse https://advocateid.in/c/kl-hc-001/high-court-of-kerala --output=json
 - Thin pages (fewer than 3 listings and no court update) are noindex; pages beyond page 5 are noindex.
 - Wrong `{seo}` segments redirect with a permanent redirect (HTTP 308). Old and reserved slugs: 308 redirect for 12 months, then 404 (App Router cannot send 410).
 - Internal routes not for crawlers: `/connect/{pageId}` (redirect that records a Connect tap), `/api/*`, `/sites/{host}/*` (internal tree for custom domains, unreachable directly), `/uploads/*` (development images).
-- Custom domains: `src/proxy.ts` rewrites any non-advocateid.in host to `/sites/{host}/...`. Each domain serves its own `/sitemap.xml` and `/robots.txt`. `{slug}.p.advocateid.in` serves the same pages with `noindex` and `Disallow: /`.
+- Custom domains: `src/webapp/proxy.ts` rewrites any non-advocateid.in host to `/sites/{host}/...`. Each domain serves its own `/sitemap.xml` and `/robots.txt`. `{slug}.p.advocateid.in` serves the same pages with `noindex` and `Disallow: /`.
 - Sitemaps are generated on request and cached for an hour (`Cache-Control: public, max-age=3600`); Premium pages with an active domain are excluded from advocateid.in sitemaps.

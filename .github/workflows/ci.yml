@@ -8,12 +8,16 @@ on:
 jobs:
   checks:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: src/webapp
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
+          cache-dependency-path: src/webapp/package-lock.json
       - run: npm ci
       - run: npm run lint
       - run: npm run typecheck
@@ -23,6 +27,6 @@ jobs:
           SITE_ORIGIN: https://advocateid.in
       - name: Secret scan (no credentials in the tree)
         run: |
-          if grep -rEn "(AKIA[0-9A-Z]{16}|-----BEGIN (RSA |EC )?PRIVATE KEY-----|postgres://[^:]+:[^@ ]{6,}@)" --include='*' --exclude-dir=node_modules --exclude-dir=.next --exclude-dir=.git --exclude=*.test.ts --exclude=.env.example . ; then
+          if grep -rEn "(AKIA[0-9A-Z]{16}|-----BEGIN (RSA |EC )?PRIVATE KEY-----|postgres://[^:]+:[^@ ]{6,}@)" --include='*' --exclude-dir=node_modules --exclude-dir=.next --exclude-dir=.git --exclude=*.test.ts --exclude=.env.example ../.. ; then
             echo "Possible secret found"; exit 1
           fi

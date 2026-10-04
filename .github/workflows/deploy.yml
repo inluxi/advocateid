@@ -20,8 +20,10 @@ jobs:
         with:
           node-version: 22
           cache: npm
-      - run: npm ci
-      - run: npm run lint && npm run typecheck && npm test
+          cache-dependency-path: src/webapp/package-lock.json
+      - name: Lint, typecheck, test
+        working-directory: src/webapp
+        run: npm ci && npm run lint && npm run typecheck && npm test
       - uses: docker/setup-buildx-action@v3
       - uses: docker/login-action@v3
         with:

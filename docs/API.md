@@ -66,12 +66,12 @@ Auth: **public** = no login, **user** = session cookie (`aid_session`, HttpOnly,
 
 ## Request bodies
 
-Defined with zod in `src/lib/schemas.ts` (single source of truth):
+Defined with zod in `src/webapp/lib/schemas.ts` (single source of truth):
 
 - `POST /api/auth/otp/send` `{ mobile, consent: true }` then `POST /api/auth/otp/verify` `{ mobile, otp }`. OTP: 6 digits, valid 10 minutes, 3 wrong attempts lock it, 3 sends per 15 minutes per IP and per mobile.
 - `POST /api/pages` `{ type: "advocate"|"firm", name, slug, districtId, enrolmentNo (advocate) }`.
 - `PUT /api/pages/{id}` any of `name, bio (500), about (5000), districtId, language, enrolmentNo, yearEnrolled, establishedYear, brandColour, showMemberOf, allowMembers, seoTitle, seoDescription, photoAlt, bannerAlt`.
-- `POST|PUT|DELETE /api/pages/{id}/lists/{list}[/{itemId}]` with list one of `courts, categories, languages, career, highlights, links, cases, offices`; `POST .../{itemId}/move { direction }`. Limits come from `src/lib/entitlements.ts`.
+- `POST|PUT|DELETE /api/pages/{id}/lists/{list}[/{itemId}]` with list one of `courts, categories, languages, career, highlights, links, cases, offices`; `POST .../{itemId}/move { direction }`. Limits come from `src/webapp/lib/entitlements.ts`.
 - `POST /api/pages/{id}/images` multipart `kind` (photo|banner|office|cover) plus `s`, `m`, `l` (the browser resizes to 200, 800 and 1600 px wide).
 - `POST /api/pages/{id}/posts[?type=court_update]`, `PUT|DELETE /api/posts/{id}`.
 - `POST /api/memberships` (request to join), `POST /api/pages/{id}/invites`, `PUT /api/memberships/{id}` (title, office, intro), `POST /api/memberships/{id}` `{ action: approve|reject|leave|remove|hide|show }`, `POST /api/memberships/{id}/move`.

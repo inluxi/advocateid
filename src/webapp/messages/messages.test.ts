@@ -13,7 +13,7 @@ function walk(dir: string, out: string[] = []): string[] {
   return out;
 }
 
-const SRC = walk(path.join(process.cwd(), "src"));
+const SRC = ["app", "components", "lib", "repo", "db", "jobs"].flatMap((d) => walk(path.join(process.cwd(), d))).concat(path.join(process.cwd(), "proxy.ts"));
 const text = SRC.map((f) => readFileSync(f, "utf8")).join("\n");
 
 /** Dynamic key families (built with template strings) and the values they take. */
