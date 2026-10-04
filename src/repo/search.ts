@@ -1,11 +1,9 @@
 import { and, asc, desc, eq, gte, inArray, isNull, lte, sql } from "drizzle-orm";
 import { getDb } from "@/db/client";
 import {
-  careerEntries,
   categories,
   courts,
   localities,
-  memberships,
   officeCourts,
   offices,
   pageAdvocate,
@@ -23,7 +21,7 @@ import { visibleItems } from "@/lib/entitlements";
 import { computeQuality, haversineKm, rank, type Candidate, type RankContext, type Ranked, type SortMode } from "@/lib/ranking";
 import { escapeLike, yearsSince } from "@/lib/text";
 import type { Lang } from "@/lib/i18n";
-import { categoryNames, courtNames } from "./reference";
+import { categoryNames } from "./reference";
 
 const codes = (list: string[]) => (list.length ? `,${list.join(",")},` : ",");
 

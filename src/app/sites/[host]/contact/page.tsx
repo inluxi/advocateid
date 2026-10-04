@@ -9,7 +9,7 @@ type Props = { params: Promise<{ host: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { t } = await getT();
-  return domainMeta((await params).host, "offices", { title: t("profile.tab.contact") });
+  return domainMeta((await params).host, "contact", { title: t("profile.tab.contact") });
 }
 
 export default async function DomainContact({ params }: Props) {

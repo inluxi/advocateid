@@ -22,7 +22,6 @@ import { DEMO_PAGES, DEMO_POSTS, DEMO_UPDATES, CATEGORIES } from "@/db/seed-data
 
 let districtEkm: number;
 let courtId: number;
-let catId: number;
 
 beforeAll(async () => {
   await useTestDb();
@@ -30,7 +29,6 @@ beforeAll(async () => {
   const d = await getDb().select().from(localities).where(eq(localities.code, "ekm"));
   districtEkm = d[0].id;
   courtId = (await getDb().select().from(courts).limit(1))[0].id;
-  catId = (await getDb().select().from(categories).limit(1))[0].id;
 });
 
 let mobileSeq = 0;

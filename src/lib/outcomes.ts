@@ -35,4 +35,4 @@ export const HIGHLIGHT_LABELS = [
   "Practice areas",
   "Publications",
   "Years established",
-];
+] as const;

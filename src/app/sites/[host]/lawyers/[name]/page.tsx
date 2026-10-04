@@ -8,7 +8,6 @@ import { seoSlug } from "@/lib/text";
 import { loadBundle } from "@/repo/pages";
 import { listLawyers } from "@/repo/memberships";
 import { colleaguePageIds, listPostsByPage } from "@/repo/posts";
-import { categoryNames } from "@/repo/reference";
 import { ProfileShell } from "@/components/profile/ProfileShell";
 import { PostCard } from "@/components/cards/PostCards";
 import { Avatar } from "@/components/ui/Avatar";
@@ -31,7 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const lawyer = s && s.page.type === "firm" ? await findLawyer(s.page, name) : null;
   if (!s || !lawyer) return { robots: { index: false } };
   const base = await domainMeta(host, "lawyers", { title: lawyer.page.name, description: lawyer.membership.intro ?? lawyer.page.bio });
-  return { ...base, ...buildMetadata({ title: `${lawyer.page.name} | ${s.page.name}`, description: lawyer.membership.intro ?? lawyer.page.bio, canonical: `https://${s.hostname}/lawyers/${lawyer.page.slug}`, noindex: s.targetHost, image: imageUrl(lawyer.page.photoKey, "l"), skipAlternates: true }) };
+  return { ...base, ...buildMetadata({ title: `${lawyer.page.name} | ${s.page.name}`, description: lawyer.membership.intro ?? lawyer.page.bio, canonical: `https://${s.hostname}/lawyers/${lawyer.page.slug}`, noindex: s.targetHost, image: imageUrl(lawyer.page.photoKey, "l"), skipAlternates: true, absoluteTitle: true }) };
 }
 
 export default async function DomainLawyer({ params }: Props) {
@@ -44,7 +43,7 @@ export default async function DomainLawyer({ params }: Props) {
   const lb = await loadBundle(lawyer.page);
   const lData: ProfileData = { ...data, bundle: lb, lawyers: null, firms: [], posts: [], competitors: null };
   const lCtx: ProfileCtx = ctx;
-  const [colleagues, colleagueIds, names] = await Promise.all([listLawyers(page, { forDomain: true }), colleaguePageIds(page.id), categoryNames(ctx.lang)]);
+  const [colleagues, colleagueIds] = await Promise.all([listLawyers(page, { forDomain: true }), colleaguePageIds(page.id)]);
   const posts = (await Promise.all([lawyer.page.id, ...colleagueIds.filter((id) => id !== lawyer.page.id)].slice(0, 6).map((id) => listPostsByPage(id, { type: "article", limit: 2 })))).flat().slice(0, 4);
   const { t, lang } = ctx;
   return (

@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { ABOUT_MAX, BIO_MAX, INTRO_MAX, MAX_POST_CATEGORIES, NOTE_MAX, OFFICE_ABOUT_MAX, POST_BODY_MAX, UPDATE_BODY_MAX } from "./entitlements";
-import { OUTCOMES } from "./outcomes";
+import { HIGHLIGHT_LABELS, OUTCOMES } from "./outcomes";
 import { isHttpUrl } from "./text";
 
 const text = (max: number) => z.string().trim().max(max);
@@ -85,9 +85,10 @@ export const listItemSchemas = {
     institution: optText(120),
     description: optText(200),
   }),
+  // Locked format: a number up to 3 digits and a label from the fixed list (no free text)
   highlights: z.object({
     number: z.number().int().min(0).max(999),
-    label: text(20).min(2),
+    label: z.enum(HIGHLIGHT_LABELS),
   }),
   links: z.object({ url: httpUrl, label: optText(60) }),
   cases: z.object({

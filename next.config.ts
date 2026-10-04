@@ -10,6 +10,8 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   output: "standalone",
+  // `next dev` would otherwise append its own block to the project's AGENTS.md
+  agentRules: false,
   poweredByHeader: false,
   serverExternalPackages: ["pg"],
   async headers() {

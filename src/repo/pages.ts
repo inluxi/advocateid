@@ -4,7 +4,6 @@ import {
   accounts,
   careerEntries,
   caseSummaries,
-  courts,
   domains,
   highlights,
   officeCourts,

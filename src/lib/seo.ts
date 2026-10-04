@@ -18,6 +18,8 @@ export interface MetaInput {
   lang?: Lang;
   /** Use on custom domains (their own origin for alternates is not emitted). */
   skipAlternates?: boolean;
+  /** White-label sites: no " | AdvocateID" suffix in the title. */
+  absoluteTitle?: boolean;
 }
 
 const toAbs = (u: string) => (/^https?:\/\//.test(u) ? u : absolute(u));
@@ -34,7 +36,7 @@ export function buildMetadata(m: MetaInput): Metadata {
     };
   }
   return {
-    title: m.title,
+    title: m.absoluteTitle ? { absolute: m.title } : m.title,
     description: description || undefined,
     robots: m.noindex ? { index: false, follow: false } : { index: true, follow: true },
     alternates,

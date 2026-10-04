@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { get, post } from "@/lib/client-api";
 
 interface Me {
@@ -21,9 +22,9 @@ export function AddCourtButton({ courtId, labels }: { courtId: number; labels: {
       }
     });
   }, []);
-  if (me && !me.authenticated) return <a className="btn" href="/login">{labels.login}</a>;
+  if (me && !me.authenticated) return <Link className="btn" href="/login">{labels.login}</Link>;
   if (!me) return null;
-  if (!me.pages.length) return <a className="btn" href="/manage/new">{labels.none}</a>;
+  if (!me.pages.length) return <Link className="btn" href="/manage/new">{labels.none}</Link>;
   return (
     <div className="inline-form">
       {me.pages.length > 1 ? (

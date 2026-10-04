@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { get, post, type ApiFailure } from "@/lib/client-api";
 import { useT } from "@/components/ui/LangProvider";
 import { WordingNotice } from "./WordingNotice";
@@ -26,8 +27,8 @@ export function ContributeUpdate({ courtId }: { courtId: number }) {
     });
   }, []);
   if (!me) return null;
-  if (!me.authenticated) return <p><a href="/login">{t("contribute.login")}</a></p>;
-  if (!me.pages.length) return <p><a href="/manage/new">{t("contribute.create_page")}</a></p>;
+  if (!me.authenticated) return <p><Link href="/login">{t("contribute.login")}</Link></p>;
+  if (!me.pages.length) return <p><Link href="/manage/new">{t("contribute.create_page")}</Link></p>;
   const submit = async (ack = false) => {
     const r = await post(`/api/pages/${pageId}/posts?type=court_update`, { ...f, courtId, language: "en", acknowledgeWording: ack });
     if (r.ok) {

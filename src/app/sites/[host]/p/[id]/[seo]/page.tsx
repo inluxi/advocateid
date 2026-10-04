@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = s && Number.isInteger(Number(id)) ? await getPost(Number(id)) : null;
   if (!s || !post || post.pageId !== s.page.id || post.status !== "published") return { robots: { index: false } };
   const base = await domainMeta(host, "posts", { title: post.title, description: post.body });
-  return { ...base, ...buildMetadata({ title: `${post.title} | ${s.page.name}`, description: post.body, canonical: `https://${s.hostname}/p/${post.id}/${seoSlug(post.title)}`, noindex: s.targetHost, type: "article", image: imageUrl(post.coverImageKey, "l"), skipAlternates: true }) };
+  return { ...base, ...buildMetadata({ title: `${post.title} | ${s.page.name}`, description: post.body, canonical: `https://${s.hostname}/p/${post.id}/${seoSlug(post.title)}`, noindex: s.targetHost, type: "article", image: imageUrl(post.coverImageKey, "l"), skipAlternates: true, absoluteTitle: true }) };
 }
 
 export default async function DomainPost({ params }: Props) {

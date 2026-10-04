@@ -1,6 +1,6 @@
 import { and, asc, desc, eq, inArray, isNull, ne, sql } from "drizzle-orm";
 import { getDb } from "@/db/client";
-import { categories, memberships, pageCategories, pages, postCategories, posts } from "@/db/schema";
+import { categories, memberships, pageCategories, postCategories, posts } from "@/db/schema";
 import { MAX_POST_CATEGORIES } from "@/lib/entitlements";
 import { DomainError, refreshPage } from "./pages";
 import { getCourt } from "./reference";

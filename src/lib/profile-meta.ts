@@ -6,7 +6,7 @@ import { imageUrl } from "./storage";
 import { localName } from "./i18n";
 import { withLang } from "./url";
 
-export type MetaTab = "overview" | "posts" | "offices" | "lawyers" | "office";
+export type MetaTab = "overview" | "posts" | "offices" | "lawyers" | "office" | "contact";
 
 /**
  * Canonical and indexing rules for a profile page.
@@ -28,12 +28,12 @@ export function profileMetadata(data: ProfileData, ctx: ProfileCtx, tab: MetaTab
   const image = imageUrl(isFirm ? (page.bannerKey ?? page.photoKey) : page.photoKey, "l");
 
   if (ctx.mode === "domain" && ctx.hostname && !opts.targetHost) {
-    return buildMetadata({ title, description, canonical: `https://${ctx.hostname}${domainPath}`, image, type: "profile", noindex: opts.noindex, skipAlternates: true });
+    return buildMetadata({ title, description, canonical: `https://${ctx.hostname}${domainPath}`, image, type: "profile", noindex: opts.noindex, skipAlternates: true, absoluteTitle: true });
   }
   if (ctx.mode === "domain") {
     // {slug}.p.advocateid.in: hidden CNAME target
     const external = domainCanonical(page.plan, data.bundle.activeDomain, domainPath);
-    return buildMetadata({ title, description, canonical: external ?? mainPath, image, type: "profile", noindex: true, skipAlternates: true });
+    return buildMetadata({ title, description, canonical: external ?? mainPath, image, type: "profile", noindex: true, skipAlternates: true, absoluteTitle: true });
   }
   const external = domainCanonical(page.plan, data.bundle.activeDomain, domainPath);
   return buildMetadata({
