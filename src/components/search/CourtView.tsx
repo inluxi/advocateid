@@ -66,7 +66,7 @@ export async function CourtView({ court, tab, params, lang, practice }: { court:
         </div>
         <nav className="tabs" aria-label={t("court.tabs")}>
           {tabs.map((x) => (
-            <Link key={x.id} className="tab" aria-selected={tab === x.id} aria-current={tab === x.id ? "page" : undefined} href={x.id === "overview" ? base : `${base}?tab=${x.id}`}>{x.label}</Link>
+            <Link key={x.id} className="tab" aria-current={tab === x.id ? "page" : undefined} href={x.id === "overview" ? base : `${base}?tab=${x.id}`}>{x.label}</Link>
           ))}
         </nav>
         {tab === "overview" ? <Overview court={court} lang={lang} details={details} mapUrl={mapUrl} district={district} /> : null}

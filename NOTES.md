@@ -50,6 +50,8 @@ Everything here was built unattended; items marked **GAP** need your attention b
 - Rate limiting is database-backed (shared across pods) and keyed by a hash of the client IP from `X-Forwarded-For`; if you put Cloudflare in front, switch `clientKey` in `src/lib/api.ts` to `CF-Connecting-IP`.
 - Admin: an account becomes admin when its mobile is in `ADMIN_MOBILES` at first login (or set `accounts.role = 'admin'`). Plan assignment, suspension, slug recall, court CSV, official court updates, reports, grievances, categories and places are in `/admin`.
 
+- JSON-LD uses valid schema.org properties (`knowsAbout`, `areaServed`, `hasOfferCatalog`) instead of `areaOfLaw`/`worksLocation` from `rules/schema.md`, which schema.org does not define for Attorney and LegalService. No rating, review or price fields are ever emitted.
+
 ## Not done / open (please review)
 
 - **GAP** Real SMS provider: `msg91` adapter written but untested (needs a DLT-approved template). Firebase Storage adapter and Cloudflare custom-hostname call are untested.

@@ -50,7 +50,7 @@ export async function ProfileShell({ data, ctx, active, children }: { data: Prof
   ];
   const tabNav = (
     <nav className="tabs" aria-label={t("profile.tabs")}>
-      {tabs.map((x) => <Link key={x.id} className="tab" aria-selected={active === x.id} aria-current={active === x.id ? "page" : undefined} href={x.href}>{x.label}</Link>)}
+      {tabs.map((x) => <Link key={x.id} className="tab" aria-current={active === x.id ? "page" : undefined} href={x.href}>{x.label}</Link>)}
     </nav>
   );
   const sub = [page.type === "firm" ? t("card.firm") : t("profile.advocate"), localName(lang, district.name, district.localName)].join(" · ");
