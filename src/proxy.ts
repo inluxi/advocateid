@@ -16,6 +16,7 @@ export function proxy(req: NextRequest) {
   const path = url.pathname;
   const headers = new Headers(req.headers);
   headers.set("x-path", path + url.search);
+  headers.delete("x-lang"); // the language comes only from the URL prefix, never from a request header
 
   // The internal tree is never reachable directly
   if (path === "/sites" || path.startsWith("/sites/")) {

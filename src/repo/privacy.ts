@@ -33,8 +33,26 @@ import { audit } from "./moderation";
 import { deletePage, loadBundle, refreshPage } from "./pages";
 import { destroyAllSessions } from "./auth";
 import { listPostsByPage } from "./posts";
+import { getStorage } from "@/lib/storage";
+import { log } from "@/lib/logger";
 
 export const DELETION_GRACE_DAYS = 30;
+
+/** Delete the stored picture files (all three sizes) of pages that are being erased. Originals are never kept. */
+async function removeStoredImages(pageIds: number[]): Promise<void> {
+  if (!pageIds.length) return;
+  const db = getDb();
+  const keys = new Set<string>();
+  for (const r of await db.select({ k: pagePhotos.storageKey }).from(pagePhotos).where(inArray(pagePhotos.pageId, pageIds))) keys.add(r.k);
+  for (const r of await db.select({ a: pages.photoKey, b: pages.bannerKey }).from(pages).where(inArray(pages.id, pageIds))) for (const k of [r.a, r.b]) if (k) keys.add(k);
+  for (const r of await db.select({ k: posts.coverImageKey }).from(posts).where(inArray(posts.pageId, pageIds))) if (r.k) keys.add(r.k);
+  const storage = await getStorage();
+  for (const key of keys) {
+    for (const size of ["s", "m", "l"]) {
+      await storage.remove(`${key}-${size}.webp`).catch((e) => log.error("image_remove_failed", e));
+    }
+  }
+}
 
 /** DPDP: download my data. Only the account's own data is included. */
 export async function exportAccountData(accountId: number) {
@@ -94,6 +112,7 @@ export async function hardDeleteAccount(accountId: number): Promise<void> {
   const db = getDb();
   const myPages = await db.select({ id: pages.id }).from(pages).where(eq(pages.accountId, accountId));
   const pageIds = myPages.map((p) => p.id);
+  await removeStoredImages(pageIds);
   if (pageIds.length) {
     const officeIds = (await db.select({ id: offices.id }).from(offices).where(inArray(offices.pageId, pageIds))).map((o) => o.id);
     const postIds = (await db.select({ id: posts.id }).from(posts).where(inArray(posts.pageId, pageIds))).map((p) => p.id);
@@ -132,6 +151,7 @@ export async function purgeDeletedAccounts(): Promise<number> {
 export async function purgeSoftDeletedPages(): Promise<number> {
   const cutoff = addDays(new Date(), -DELETION_GRACE_DAYS);
   const rows = await getDb().select({ id: pages.id, accountId: pages.accountId }).from(pages).where(lt(pages.deletedAt, cutoff));
+  await removeStoredImages(rows.map((r) => r.id));
   for (const r of rows) {
     const ids = [r.id];
     const officeIds = (await getDb().select({ id: offices.id }).from(offices).where(inArray(offices.pageId, ids))).map((o) => o.id);

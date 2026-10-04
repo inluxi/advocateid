@@ -135,3 +135,30 @@ describe("nightly job", () => {
     expect(scored.score).toBeGreaterThan(0);
   });
 });
+
+describe("erasure removes stored pictures", () => {
+  it("deletes all three sizes of a page's pictures when the account is erased", async () => {
+    const { mkdtemp, readdir } = await import("node:fs/promises");
+    const os = await import("node:os");
+    const path = await import("node:path");
+    const dir = await mkdtemp(path.join(os.tmpdir(), "aid-up-"));
+    process.env.UPLOAD_DIR = dir;
+    const { getStorage } = await import("@/lib/storage");
+    const { findOrCreateAccount } = await import("./auth");
+    const { createPage } = await import("./pages");
+    const { requestAccountDeletion, purgeDeletedAccounts } = await import("./privacy");
+    const { pagePhotos, accounts, localities } = await import("@/db/schema");
+    const acc = await findOrCreateAccount("+919777700001");
+    const district = (await getDb().select().from(localities).where(eq(localities.code, "ekm")))[0];
+    const page = await createPage(acc.id, { type: "advocate", name: "Erase Me", slug: "erase-pictures-1", districtId: district.id, enrolmentNo: "K/5/2020" });
+    const key = `pages/${page.id}/photo/abc`;
+    const storage = await getStorage();
+    for (const s of ["s", "m", "l"]) await storage.put(`${key}-${s}.webp`, Buffer.from("x"), "image/webp");
+    await getDb().insert(pagePhotos).values({ pageId: page.id, kind: "photo", storageKey: key });
+    await requestAccountDeletion(acc.id);
+    await getDb().update(accounts).set({ deletionRequestedAt: new Date(Date.now() - 31 * 86400_000) }).where(eq(accounts.id, acc.id));
+    expect(await purgeDeletedAccounts()).toBe(1);
+    const left = await readdir(path.join(dir, "pages", String(page.id), "photo")).catch(() => []);
+    expect(left).toEqual([]);
+  });
+});

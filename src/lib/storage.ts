@@ -12,20 +12,20 @@ export interface Storage {
   get?(key: string): Promise<Buffer | null>;
 }
 
-const UPLOAD_DIR = () => path.resolve(process.env.UPLOAD_DIR ?? "uploads");
+const UPLOAD_DIR = () => path.resolve(/* turbopackIgnore: true */ process.env.UPLOAD_DIR ?? "uploads");
 
 const local: Storage = {
   async put(key, data) {
-    const file = path.join(UPLOAD_DIR(), key);
-    await mkdir(path.dirname(file), { recursive: true });
-    await writeFile(file, data);
+    const file = path.join(/* turbopackIgnore: true */ UPLOAD_DIR(), key);
+    await mkdir(/* turbopackIgnore: true */ path.dirname(file), { recursive: true });
+    await writeFile(/* turbopackIgnore: true */ file, data);
   },
   async remove(key) {
-    await rm(path.join(UPLOAD_DIR(), key), { force: true });
+    await rm(path.join(/* turbopackIgnore: true */ UPLOAD_DIR(), key), { force: true });
   },
   async get(key) {
     try {
-      return await readFile(path.join(UPLOAD_DIR(), key));
+      return await readFile(path.join(/* turbopackIgnore: true */ UPLOAD_DIR(), key));
     } catch {
       return null;
     }
