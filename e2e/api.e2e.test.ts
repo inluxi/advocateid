@@ -107,7 +107,7 @@ describe.skipIf(!BASE)("end-to-end: signup, page, plan limits, wording, connect,
     expect(page.status).toBe(200);
     expect(page.text).toContain("declared by the advocate");
     expect(page.text).toContain("K/9/2020");
-    const visible = page.text.replace(/<script[\s\S]*?<\/script>/g, "").replace(/<style[\s\S]*?<\/style>/g, "");
+    const visible = page.text.replace(/<script[\s\S]*?<\/script>/g, "").replace(/<style[\s\S]*?<\/style>/g, "").replace(/<[^>]+>/g, " "); // text nodes only
     expect(visible).not.toMatch(/verified (seal|badge|advocate)|star rating|\bbest\b|\btop\b/i);
     expect(page.text).toContain(`/connect/${pageId}?via=whatsapp`);
     expect(page.text).not.toContain("wa.me");
