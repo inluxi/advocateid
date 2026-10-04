@@ -47,6 +47,14 @@ async function firebase(): Promise<Storage> {
     async remove(key) {
       await bucket.file(key).delete({ ignoreNotFound: true });
     },
+    async get(key) {
+      try {
+        const [buf] = await bucket.file(key).download();
+        return buf;
+      } catch {
+        return null;
+      }
+    },
   };
   return gcs;
 }

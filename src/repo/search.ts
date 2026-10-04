@@ -390,3 +390,20 @@ export async function rebuildAllIndexes(): Promise<number> {
 }
 
 
+
+/** Indexed pages per district for one practice area (practice-area pages link to districts that have listings). */
+export async function countsByDistrictForCategory(categoryCode: string): Promise<Map<string, number>> {
+  const rows = await getDb()
+    .select({ d: searchIndex.districtCode, n: sql<number>`count(*)::int` })
+    .from(searchIndex)
+    .where(and(eq(searchIndex.type, "page"), like(searchIndex.categoryCodes, categoryCode)))
+    .groupBy(searchIndex.districtCode);
+  return new Map(rows.map((r) => [r.d, r.n]));
+}
+
+export async function countsByCategory(): Promise<Map<string, number>> {
+  const rows = await getDb().select({ c: searchIndex.categoryCodes }).from(searchIndex).where(eq(searchIndex.type, "page"));
+  const m = new Map<string, number>();
+  for (const r of rows) for (const code of r.c.split(",").filter(Boolean)) m.set(code, (m.get(code) ?? 0) + 1);
+  return m;
+}

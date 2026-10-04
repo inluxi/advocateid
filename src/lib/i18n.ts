@@ -1,12 +1,21 @@
-import en from "../messages/en.json";
-import ml from "../messages/ml.json";
+import enCommon from "../messages/en/common.json";
+import enPublic from "../messages/en/public.json";
+import enProfile from "../messages/en/profile.json";
+import enManage from "../messages/en/manage.json";
+import enAccount from "../messages/en/account.json";
+import enAdmin from "../messages/en/admin.json";
+import enLegal from "../messages/en/legal.json";
+import mlCommon from "../messages/ml/common.json";
 
 export type Lang = "en" | "ml";
 export const LANGS: Lang[] = ["en", "ml"];
 export const DEFAULT_LANG: Lang = "en";
 
 type Dict = Record<string, string>;
-const DICTS: Record<Lang, Dict> = { en: en as Dict, ml: ml as Dict };
+
+/** All UI text lives in src/messages. UI stays English until MVP 2; Malayalam falls back key by key. */
+export const EN: Dict = { ...enCommon, ...enPublic, ...enProfile, ...enManage, ...enAccount, ...enAdmin, ...enLegal };
+const DICTS: Record<Lang, Dict> = { en: EN, ml: mlCommon as Dict };
 
 export function isLang(v: unknown): v is Lang {
   return v === "en" || v === "ml";
@@ -14,7 +23,6 @@ export function isLang(v: unknown): v is Lang {
 
 export type TFunction = (key: string, vars?: Record<string, string | number>) => string;
 
-/** UI text comes only from translation files. Missing Malayalam keys fall back to English. */
 export function makeT(lang: Lang): TFunction {
   return (key, vars) => {
     const raw = DICTS[lang][key] ?? DICTS.en[key] ?? key;

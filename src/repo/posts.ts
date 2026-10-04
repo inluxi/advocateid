@@ -190,3 +190,14 @@ export async function pageHasCategory(pageId: number, categoryId: number): Promi
   return !!r;
 }
 
+
+/** Published article count per category tag for one page (compare table). */
+export async function postCountsByCategory(pageId: number): Promise<Map<number, number>> {
+  const rows = await getDb()
+    .select({ c: postCategories.categoryId, n: sql<number>`count(*)::int` })
+    .from(postCategories)
+    .innerJoin(posts, eq(posts.id, postCategories.postId))
+    .where(and(eq(posts.pageId, pageId), eq(posts.type, "article"), ...published))
+    .groupBy(postCategories.categoryId);
+  return new Map(rows.map((r) => [r.c, r.n]));
+}
