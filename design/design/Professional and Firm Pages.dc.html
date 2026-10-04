@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+Malayalam:wght@400;500;600&family=Noto+Serif+Malayalam:wght@400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&display=swap">
+<style>body{margin:0;background:#E9E3D8;color:#1C2433;font-family:Inter,'Noto Sans Malayalam',sans-serif}*{box-sizing:border-box}a{color:#5A1A22;text-underline-offset:3px}a:hover{color:#3A0F14}a:focus-visible,button:focus-visible{outline:2px solid #1C2433;outline-offset:2px}button{font:inherit}h1,h2,h3,p{margin:0}</style>
+</helmet>
+<section style="padding:56px 56px 24px;display:flex;flex-direction:column;gap:24px;min-width:2600px">
+<div style="display:flex;justify-content:space-between;align-items:flex-end;gap:40px">
+<div style="display:flex;flex-direction:column;gap:10px;max-width:960px">
+<div style="font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#5C5761">AdvocateID · Professional advocate page and law firm page · one shared shell</div>
+<div style="font-family:'Playfair Display',serif;font-size:56px;font-weight:600;line-height:1.05">Professional <span style="font-style:italic;font-weight:400;color:#5A1A22">and firm</span></div>
+<div style="font-size:17px;line-height:1.55;color:#5C5761">Shell: banner with overlapping portrait or logo, serif masthead, bio, link icons, stat strip, tabs. Advocate tabs: Overview, Posts, Offices. Firm tabs: Overview, Offices, Lawyers, Posts. No competitors anywhere. All people and details are made-up samples.</div>
+</div>
+<button onClick="{{ toggleNotes }}" style="height:48px;padding:0 16px;border:1px solid #2F5BD3;background:{{ notesBg }};color:{{ notesFg }};border-radius:2px;font-size:15px;font-weight:600;cursor:pointer;flex-shrink:0">Developer notes: {{ notesLabel }}</button>
+</div>
+<sc-if value="{{ notes }}" hint-placeholder-val="{{ true }}">
+<div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;max-width:1800px">
+<sc-for list="{{ notesList }}" as="n" hint-placeholder-count="8">
+<div style="background:#FFFFFF;border-top:2px solid #2F5BD3;padding:12px;display:flex;gap:10px;font-size:13px;line-height:1.5"><span style="width:22px;height:22px;border-radius:50%;background:#2F5BD3;color:#fff;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px">{{ n.k }}</span><span>{{ n.t }}</span></div>
+</sc-for>
+</div>
+</sc-if>
+</section>
+
+<section data-screen-label="Advocate 360" style="padding:32px 56px 56px;display:flex;flex-direction:column;gap:24px;min-width:2600px">
+<div style="display:flex;align-items:baseline;gap:16px;border-top:2px solid #1C2433;padding-top:16px"><div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:600">Advocate · 360</div><div style="font-size:15px;color:#5C5761">Rahul Nair · Professional · /rahul-nair</div></div>
+<div style="display:flex;gap:40px;align-items:flex-start">
+
+<div style="display:flex;flex-direction:column;gap:8px">
+<div style="font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#5C5761">A · Overview, full</div>
+<div style="width:360px;background:#F6F1E7;border:1px solid #CFC6B5;position:relative">
+<div style="display:flex;align-items:center;justify-content:space-between;padding:6px 8px 6px 16px;background:#FFFCF6;border-bottom:1px solid #E3D9C6"><div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:600;color:#5A1A22">Advocate<span style="font-style:italic;font-weight:400">ID</span></div><div style="display:flex;font-size:22px"><span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center">{{ i.search }}</span><span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center">{{ i.menu }}</span></div></div>
+<!--MASTA-START-->
+<div style="aspect-ratio:12 / 5;background:#5A1A22;border-bottom:3px solid #9A7B4F;display:flex;align-items:flex-end;justify-content:flex-end;padding:8px 12px;color:#F6F1E7;font-size:13px">Banner image · 12:5, space reserved</div>
+<div style="padding:0 16px 16px;display:flex;flex-direction:column;gap:12px">
+<div style="width:112px;height:140px;margin-top:-64px;background:#CFC6B5;border:4px solid #F6F1E7;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px"><span style="display:flex;font-size:22px">{{ i.image }}</span><span style="font-size:13px">4:5</span></div>
+<div style="display:flex;flex-direction:column;gap:4px">
+<div style="font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#5C5761">Advocate · High Court of Kerala</div>
+<h1 style="font-family:'Playfair Display',serif;font-size:44px;line-height:1.02;font-weight:600">Rahul <span style="font-style:italic;font-weight:400;color:#5A1A22">Nair</span></h1>
+</div>
+<p style="font-size:15px;line-height:1.6">Civil and property practice at the High Court of Kerala and the courts at Ernakulam. Appears in writ petitions, partition suits and land acquisition matters. Writes on property law for students and practitioners.</p>
+<div style="display:flex;gap:8px"><sc-for list="{{ links }}" as="l" hint-placeholder-count="5"><div style="width:44px;height:44px;border:1px solid #1C2433;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:20px">{{ l.icon }}</div></sc-for></div>
+<div style="display:flex;overflow-x:auto;border-top:1px solid #9A7B4F;border-bottom:1px solid #9A7B4F;margin:0 -16px;padding:0 16px">
+<sc-for list="{{ advStats }}" as="s" hint-placeholder-count="5"><div style="flex:0 0 auto;padding:10px 16px 10px 0;margin-right:16px;border-right:1px solid #9A7B4F;display:flex;flex-direction:column;gap:2px"><span style="font-family:'Playfair Display',serif;font-size:22px;font-weight:600;white-space:nowrap">{{ s.v }}</span><span style="font-size:13px;color:#5C5761;white-space:nowrap">{{ s.l }}</span></div></sc-for>
+</div>
+<div style="display:flex;gap:8px">
+<div style="flex:1;height:48px;background:#1E6B43;color:#fff;display:flex;align-items:center;gap:10px;padding:0 16px;font-weight:600;border-radius:2px;font-size:20px"><span style="display:flex">{{ i.chat }}</span><span style="font-size:16px">Connect</span></div>
+<div style="width:48px;height:48px;border:1px solid #1C2433;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:20px">{{ i.bookmark }}</div>
+<div style="height:48px;border:1px solid #1C2433;border-radius:2px;display:flex;align-items:center;gap:8px;padding:0 12px;font-size:14px"><span style="width:20px;height:20px;border:1.5px solid #1C2433;border-radius:2px"></span>Compare</div>
+<div style="width:48px;height:48px;border:1px solid #1C2433;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:20px">{{ i.share }}</div>
+</div>
+</div>
+<!--MASTA-END-->
+<div style="display:flex;gap:24px;padding:0 16px;background:#FFFCF6;border-top:1px solid #E3D9C6;border-bottom:1px solid #E3D9C6;font-size:15px"><div style="padding:14px 0;border-bottom:3px solid #5A1A22;font-weight:600">Overview</div><div style="padding:14px 0">Posts <span style="color:#5C5761">8</span></div><div style="padding:14px 0">Offices <span style="color:#5C5761">2</span></div></div>
+<!--OVA-START-->
+<div style="padding:24px 16px 32px;display:flex;flex-direction:column;gap:32px">
+<div style="display:flex;flex-direction:column;gap:10px">
+<h2 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:600;padding-bottom:10px;border-bottom:2px solid #1C2433">About</h2>
+<p style="font-size:16px;line-height:1.65">Rahul Nair enrolled with the Bar Council of Kerala in 2008 and worked as a junior to Adv. K. P. Varma on the civil side until 2014. Since then he has practised independently at the High Court of Kerala, mostly in property, land acquisition and service matters.</p>
+<p style="font-size:16px;line-height:1.65">He lectures on the law of property at Government Law College, Ernakulam, and writes a monthly note on recent High Court judgments.</p>
+<a href="#" style="font-size:15px;align-self:flex-start;min-height:44px;display:flex;align-items:center">Read full About</a>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#9A7B4F;border:1px solid #9A7B4F">
+<sc-for list="{{ highlights }}" as="h" hint-placeholder-count="4"><div style="background:#FFFCF6;padding:14px;display:flex;flex-direction:column;gap:6px;min-height:104px"><span style="font-family:'Playfair Display',serif;font-size:40px;line-height:1;color:#5A1A22">{{ h.n }}</span><span style="font-size:14px;line-height:1.35">{{ h.l }}</span></div></sc-for>
+</div>
+<div style="display:flex;flex-direction:column">
+<h2 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:600;padding-bottom:10px;border-bottom:2px solid #1C2433">Practice <span style="font-style:italic;font-weight:400">areas</span></h2>
+<sc-for list="{{ practice }}" as="p" hint-placeholder-count="4"><div style="padding:12px 0;border-bottom:1px solid #E3D9C6;display:flex;justify-content:space-between;gap:12px;align-items:center;min-height:60px"><div style="display:flex;flex-direction:column;gap:2px"><span style="font-family:'Playfair Display',serif;font-size:19px">{{ p.n }}</span><span style="font-size:13px;color:#5C5761">{{ p.d }}</span></div><span style="display:flex;font-size:20px">{{ i.arrowUR }}</span></div></sc-for>
+</div>
+<div style="display:flex;flex-direction:column">
+<h2 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:600;padding-bottom:10px;border-bottom:2px solid #1C2433">Courts</h2>
+<sc-for list="{{ courts }}" as="c" hint-placeholder-count="6"><div style="padding:11px 0;border-bottom:1px solid #E3D9C6;display:flex;gap:12px;align-items:center;min-height:52px"><span style="width:32px;height:32px;background:#5A1A22;color:#FFFCF6;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0">{{ i.court }}</span><span style="font-family:'Playfair Display',serif;font-size:17px;line-height:1.3;flex:1">{{ c }}</span><span style="display:flex;font-size:18px">{{ i.chevR }}</span></div></sc-for>
+<a href="#" style="font-size:15px;min-height:44px;display:flex;align-items:center">All 10 courts</a>
+</div>
+<div style="display:flex;flex-direction:column">
+<h2 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:600;padding-bottom:10px;border-bottom:2px solid #1C2433">Career <span style="font-style:italic;font-weight:400">and education</span></h2>
+<div style="display:grid;grid-template-columns:96px minmax(0,1fr)">
+<sc-for list="{{ career }}" as="c" hint-placeholder-count="5"><div style="padding:12px 0;border-right:1px solid #9A7B4F;font-size:14px;font-weight:600">{{ c.y }}</div><div style="padding:12px 0 12px 16px;display:flex;flex-direction:column;gap:2px"><span style="font-size:15px;font-weight:500">{{ c.t }}</span><span style="font-size:14px;color:#5C5761">{{ c.d }}</span></div></sc-for>
+</div>
+</div>
+<div style="display:flex;flex-direction:column">
+<h2 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:600;padding-bottom:10px;border-bottom:2px solid #1C2433">Case <span style="font-style:italic;font-weight:400">outcomes</span></h2>
+<sc-for list="{{ outcomes }}" as="c" hint-placeholder-count="3"><div style="padding:14px 0;border-bottom:1px solid #E3D9C6;display:grid;grid-template-columns:52px minmax(0,1fr);gap:12px"><div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:600">{{ c.y }}</div><div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:15px;line-height:1.45">{{ c.role }} {{ c.court }}.</span><span style="font-size:14px"><span style="color:#5C5761">Outcome:</span> {{ c.out }}</span><sc-if value="{{ c.hasPost }}" hint-placeholder-val="{{ false }}"><a href="#" style="font-size:14px;min-height:32px;display:flex;align-items:center">Read the related post</a></sc-if></div></div></sc-for>
+</div>
+<div style="display:flex;flex-direction:column">
+<h2 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:600;padding-bottom:10px;border-bottom:2px solid #1C2433">Member <span style="font-style:italic;font-weight:400">of</span></h2>
+<sc-for list="{{ members }}" as="m" hint-placeholder-count="3"><div style="padding:12px 0;border-bottom:1px solid #E3D9C6;display:flex;flex-direction:column;gap:2px"><span style="font-size:15px;font-weight:500">{{ m.o }}</span><span style="font-size:14px;color:#5C5761">{{ m.t }}</span></div></sc-for>
+</div>
+<div style="display:flex;justify-content:space-between;align-items:center;font-size:14px;color:#5C5761;border-top:1px solid #E3D9C6;padding-top:12px"><span>Information provided by the advocate.</span><span style="display:flex;gap:6px;align-items:center;min-height:44px"><span style="display:flex;font-size:16px">{{ i.flag }}</span>Report</span></div>
+</div>
+<!--OVA-END-->
+<div style="background:#1C2433;color:#FFFCF6;padding:24px 16px 88px;font-size:13px;line-height:1.55">AdvocateID is a technology and directory service. Not a law firm. Not a referral service. · Terms · Privacy · Grievance</div>
+<div style="position:absolute;left:0;right:0;top:584px;background:#FFFCF6;border-top:1px solid #E3D9C6;box-shadow:0 -4px 16px rgba(16,21,31,.14);padding:4px 16px;height:56px;display:flex;align-items:center;gap:10px;z-index:3"><div style="display:flex;flex-direction:column;min-width:0;flex:1"><span style="font-family:'Playfair Display',serif;font-size:16px;font-weight:600">Rahul Nair</span><span style="font-size:13px;color:#5C5761">Advocate · Ernakulam</span></div><div style="height:44px;background:#1E6B43;color:#fff;display:flex;align-items:center;gap:8px;padding:0 14px;font-weight:600;border-radius:2px;font-size:18px"><span style="display:flex">{{ i.chat }}</span><span style="font-size:15px">Connect</span></div><div style="width:44px;height:44px;border:1px solid #1C2433;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:18px">{{ i.bookmark }}</div></div>
+<div style="position:absolute;left:-1px;right:-1px;top:640px;border-top:1px dashed #2F5BD3;z-index:4"></div>
+</div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:8px">
+<div style="font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#5C5761">B · Posts tab · /rahul-nair/posts</div>
+<div style="width:360px;background:#F6F1E7;border:1px solid #CFC6B5">
+<div style="display:flex;align-items:center;justify-content:space-between;padding:6px 8px 6px 16px;background:#FFFCF6;border-bottom:1px solid #E3D9C6"><div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:600">Rahul <span style="font-style:italic;font-weight:400;color:#5A1A22">Nair</span></div><div style="display:flex;font-size:22px"><span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center">{{ i.search }}</span><span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center">{{ i.menu }}</span></div></div>
+<div style="display:flex;gap:24px;padding:0 16px;background:#FFFCF6;border-bottom:1px solid #E3D9C6;font-size:15px"><div style="padding:14px 0">Overview</div><div style="padding:14px 0;border-bottom:3px solid #5A1A22;font-weight:600">Posts <span style="color:#5C5761;font-weight:400">8</span></div><div style="padding:14px 0">Offices <span style="color:#5C5761">2</span></div></div>
+<div style="padding:20px 16px 32px;display:flex;flex-direction:column;gap:14px">
+<h2 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:600">Posts</h2>
+<div style="display:flex;gap:8px;overflow-x:auto;white-space:nowrap"><div style="height:40px;padding:0 12px;background:#1C2433;color:#FFFCF6;border-radius:2px;display:flex;align-items:center;font-size:14px;flex-shrink:0">All 8</div><div style="height:40px;padding:0 12px;border:1px solid #1C2433;border-radius:2px;display:flex;align-items:center;font-size:14px;flex-shrink:0">Property and land 4</div><div style="height:40px;padding:0 12px;border:1px solid #1C2433;border-radius:2px;display:flex;align-items:center;font-size:14px;flex-shrink:0">Writ 3</div><div style="height:40px;padding:0 12px;border:1px solid #1C2433;border-radius:2px;display:flex;align-items:center;font-size:14px;flex-shrink:0">Service 1</div></div>
+<sc-for list="{{ posts }}" as="p" hint-placeholder-count="3">
+<div style="background:#FFFCF6;border:1px solid #E3D9C6;padding:16px;display:flex;flex-direction:column;gap:8px"><div style="font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#5C5761">{{ p.c }} · {{ p.d }}</div><h3 style="font-family:'Playfair Display',serif;font-size:20px;font-weight:600;line-height:1.28">{{ p.t }}</h3><p style="font-size:15px;line-height:1.55">{{ p.x }}</p></div>
+</sc-for>
+</div>
+</div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:8px">
+<div style="font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#5C5761">C · Offices tab · /rahul-nair/offices</div>
+<div style="width:360px;background:#F6F1E7;border:1px solid #CFC6B5">
+<div style="display:flex;align-items:center;justify-content:space-between;padding:6px 8px 6px 16px;background:#FFFCF6;border-bottom:1px solid #E3D9C6"><div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:600">Rahul <span style="font-style:italic;font-weight:400;color:#5A1A22">Nair</span></div><div style="display:flex;font-size:22px"><span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center">{{ i.search }}</span><span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center">{{ i.menu }}</span></div></div>
+<div style="display:flex;gap:24px;padding:0 16px;background:#FFFCF6;border-bottom:1px solid #E3D9C6;font-size:15px"><div style="padding:14px 0">Overview</div><div style="padding:14px 0">Posts <span style="color:#5C5761">8</span></div><div style="padding:14px 0;border-bottom:3px solid #5A1A22;font-weight:600">Offices <span style="color:#5C5761;font-weight:400">2</span></div></div>
+<div style="padding:20px 16px 32px;display:flex;flex-direction:column;gap:14px">
+<h2 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:600">Offices</h2>
+<sc-for list="{{ advOffices }}" as="o" hint-placeholder-count="2"><div style="background:#FFFCF6;border:1px solid #E3D9C6;padding:16px;display:flex;flex-direction:column;gap:10px">
+<div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px"><h3 style="font-family:'Playfair Display',serif;font-size:21px;font-weight:600;line-height:1.2">{{ o.n }}</h3><sc-if value="{{ o.main }}" hint-placeholder-val="{{ false }}"><span style="font-size:13px;padding:3px 8px;border:1px solid #9A7B4F">Main office</span></sc-if></div>
+<div style="display:flex;gap:8px;font-size:14px;line-height:1.45"><span style="display:flex;font-size:16px;margin-top:2px">{{ i.pin }}</span><span>{{ o.a }}</span></div>
+<div style="display:flex;gap:8px;font-size:14px;line-height:1.45"><span style="display:flex;font-size:16px;margin-top:2px">{{ i.court }}</span><span>{{ o.f }}</span></div>
+<div style="font-size:14px;color:#5C5761">{{ o.h }}</div>
+<div style="display:flex;gap:8px">
+<div style="flex:1;height:48px;background:#1E6B43;color:#fff;display:flex;align-items:center;gap:10px;padding:0 16px;font-weight:600;border-radius:2px;font-size:20px"><span style="display:flex">{{ i.chat }}</span><span style="font-size:16px">Connect</span></div>
+<div style="height:48px;border:1px solid #1C2433;border-radius:2px;display:flex;align-items:center;gap:8px;padding:0 14px;font-size:15px;font-weight:500"><span style="display:flex;font-size:18px">{{ i.phone }}</span>Call</div>
+<div style="width:48px;height:48px;border:1px solid #1C2433;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:20px">{{ i.arrowR }}</div>
+</div>
+</div></sc-for>
+</div>
+</div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:8px">
+<div style="font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#5C5761">D · Thin advocate · no banner yet, no bio, one court</div>
+<div style="width:360px;background:#F6F1E7;border:1px solid #CFC6B5">
+<div style="display:flex;align-items:center;justify-content:space-between;padding:6px 8px 6px 16px;background:#FFFCF6;border-bottom:1px solid #E3D9C6"><div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:600;color:#5A1A22">Advocate<span style="font-style:italic;font-weight:400">ID</span></div><div style="display:flex;font-size:22px"><span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center">{{ i.search }}</span><span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center">{{ i.menu }}</span></div></div>
+<div style="aspect-ratio:12 / 5;background:#5A1A22;border-bottom:3px solid #9A7B4F;display:flex;align-items:center;padding:0 16px;color:#CDB58D;font-family:'Playfair Display',serif;font-style:italic;font-size:64px;overflow:hidden;white-space:nowrap">Advocate</div>
+<div style="padding:0 16px 16px;display:flex;flex-direction:column;gap:12px">
+<div style="width:112px;height:140px;margin-top:-64px;background:#1C2433;color:#FFFCF6;border:4px solid #F6F1E7;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-style:italic;font-size:48px">FR</div>
+<div style="display:flex;flex-direction:column;gap:4px"><div style="font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#5C5761">Advocate · Ernakulam</div><h1 style="font-family:'Playfair Display',serif;font-size:44px;line-height:1.02;font-weight:600">Fathima <span style="font-style:italic;font-weight:400;color:#5A1A22">Rasheed</span></h1></div>
+<div style="display:flex;overflow-x:auto;border-top:1px solid #9A7B4F;border-bottom:1px solid #9A7B4F;margin:0 -16px;padding:0 16px">
+<div style="flex:0 0 auto;padding:10px 16px 10px 0;margin-right:16px;border-right:1px solid #9A7B4F;display:flex;flex-direction:column;gap:2px"><span style="font-family:'Playfair Display',serif;font-size:22px;font-weight:600">2</span><span style="font-size:13px;color:#5C5761">Years at the bar</span></div>
+<div style="flex:0 0 auto;padding:10px 16px 10px 0;margin-right:16px;border-right:1px solid #9A7B4F;display:flex;flex-direction:column;gap:2px"><span style="font-family:'Playfair Display',serif;font-size:22px;font-weight:600">K/3104/2024</span><span style="font-size:13px;color:#5C5761">Enrolment, as declared</span></div>
+<div style="flex:0 0 auto;padding:10px 0;display:flex;flex-direction:column;gap:2px"><span style="font-family:'Playfair Display',serif;font-size:22px;font-weight:600">1</span><span style="font-size:13px;color:#5C5761">Court</span></div>
+</div>
+<div style="display:flex;gap:8px"><div style="flex:1;height:48px;background:#1E6B43;color:#fff;display:flex;align-items:center;gap:10px;padding:0 16px;font-weight:600;border-radius:2px;font-size:20px"><span style="display:flex">{{ i.chat }}</span><span style="font-size:16px">Connect</span></div><div style="width:48px;height:48px;border:1px solid #1C2433;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:20px">{{ i.bookmark }}</div><div style="height:48px;border:1px solid #1C2433;border-radius:2px;display:flex;align-items:center;gap:8px;padding:0 12px;font-size:14px"><span style="width:20px;height:20px;border:1.5px solid #1C2433;border-radius:2px"></span>Compare</div></div>
+</div>
+<div style="display:flex;gap:24px;padding:0 16px;background:#FFFCF6;border-top:1px solid #E3D9C6;border-bottom:1px solid #E3D9C6;font-size:15px"><div style="padding:14px 0;border-bottom:3px solid #5A1A22;font-weight:600">Overview</div><div style="padding:14px 0">Offices <span style="color:#5C5761">1</span></div></div>
+<div style="padding:24px 16px 32px;display:flex;flex-direction:column;gap:28px">
+<div style="display:flex;flex-direction:column"><h2 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:600;padding-bottom:10px;border-bottom:2px solid #1C2433">Practice <span style="font-style:italic;font-weight:400">area</span></h2><div style="padding:16px 0;border-bottom:1px solid #E3D9C6;display:flex;justify-content:space-between;align-items:center"><span style="font-family:'Playfair Display',serif;font-size:26px">Civil</span><span style="display:flex;font-size:22px">{{ i.arrowUR }}</span></div></div>
+<div style="display:flex;flex-direction:column"><h2 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:600;padding-bottom:10px;border-bottom:2px solid #1C2433">Court</h2><div style="padding:16px 0;border-bottom:1px solid #E3D9C6;display:flex;gap:14px;align-items:center"><span style="width:44px;height:44px;background:#5A1A22;color:#FFFCF6;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">{{ i.court }}</span><span style="font-family:'Playfair Display',serif;font-size:20px;line-height:1.25;flex:1">Munsiff Court, <span style="font-style:italic">Ernakulam</span></span><span style="display:flex;font-size:20px">{{ i.chevR }}</span></div></div>
+<div style="font-size:14px;color:#5C5761;line-height:1.5">Posts tab, highlights, links, career, outcomes and Member of are omitted until they have content. No competitors are shown.</div>
+</div>
+<div style="background:#1C2433;color:#FFFCF6;padding:24px 16px;font-size:13px;line-height:1.55">AdvocateID is a technology and directory service. Not a law firm. Not a referral service.</div>
+</div>
+</div>
+
+</div>
+</section>
+
+
+<section data-screen-label="Firm 360" style="padding:32px 56px 56px;display:flex;flex-direction:column;gap:24px;min-width:2600px">
+<div style="display:flex;align-items:baseline;gap:16px;border-top:2px solid #1C2433;padding-top:16px"><div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:600">Law firm · 360</div><div style="font-size:15px;color:#5C5761">Menon &amp; Associates · /menon-associates</div></div>
+<div style="display:flex;gap:40px;align-items:flex-start">
+
+<div style="display:flex;flex-direction:column;gap:8px">
+<div style="font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#5C5761">E · Firm overview, full</div>
+<div style="width:360px;background:#F6F1E7;border:1px solid #CFC6B5;position:relative">
+<div style="display:flex;align-items:center;justify-content:space-between;padding:6px 8px 6px 16px;background:#FFFCF6;border-bottom:1px solid #E3D9C6"><div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:600;color:#5A1A22">Advocate<span style="font-style:italic;font-weight:400">ID</span></div><div style="display:flex;font-size:22px"><span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center">{{ i.search }}</span><span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center">{{ i.menu }}</span></div></div>
+<div style="aspect-ratio:12 / 5;background:#CFC6B5;border-bottom:3px solid #9A7B4F;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;font-size:13px"><span style="display:flex;font-size:24px">{{ i.image }}</span>Banner image · chambers or city</div>
+<div style="padding:0 16px 16px;display:flex;flex-direction:column;gap:12px">
+<div style="width:104px;height:104px;margin-top:-56px;background:#1C2433;color:#FFFCF6;border:4px solid #F6F1E7;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:34px">M<span style="font-style:italic">&amp;</span>A</div>
+<div style="display:flex;flex-direction:column;gap:4px"><div style="font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#5C5761">Law firm · Ernakulam, Thrissur, Kozhikode</div><h1 style="font-family:'Playfair Display',serif;font-size:42px;line-height:1.02;font-weight:600">Menon <span style="font-style:italic;font-weight:400;color:#5A1A22">&amp; Associates</span></h1></div>
+<p style="font-size:15px;line-height:1.6">A Kerala firm working in property, corporate and arbitration matters since 1998, with offices in Ernakulam, Thrissur and Kozhikode.</p>
+<div style="display:flex;gap:8px"><sc-for list="{{ links }}" as="l" hint-placeholder-count="5"><div style="width:44px;height:44px;border:1px solid #1C2433;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:20px">{{ l.icon }}</div></sc-for></div>
+<div style="display:flex;overflow-x:auto;border-top:1px solid #9A7B4F;border-bottom:1px solid #9A7B4F;margin:0 -16px;padding:0 16px">
+<sc-for list="{{ firmStats }}" as="s" hint-placeholder-count="5"><div style="flex:0 0 auto;padding:10px 16px 10px 0;margin-right:16px;border-right:1px solid #9A7B4F;display:flex;flex-direction:column;gap:2px"><span style="font-family:'Playfair Display',serif;font-size:22px;font-weight:600;white-space:nowrap">{{ s.v }}</span><span style="font-size:13px;color:#5C5761;white-space:nowrap">{{ s.l }}</span></div></sc-for>
+</div>
+<div style="display:flex;gap:8px"><div style="flex:1;height:48px;background:#1E6B43;color:#fff;display:flex;align-items:center;gap:10px;padding:0 16px;font-weight:600;border-radius:2px;font-size:20px"><span style="display:flex">{{ i.chat }}</span><span style="font-size:16px">Connect</span></div><div style="width:48px;height:48px;border:1px solid #1C2433;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:20px">{{ i.bookmark }}</div><div style="height:48px;border:1px solid #1C2433;border-radius:2px;display:flex;align-items:center;gap:8px;padding:0 12px;font-size:14px"><span style="width:20px;height:20px;border:1.5px solid #1C2433;border-radius:2px"></span>Compare</div><div style="width:48px;height:48px;border:1px solid #1C2433;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:20px">{{ i.share }}</div></div>
+</div>
+<div style="display:flex;gap:20px;padding:0 16px;background:#FFFCF6;border-top:1px solid #E3D9C6;border-bottom:1px solid #E3D9C6;font-size:15px;overflow-x:auto;white-space:nowrap"><div style="padding:14px 0;border-bottom:3px solid #5A1A22;font-weight:600;flex-shrink:0">Overview</div><div style="padding:14px 0;flex-shrink:0">Offices <span style="color:#5C5761">3</span></div><div style="padding:14px 0;flex-shrink:0">Lawyers <span style="color:#5C5761">12</span></div><div style="padding:14px 0;flex-shrink:0">Posts <span style="color:#5C5761">6</span></div></div>
+<div style="padding:24px 16px 32px;display:flex;flex-direction:column;gap:32px">
+<div style="display:flex;flex-direction:column;gap:10px"><h2 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:600;padding-bottom:10px;border-bottom:2px solid #1C2433">About <span style="font-style:italic;font-weight:400">the firm</span></h2><p style="font-size:16px;line-height:1.65">Founded by Adv. P. Menon in 1998 as a civil practice in Ernakulam. The firm now has twelve lawyers across three offices and appears before the High Court of Kerala, the district courts and arbitral tribunals.</p><a href="#" style="font-size:15px;min-height:44px;display:flex;align-items:center">Read full About</a></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#9A7B4F;border:1px solid #9A7B4F"><sc-for list="{{ firmHighlights }}" as="h" hint-placeholder-count="4"><div style="background:#FFFCF6;padding:14px;display:flex;flex-direction:column;gap:6px;min-height:104px"><span style="font-family:'Playfair Display',serif;font-size:40px;line-height:1;color:#5A1A22">{{ h.n }}</span><span style="font-size:14px;line-height:1.35">{{ h.l }}</span></div></sc-for></div>
+<div style="display:flex;flex-direction:column"><h2 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:600;padding-bottom:10px;border-bottom:2px solid #1C2433">Our <span style="font-style:italic;font-weight:400">journey</span></h2><div style="display:grid;grid-template-columns:72px minmax(0,1fr)"><sc-for list="{{ journey }}" as="c" hint-placeholder-count="4"><div style="padding:14px 0;border-right:1px solid #9A7B4F;font-family:'Playfair Display',serif;font-size:20px;font-weight:600">{{ c.y }}</div><div style="padding:14px 0 14px 16px;display:flex;flex-direction:column;gap:2px"><span style="font-size:15px;font-weight:500">{{ c.t }}</span><span style="font-size:14px;color:#5C5761">{{ c.d }}</span></div></sc-for></div></div>
+<div style="display:flex;flex-direction:column"><h2 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:600;padding-bottom:10px;border-bottom:2px solid #1C2433">Practice <span style="font-style:italic;font-weight:400">areas</span></h2><sc-for list="{{ firmPractice }}" as="p" hint-placeholder-count="4"><div style="padding:12px 0;border-bottom:1px solid #E3D9C6;display:flex;justify-content:space-between;gap:12px;align-items:center;min-height:56px"><span style="font-family:'Playfair Display',serif;font-size:19px">{{ p.n }}</span><span style="display:flex;font-size:20px">{{ i.arrowUR }}</span></div></sc-for></div>
+<div style="display:flex;flex-direction:column"><h2 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:600;padding-bottom:10px;border-bottom:2px solid #1C2433">Case <span style="font-style:italic;font-weight:400">outcomes</span></h2><sc-for list="{{ firmOutcomes }}" as="c" hint-placeholder-count="3"><div style="padding:14px 0;border-bottom:1px solid #E3D9C6;display:grid;grid-template-columns:52px minmax(0,1fr);gap:12px"><div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:600">{{ c.y }}</div><div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:15px;line-height:1.45">{{ c.role }} {{ c.court }}.</span><span style="font-size:14px"><span style="color:#5C5761">Outcome:</span> {{ c.out }}</span></div></div></sc-for></div>
+<div style="display:flex;flex-direction:column;gap:12px"><div style="display:flex;justify-content:space-between;align-items:baseline;padding-bottom:10px;border-bottom:2px solid #1C2433"><h2 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:600">Lawyers</h2><a href="#" style="font-size:14px">All 12</a></div><sc-for list="{{ lawyers360 }}" as="l" hint-placeholder-count="3"><div style="display:flex;gap:12px;align-items:center;padding-bottom:12px;border-bottom:1px solid #E3D9C6"><sc-if value="{{ l.photo }}" hint-placeholder-val="{{ false }}"><div style="width:48px;height:60px;background:#CFC6B5;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0">{{ i.image }}</div></sc-if><sc-if value="{{ l.mono }}" hint-placeholder-val="{{ true }}"><div style="width:48px;height:60px;background:#5A1A22;color:#FFFCF6;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-style:italic;font-size:20px;flex-shrink:0">{{ l.ini }}</div></sc-if><div style="display:flex;flex-direction:column;gap:2px;flex:1"><span style="font-family:'Playfair Display',serif;font-size:18px;font-weight:600">{{ l.n1 }} <span style="font-style:italic;font-weight:400">{{ l.n2 }}</span></span><span style="font-size:13px;color:#5C5761">{{ l.title }} at {{ l.office }}</span></div><span style="display:flex;font-size:18px">{{ i.chevR }}</span></div></sc-for></div>
+</div>
+<div style="background:#1C2433;color:#FFFCF6;padding:24px 16px 88px;font-size:13px;line-height:1.55">AdvocateID is a technology and directory service. Not a law firm. Not a referral service. · Terms · Privacy · Grievance</div>
+<div style="position:absolute;left:0;right:0;top:584px;background:#FFFCF6;border-top:1px solid #E3D9C6;box-shadow:0 -4px 16px rgba(16,21,31,.14);padding:4px 16px;height:56px;display:flex;align-items:center;gap:10px;z-index:3"><div style="display:flex;flex-direction:column;min-width:0;flex:1"><span style="font-family:'Playfair Display',serif;font-size:16px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Menon &amp; Associates</span><span style="font-size:13px;color:#5C5761">Law firm · 3 offices</span></div><div style="height:44px;background:#1E6B43;color:#fff;display:flex;align-items:center;gap:8px;padding:0 14px;font-weight:600;border-radius:2px;font-size:18px"><span style="display:flex">{{ i.chat }}</span><span style="font-size:15px">Connect</span></div></div>
+<div style="position:absolute;left:-1px;right:-1px;top:640px;border-top:1px dashed #2F5BD3;z-index:4"></div>
+</div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:8px">
+<div style="font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#5C5761">F · Lawyers tab · /menon-associates/lawyers</div>
+<div style="width:360px;background:#F6F1E7;border:1px solid #CFC6B5">
+<div style="display:flex;align-items:center;justify-content:space-between;padding:6px 8px 6px 16px;background:#FFFCF6;border-bottom:1px solid #E3D9C6"><div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:600">Menon <span style="font-style:italic;font-weight:400;color:#5A1A22">&amp; Associates</span></div><div style="display:flex;font-size:22px"><span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center">{{ i.menu }}</span></div></div>
+<div style="display:flex;gap:20px;padding:0 16px;background:#FFFCF6;border-bottom:1px solid #E3D9C6;font-size:15px;overflow-x:auto;white-space:nowrap"><div style="padding:14px 0;flex-shrink:0">Overview</div><div style="padding:14px 0;flex-shrink:0">Offices 3</div><div style="padding:14px 0;border-bottom:3px solid #5A1A22;font-weight:600;flex-shrink:0">Lawyers 12</div><div style="padding:14px 0;flex-shrink:0">Posts 6</div></div>
+<div style="padding:20px 16px 32px;display:flex;flex-direction:column;gap:14px">
+<h2 style="font-family:'Playfair Display',serif;font-size:28px;font-weight:600;line-height:1.15">Our <span style="font-style:italic;font-weight:400">lawyers</span></h2>
+<div style="display:flex;gap:8px;overflow-x:auto;white-space:nowrap"><sc-for list="{{ officeChips }}" as="c" hint-placeholder-count="4"><div style="height:40px;padding:0 12px;background:{{ c.bg }};color:{{ c.fg }};border:1px solid #1C2433;border-radius:2px;display:flex;align-items:center;gap:6px;font-size:14px;flex-shrink:0">{{ c.n }} <span>{{ c.c }}</span></div></sc-for></div>
+<sc-for list="{{ lawyers360 }}" as="l" hint-placeholder-count="3"><div style="background:#FFFCF6;border:1px solid #E3D9C6;padding:16px;display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;gap:14px"><sc-if value="{{ l.photo }}" hint-placeholder-val="{{ false }}"><div style="width:112px;height:140px;background:#CFC6B5;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;flex-shrink:0"><span style="display:flex;font-size:22px">{{ i.image }}</span><span style="font-size:13px">4:5 portrait</span></div></sc-if><sc-if value="{{ l.mono }}" hint-placeholder-val="{{ true }}"><div style="width:112px;height:140px;background:#5A1A22;color:#FFFCF6;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-style:italic;font-size:44px;flex-shrink:0">{{ l.ini }}</div></sc-if><div style="display:flex;flex-direction:column;gap:4px;min-width:0;justify-content:flex-end"><h3 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:600;line-height:1.15">{{ l.n1 }} <span style="font-style:italic;font-weight:400;color:#5A1A22">{{ l.n2 }}</span></h3><span style="font-size:14px;line-height:1.4">{{ l.title }} at {{ l.office }}</span></div></div>
+<p style="font-size:15px;line-height:1.55">{{ l.intro }}</p><div style="display:flex;gap:6px;flex-wrap:wrap"><sc-for list="{{ l.tags }}" as="t" hint-placeholder-count="2"><span style="font-size:13px;padding:4px 8px;border:1px solid #9A7B4F">{{ t }}</span></sc-for></div><div style="display:flex;gap:8px;margin-top:auto">
+<div style="flex:1;height:48px;background:#1E6B43;color:#fff;display:flex;align-items:center;gap:10px;padding:0 16px;font-weight:600;border-radius:2px;font-size:20px"><span style="display:flex">{{ i.chat }}</span><span style="font-size:16px">Connect</span></div>
+<div style="height:48px;border:1px solid #1C2433;border-radius:2px;display:flex;align-items:center;gap:8px;padding:0 12px;font-size:14px"><span style="width:20px;height:20px;border:1.5px solid #1C2433;border-radius:2px"></span>Compare</div>
+</div></div></sc-for>
+<div style="height:48px;border:1px solid #1C2433;border-radius:2px;display:flex;align-items:center;padding:0 16px;font-size:15px;font-weight:500">Show all 12 lawyers</div>
+</div>
+</div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:8px">
+<div style="font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#5C5761">G · Firm offices tab · each office links to its own page</div>
+<div style="width:360px;background:#F6F1E7;border:1px solid #CFC6B5">
+<div style="display:flex;align-items:center;justify-content:space-between;padding:6px 8px 6px 16px;background:#FFFCF6;border-bottom:1px solid #E3D9C6"><div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:600">Menon <span style="font-style:italic;font-weight:400;color:#5A1A22">&amp; Associates</span></div><div style="display:flex;font-size:22px"><span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center">{{ i.menu }}</span></div></div>
+<div style="display:flex;gap:20px;padding:0 16px;background:#FFFCF6;border-bottom:1px solid #E3D9C6;font-size:15px;overflow-x:auto;white-space:nowrap"><div style="padding:14px 0;flex-shrink:0">Overview</div><div style="padding:14px 0;border-bottom:3px solid #5A1A22;font-weight:600;flex-shrink:0">Offices 3</div><div style="padding:14px 0;flex-shrink:0">Lawyers 12</div><div style="padding:14px 0;flex-shrink:0">Posts 6</div></div>
+<div style="padding:20px 16px 32px;display:flex;flex-direction:column;gap:14px">
+<h2 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:600">Offices</h2>
+<sc-for list="{{ firmOffices }}" as="o" hint-placeholder-count="3"><div style="background:#FFFCF6;border:1px solid #E3D9C6;padding:16px;display:flex;flex-direction:column;gap:10px">
+<div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px"><h3 style="font-family:'Playfair Display',serif;font-size:21px;font-weight:600;line-height:1.2">{{ o.n }}</h3><sc-if value="{{ o.main }}" hint-placeholder-val="{{ false }}"><span style="font-size:13px;padding:3px 8px;border:1px solid #9A7B4F">Main office</span></sc-if></div>
+<div style="display:flex;gap:8px;font-size:14px;line-height:1.45"><span style="display:flex;font-size:16px;margin-top:2px">{{ i.pin }}</span><span>{{ o.a }}</span></div>
+<div style="display:flex;gap:8px;font-size:14px;line-height:1.45"><span style="display:flex;font-size:16px;margin-top:2px">{{ i.court }}</span><span>{{ o.f }}</span></div>
+<div style="font-size:14px;color:#5C5761">{{ o.h }}</div>
+<div style="display:flex;gap:8px">
+<div style="flex:1;height:48px;background:#1E6B43;color:#fff;display:flex;align-items:center;gap:10px;padding:0 16px;font-weight:600;border-radius:2px;font-size:20px"><span style="display:flex">{{ i.chat }}</span><span style="font-size:16px">Connect</span></div>
+<div style="height:48px;border:1px solid #1C2433;border-radius:2px;display:flex;align-items:center;gap:8px;padding:0 14px;font-size:15px;font-weight:500"><span style="display:flex;font-size:18px">{{ i.phone }}</span>Call</div>
+<div style="width:48px;height:48px;border:1px solid #1C2433;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:20px">{{ i.arrowR }}</div>
+</div>
+</div></sc-for>
+</div>
+</div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:8px">
+<div style="font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#5C5761">H · Thin firm · one office, one lawyer</div>
+<div style="width:360px;background:#F6F1E7;border:1px solid #CFC6B5">
+<div style="display:flex;align-items:center;justify-content:space-between;padding:6px 8px 6px 16px;background:#FFFCF6;border-bottom:1px solid #E3D9C6"><div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:600;color:#5A1A22">Advocate<span style="font-style:italic;font-weight:400">ID</span></div><div style="display:flex;font-size:22px"><span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center">{{ i.menu }}</span></div></div>
+<div style="aspect-ratio:12 / 5;background:#1C2433;border-bottom:3px solid #9A7B4F;display:flex;align-items:center;padding:0 16px;color:#4A5468;font-family:'Playfair Display',serif;font-style:italic;font-size:64px;overflow:hidden;white-space:nowrap">Law firm</div>
+<div style="padding:0 16px 16px;display:flex;flex-direction:column;gap:12px">
+<div style="width:104px;height:104px;margin-top:-56px;background:#5A1A22;color:#FFFCF6;border:4px solid #F6F1E7;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:34px">J<span style="font-style:italic">&amp;</span>A</div>
+<div style="display:flex;flex-direction:column;gap:4px"><div style="font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#5C5761">Law firm · Aluva</div><h1 style="font-family:'Playfair Display',serif;font-size:42px;line-height:1.02;font-weight:600">Jose <span style="font-style:italic;font-weight:400;color:#5A1A22">&amp; Associates</span></h1></div>
+<div style="display:flex;overflow-x:auto;border-top:1px solid #9A7B4F;border-bottom:1px solid #9A7B4F;margin:0 -16px;padding:0 16px"><div style="flex:0 0 auto;padding:10px 16px 10px 0;margin-right:16px;border-right:1px solid #9A7B4F;display:flex;flex-direction:column;gap:2px"><span style="font-family:'Playfair Display',serif;font-size:22px;font-weight:600">2025</span><span style="font-size:13px;color:#5C5761">Founded</span></div><div style="flex:0 0 auto;padding:10px 16px 10px 0;margin-right:16px;border-right:1px solid #9A7B4F;display:flex;flex-direction:column;gap:2px"><span style="font-family:'Playfair Display',serif;font-size:22px;font-weight:600">1</span><span style="font-size:13px;color:#5C5761">Office</span></div><div style="flex:0 0 auto;padding:10px 0;display:flex;flex-direction:column;gap:2px"><span style="font-family:'Playfair Display',serif;font-size:22px;font-weight:600">1</span><span style="font-size:13px;color:#5C5761">Lawyer</span></div></div>
+<div style="display:flex;gap:8px"><div style="flex:1;height:48px;background:#1E6B43;color:#fff;display:flex;align-items:center;gap:10px;padding:0 16px;font-weight:600;border-radius:2px;font-size:20px"><span style="display:flex">{{ i.chat }}</span><span style="font-size:16px">Connect</span></div><div style="width:48px;height:48px;border:1px solid #1C2433;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:20px">{{ i.bookmark }}</div><div style="height:48px;border:1px solid #1C2433;border-radius:2px;display:flex;align-items:center;gap:8px;padding:0 12px;font-size:14px"><span style="width:20px;height:20px;border:1.5px solid #1C2433;border-radius:2px"></span>Compare</div></div>
+</div>
+<div style="display:flex;gap:20px;padding:0 16px;background:#FFFCF6;border-top:1px solid #E3D9C6;border-bottom:1px solid #E3D9C6;font-size:15px"><div style="padding:14px 0;border-bottom:3px solid #5A1A22;font-weight:600">Overview</div><div style="padding:14px 0">Offices 1</div><div style="padding:14px 0">Lawyers 1</div></div>
+<div style="padding:24px 16px 32px;display:flex;flex-direction:column;gap:14px">
+<h2 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:600;padding-bottom:10px;border-bottom:2px solid #1C2433">Lawyers</h2>
+<sc-for list="{{ thinLawyers }}" as="l" hint-placeholder-count="1"><div style="background:#FFFCF6;border:1px solid #E3D9C6;padding:16px;display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;gap:14px"><sc-if value="{{ l.photo }}" hint-placeholder-val="{{ false }}"><div style="width:112px;height:140px;background:#CFC6B5;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;flex-shrink:0"><span style="display:flex;font-size:22px">{{ i.image }}</span><span style="font-size:13px">4:5 portrait</span></div></sc-if><sc-if value="{{ l.mono }}" hint-placeholder-val="{{ true }}"><div style="width:112px;height:140px;background:#5A1A22;color:#FFFCF6;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-style:italic;font-size:44px;flex-shrink:0">{{ l.ini }}</div></sc-if><div style="display:flex;flex-direction:column;gap:4px;min-width:0;justify-content:flex-end"><h3 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:600;line-height:1.15">{{ l.n1 }} <span style="font-style:italic;font-weight:400;color:#5A1A22">{{ l.n2 }}</span></h3><span style="font-size:14px;line-height:1.4">{{ l.title }} at {{ l.office }}</span></div></div>
+<p style="font-size:15px;line-height:1.55">{{ l.intro }}</p><div style="display:flex;gap:6px;flex-wrap:wrap"><sc-for list="{{ l.tags }}" as="t" hint-placeholder-count="2"><span style="font-size:13px;padding:4px 8px;border:1px solid #9A7B4F">{{ t }}</span></sc-for></div><div style="display:flex;gap:8px;margin-top:auto">
+<div style="flex:1;height:48px;background:#1E6B43;color:#fff;display:flex;align-items:center;gap:10px;padding:0 16px;font-weight:600;border-radius:2px;font-size:20px"><span style="display:flex">{{ i.chat }}</span><span style="font-size:16px">Connect</span></div>
+<div style="height:48px;border:1px solid #1C2433;border-radius:2px;display:flex;align-items:center;gap:8px;padding:0 12px;font-size:14px"><span style="width:20px;height:20px;border:1.5px solid #1C2433;border-radius:2px"></span>Compare</div>
+</div></div></sc-for>
+<div style="font-size:14px;color:#5C5761;line-height:1.5">Journey, highlights, outcomes and Posts are omitted until they have content.</div>
+</div>
+<div style="background:#1C2433;color:#FFFCF6;padding:24px 16px;font-size:13px;line-height:1.55">AdvocateID is a technology and directory service. Not a law firm. Not a referral service.</div>
+</div>
+</div>
+
+</div>
+</section>
+
+<section data-screen-label="768 and 1280" style="padding:32px 56px 56px;display:flex;flex-direction:column;gap:24px;min-width:2600px">
+<div style="display:flex;align-items:baseline;gap:16px;border-top:2px solid #1C2433;padding-top:16px"><div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:600">768 and 1280</div><div style="font-size:15px;color:#5C5761">768: advocate Overview · 1280: firm Lawyers tab</div></div>
+<div style="display:flex;gap:48px;align-items:flex-start">
+
+<div style="display:flex;flex-direction:column;gap:8px">
+<div style="font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#5C5761">I · 768 · advocate</div>
+<div style="width:768px;background:#F6F1E7;border:1px solid #CFC6B5">
+<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 24px 8px 32px;background:#FFFCF6;border-bottom:1px solid #E3D9C6"><div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:600;color:#5A1A22">Advocate<span style="font-style:italic;font-weight:400">ID</span></div><div style="display:flex;align-items:center;gap:20px;font-size:15px"><span>Courts</span><span>Practice areas</span><span>Places</span><span style="display:flex;font-size:22px;width:44px;height:44px;align-items:center;justify-content:center">{{ i.search }}</span></div></div>
+<div style="aspect-ratio:12 / 4;background:#5A1A22;border-bottom:3px solid #9A7B4F;display:flex;align-items:flex-end;justify-content:flex-end;padding:10px 16px;color:#F6F1E7;font-size:13px">Banner image · 12:4 at 768+, space reserved</div>
+<div style="padding:0 32px 24px;display:grid;grid-template-columns:184px minmax(0,1fr);gap:24px">
+<div style="width:184px;height:230px;margin-top:-96px;background:#CFC6B5;border:5px solid #F6F1E7;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px"><span style="display:flex;font-size:26px">{{ i.image }}</span><span style="font-size:13px">4:5 portrait</span></div>
+<div style="display:flex;flex-direction:column;gap:10px;padding-top:16px">
+<div style="font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#5C5761">Advocate · High Court of Kerala</div>
+<h1 style="font-family:'Playfair Display',serif;font-size:56px;line-height:1;font-weight:600">Rahul <span style="font-style:italic;font-weight:400;color:#5A1A22">Nair</span></h1>
+<div style="display:flex;gap:8px"><sc-for list="{{ links }}" as="l" hint-placeholder-count="5"><div style="width:44px;height:44px;border:1px solid #1C2433;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:20px">{{ l.icon }}</div></sc-for></div>
+</div>
+</div>
+<div style="padding:0 32px 24px;display:flex;flex-direction:column;gap:16px">
+<p style="font-size:17px;line-height:1.6;max-width:620px">Civil and property practice at the High Court of Kerala and the courts at Ernakulam. Appears in writ petitions, partition suits and land acquisition matters. Writes on property law for students and practitioners.</p>
+<div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border-top:1px solid #9A7B4F;border-bottom:1px solid #9A7B4F">
+<sc-for list="{{ advStats }}" as="s" hint-placeholder-count="5"><div style="padding:12px 12px 12px 0;border-right:1px solid #9A7B4F;display:flex;flex-direction:column;gap:2px;padding-left:12px"><span style="font-family:'Playfair Display',serif;font-size:22px;font-weight:600;white-space:nowrap">{{ s.v }}</span><span style="font-size:13px;color:#5C5761">{{ s.l }}</span></div></sc-for>
+</div>
+<div style="display:flex;gap:8px"><div style="width:240px;height:48px;background:#1E6B43;color:#fff;display:flex;align-items:center;gap:10px;padding:0 16px;font-weight:600;border-radius:2px;font-size:20px"><span style="display:flex">{{ i.chat }}</span><span style="font-size:16px">Connect</span></div><div style="width:48px;height:48px;border:1px solid #1C2433;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:20px">{{ i.bookmark }}</div><div style="height:48px;border:1px solid #1C2433;border-radius:2px;display:flex;align-items:center;gap:8px;padding:0 12px;font-size:14px"><span style="width:20px;height:20px;border:1.5px solid #1C2433;border-radius:2px"></span>Compare</div><div style="width:48px;height:48px;border:1px solid #1C2433;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:20px">{{ i.share }}</div></div>
+</div>
+<div style="display:flex;gap:28px;padding:0 32px;background:#FFFCF6;border-top:1px solid #E3D9C6;border-bottom:1px solid #E3D9C6;font-size:15px"><div style="padding:14px 0;border-bottom:3px solid #5A1A22;font-weight:600">Overview</div><div style="padding:14px 0">Posts <span style="color:#5C5761">8</span></div><div style="padding:14px 0">Offices <span style="color:#5C5761">2</span></div></div>
+<div style="padding:0 16px;max-width:680px">
+<div style="padding:24px 16px 32px;display:flex;flex-direction:column;gap:32px">
+<div style="display:flex;flex-direction:column;gap:10px">
+<h2 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:600;padding-bottom:10px;border-bottom:2px solid #1C2433">About</h2>
+<p style="font-size:16px;line-height:1.65">Rahul Nair enrolled with the Bar Council of Kerala in 2008 and worked as a junior to Adv. K. P. Varma on the civil side until 2014. Since then he has practised independently at the High Court of Kerala, mostly in property, land acquisition and service matters.</p>
+<p style="font-size:16px;line-height:1.65">He lectures on the law of property at Government Law College, Ernakulam, and writes a monthly note on recent High Court judgments.</p>
+<a href="#" style="font-size:15px;align-self:flex-start;min-height:44px;display:flex;align-items:center">Read full About</a>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#9A7B4F;border:1px solid #9A7B4F">
+<sc-for list="{{ highlights }}" as="h" hint-placeholder-count="4"><div style="background:#FFFCF6;padding:14px;display:flex;flex-direction:column;gap:6px;min-height:104px"><span style="font-family:'Playfair Display',serif;font-size:40px;line-height:1;color:#5A1A22">{{ h.n }}</span><span style="font-size:14px;line-height:1.35">{{ h.l }}</span></div></sc-for>
+</div>
+<div style="display:flex;flex-direction:column">
+<h2 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:600;padding-bottom:10px;border-bottom:2px solid #1C2433">Practice <span style="font-style:italic;font-weight:400">areas</span></h2>
+<sc-for list="{{ practice }}" as="p" hint-placeholder-count="4"><div style="padding:12px 0;border-bottom:1px solid #E3D9C6;display:flex;justify-content:space-between;gap:12px;align-items:center;min-height:60px"><div style="display:flex;flex-direction:column;gap:2px"><span style="font-family:'Playfair Display',serif;font-size:19px">{{ p.n }}</span><span style="font-size:13px;color:#5C5761">{{ p.d }}</span></div><span style="display:flex;font-size:20px">{{ i.arrowUR }}</span></div></sc-for>
+</div>
+<div style="display:flex;flex-direction:column">
+<h2 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:600;padding-bottom:10px;border-bottom:2px solid #1C2433">Courts</h2>
+<sc-for list="{{ courts }}" as="c" hint-placeholder-count="6"><div style="padding:11px 0;border-bottom:1px solid #E3D9C6;display:flex;gap:12px;align-items:center;min-height:52px"><span style="width:32px;height:32px;background:#5A1A22;color:#FFFCF6;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0">{{ i.court }}</span><span style="font-family:'Playfair Display',serif;font-size:17px;line-height:1.3;flex:1">{{ c }}</span><span style="display:flex;font-size:18px">{{ i.chevR }}</span></div></sc-for>
+<a href="#" style="font-size:15px;min-height:44px;display:flex;align-items:center">All 10 courts</a>
+</div>
+<div style="display:flex;flex-direction:column">
+<h2 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:600;padding-bottom:10px;border-bottom:2px solid #1C2433">Career <span style="font-style:italic;font-weight:400">and education</span></h2>
+<div style="display:grid;grid-template-columns:96px minmax(0,1fr)">
+<sc-for list="{{ career }}" as="c" hint-placeholder-count="5"><div style="padding:12px 0;border-right:1px solid #9A7B4F;font-size:14px;font-weight:600">{{ c.y }}</div><div style="padding:12px 0 12px 16px;display:flex;flex-direction:column;gap:2px"><span style="font-size:15px;font-weight:500">{{ c.t }}</span><span style="font-size:14px;color:#5C5761">{{ c.d }}</span></div></sc-for>
+</div>
+</div>
+<div style="display:flex;flex-direction:column">
+<h2 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:600;padding-bottom:10px;border-bottom:2px solid #1C2433">Case <span style="font-style:italic;font-weight:400">outcomes</span></h2>
+<sc-for list="{{ outcomes }}" as="c" hint-placeholder-count="3"><div style="padding:14px 0;border-bottom:1px solid #E3D9C6;display:grid;grid-template-columns:52px minmax(0,1fr);gap:12px"><div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:600">{{ c.y }}</div><div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:15px;line-height:1.45">{{ c.role }} {{ c.court }}.</span><span style="font-size:14px"><span style="color:#5C5761">Outcome:</span> {{ c.out }}</span><sc-if value="{{ c.hasPost }}" hint-placeholder-val="{{ false }}"><a href="#" style="font-size:14px;min-height:32px;display:flex;align-items:center">Read the related post</a></sc-if></div></div></sc-for>
+</div>
+<div style="display:flex;flex-direction:column">
+<h2 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:600;padding-bottom:10px;border-bottom:2px solid #1C2433">Member <span style="font-style:italic;font-weight:400">of</span></h2>
+<sc-for list="{{ members }}" as="m" hint-placeholder-count="3"><div style="padding:12px 0;border-bottom:1px solid #E3D9C6;display:flex;flex-direction:column;gap:2px"><span style="font-size:15px;font-weight:500">{{ m.o }}</span><span style="font-size:14px;color:#5C5761">{{ m.t }}</span></div></sc-for>
+</div>
+<div style="display:flex;justify-content:space-between;align-items:center;font-size:14px;color:#5C5761;border-top:1px solid #E3D9C6;padding-top:12px"><span>Information provided by the advocate.</span><span style="display:flex;gap:6px;align-items:center;min-height:44px"><span style="display:flex;font-size:16px">{{ i.flag }}</span>Report</span></div>
+</div>
+</div>
+<div style="background:#1C2433;color:#FFFCF6;padding:24px 32px;font-size:13px;line-height:1.55">AdvocateID is a technology and directory service. Not a law firm. Not a referral service. · Terms · Privacy · Grievance</div>
+</div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:8px">
+<div style="font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#5C5761">J · 1280 · firm, Lawyers tab</div>
+<div style="width:1280px;background:#F6F1E7;border:1px solid #CFC6B5">
+<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 40px;background:#FFFCF6;border-bottom:1px solid #E3D9C6"><div style="font-family:'Playfair Display',serif;font-size:26px;font-weight:600;color:#5A1A22">Advocate<span style="font-style:italic;font-weight:400">ID</span></div><div style="display:flex;align-items:center;gap:28px;font-size:15px"><span>Courts</span><span>Practice areas</span><span>Places</span><span>Court updates</span><span style="height:44px;border:1px solid #1C2433;border-radius:2px;display:flex;align-items:center;padding:0 16px">Log in</span></div></div>
+<div style="aspect-ratio:12 / 3;background:#CFC6B5;border-bottom:3px solid #9A7B4F;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;font-size:13px"><span style="display:flex;font-size:30px">{{ i.image }}</span>Banner image · 12:3 at 1280, space reserved</div>
+<div style="padding:0 40px 32px;display:grid;grid-template-columns:160px minmax(0,1fr) 380px;gap:32px;align-items:end">
+<div style="width:160px;height:160px;margin-top:-80px;background:#1C2433;color:#FFFCF6;border:6px solid #F6F1E7;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:52px">M<span style="font-style:italic">&amp;</span>A</div>
+<div style="display:flex;flex-direction:column;gap:8px;padding-top:20px">
+<div style="font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#5C5761">Law firm · Ernakulam, Thrissur, Kozhikode</div>
+<h1 style="font-family:'Playfair Display',serif;font-size:64px;line-height:1;font-weight:600">Menon <span style="font-style:italic;font-weight:400;color:#5A1A22">&amp; Associates</span></h1>
+<p style="font-size:17px;line-height:1.55;max-width:640px">A Kerala firm working in property, corporate and arbitration matters since 1998, with offices in Ernakulam, Thrissur and Kozhikode.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;gap:8px;justify-content:flex-end"><sc-for list="{{ links }}" as="l" hint-placeholder-count="5"><div style="width:44px;height:44px;border:1px solid #1C2433;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:20px">{{ l.icon }}</div></sc-for></div>
+<div style="display:flex;gap:8px"><div style="flex:1;height:48px;background:#1E6B43;color:#fff;display:flex;align-items:center;gap:10px;padding:0 16px;font-weight:600;border-radius:2px;font-size:20px"><span style="display:flex">{{ i.chat }}</span><span style="font-size:16px">Connect</span></div><div style="width:48px;height:48px;border:1px solid #1C2433;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:20px">{{ i.bookmark }}</div><div style="height:48px;border:1px solid #1C2433;border-radius:2px;display:flex;align-items:center;gap:8px;padding:0 12px;font-size:14px"><span style="width:20px;height:20px;border:1.5px solid #1C2433;border-radius:2px"></span>Compare</div></div>
+</div>
+</div>
+<div style="margin:0 40px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border-top:1px solid #9A7B4F;border-bottom:1px solid #9A7B4F">
+<sc-for list="{{ firmStats }}" as="s" hint-placeholder-count="5"><div style="padding:14px 16px;border-right:1px solid #9A7B4F;display:flex;flex-direction:column;gap:2px"><span style="font-family:'Playfair Display',serif;font-size:28px;font-weight:600">{{ s.v }}</span><span style="font-size:14px;color:#5C5761">{{ s.l }}</span></div></sc-for>
+</div>
+<div style="display:flex;gap:32px;padding:0 40px;margin-top:24px;background:#FFFCF6;border-top:1px solid #E3D9C6;border-bottom:1px solid #E3D9C6;font-size:16px"><div style="padding:16px 0">Overview</div><div style="padding:16px 0">Offices 3</div><div style="padding:16px 0;border-bottom:3px solid #5A1A22;font-weight:600">Lawyers 12</div><div style="padding:16px 0">Posts 6</div></div>
+<div style="padding:40px 40px 56px;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px"><h2 style="font-family:'Playfair Display',serif;font-size:44px;font-weight:600;line-height:1.1">Our <span style="font-style:italic;font-weight:400;color:#5A1A22">lawyers</span></h2><div style="display:flex;gap:8px"><sc-for list="{{ officeChips }}" as="c" hint-placeholder-count="4"><div style="height:40px;padding:0 14px;background:{{ c.bg }};color:{{ c.fg }};border:1px solid #1C2433;border-radius:2px;display:flex;align-items:center;gap:6px;font-size:14px">{{ c.n }} <span>{{ c.c }}</span></div></sc-for></div></div>
+<div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px">
+<sc-for list="{{ lawyers }}" as="l" hint-placeholder-count="8"><div style="display:flex;flex-direction:column;gap:12px;background:#FFFCF6;border:1px solid #E3D9C6;padding:0 0 16px">
+<sc-if value="{{ l.photo }}" hint-placeholder-val="{{ false }}"><div style="width:100%;aspect-ratio:4 / 5;background:#CFC6B5;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;flex-shrink:0"><span style="display:flex;font-size:22px">{{ i.image }}</span><span style="font-size:13px">4:5 portrait</span></div></sc-if><sc-if value="{{ l.mono }}" hint-placeholder-val="{{ true }}"><div style="width:100%;aspect-ratio:4 / 5;background:#5A1A22;color:#FFFCF6;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-style:italic;font-size:72px;flex-shrink:0">{{ l.ini }}</div></sc-if>
+<div style="padding:0 16px;display:flex;flex-direction:column;gap:10px;flex:1"><div style="display:flex;gap:6px;flex-wrap:wrap"><sc-for list="{{ l.tags }}" as="t" hint-placeholder-count="2"><span style="font-size:13px;padding:4px 8px;border:1px solid #9A7B4F">{{ t }}</span></sc-for></div><h3 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:600;line-height:1.15">{{ l.n1 }} <span style="font-style:italic;font-weight:400;color:#5A1A22">{{ l.n2 }}</span></h3><span style="font-size:14px;line-height:1.4">{{ l.title }} at {{ l.office }}</span><p style="font-size:14px;line-height:1.55;color:#1C2433">{{ l.intro }}</p><div style="display:flex;gap:8px;margin-top:auto">
+<div style="flex:1;height:48px;background:#1E6B43;color:#fff;display:flex;align-items:center;gap:10px;padding:0 16px;font-weight:600;border-radius:2px;font-size:20px"><span style="display:flex">{{ i.chat }}</span><span style="font-size:16px">Connect</span></div>
+<div style="height:48px;border:1px solid #1C2433;border-radius:2px;display:flex;align-items:center;gap:8px;padding:0 12px;font-size:14px"><span style="width:20px;height:20px;border:1.5px solid #1C2433;border-radius:2px"></span>Compare</div>
+</div></div></div></sc-for>
+</div>
+</div>
+<div style="background:#1C2433;color:#FFFCF6;padding:28px 40px;font-size:13px;line-height:1.55;display:flex;justify-content:space-between"><span>AdvocateID is a technology and directory service. Not a law firm. Not a referral service.</span><span>Terms · Privacy · Grievance · Report content</span></div>
+</div>
+</div>
+
+</div>
+</section>
+
+<section data-screen-label="Tier board" style="padding:32px 56px 96px;display:flex;flex-direction:column;gap:24px;min-width:2600px">
+<div style="display:flex;align-items:baseline;gap:16px;border-top:2px solid #1C2433;padding-top:16px"><div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:600">Tier board</div><div style="font-size:15px;color:#5C5761">The same fictional advocate, Rahul Nair, on each plan at 360. The plan itself is never named on the public page.</div></div>
+<div style="display:flex;gap:40px;align-items:flex-start">
+
+<div style="display:flex;flex-direction:column;gap:12px;width:360px">
+<div style="display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid #1C2433;padding-bottom:8px"><span style="font-family:'Playfair Display',serif;font-size:28px;font-weight:600">Basic</span><span style="font-size:14px;color:#5C5761">advocateid.in/rahul-nair</span></div>
+<div style="background:#F6F1E7;border:1px solid #CFC6B5">
+<div style="display:flex;align-items:center;justify-content:space-between;padding:6px 8px 6px 16px;background:#FFFCF6;border-bottom:1px solid #E3D9C6"><div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:600;color:#5A1A22">Advocate<span style="font-style:italic;font-weight:400">ID</span></div><span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;font-size:22px">{{ i.menu }}</span></div>
+<div style="padding:16px;display:flex;flex-direction:column;gap:12px;border-bottom:2px solid #1C2433">
+<div style="display:flex;gap:14px;align-items:flex-end"><div style="width:104px;height:130px;background:#CFC6B5;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">{{ i.image }}</div><h1 style="font-family:'Playfair Display',serif;font-size:32px;line-height:1.05;font-weight:600">Rahul <span style="font-style:italic;font-weight:400;color:#5A1A22">Nair</span></h1></div>
+<div style="font-size:14px;color:#5C5761;line-height:1.5">Enrolment K/912/2008 (declared by the advocate) · 18 years · English, Malayalam, Hindi</div>
+<div style="display:flex;gap:8px"><div style="flex:1;height:48px;background:#1E6B43;color:#fff;display:flex;align-items:center;gap:10px;padding:0 16px;font-weight:600;border-radius:2px;font-size:20px"><span style="display:flex">{{ i.chat }}</span><span style="font-size:16px">Connect</span></div><div style="width:48px;height:48px;border:1px solid #1C2433;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:20px">{{ i.bookmark }}</div></div>
+</div>
+<div style="padding:16px;display:flex;flex-direction:column;gap:8px"><div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:600">Practice areas · Courts · Career · 2 case summaries · Office</div><div style="background:#FFFCF6;border-top:2px solid #1C2433;padding:12px;font-size:14px;line-height:1.5">Other advocates nearby<br>Similar advocates</div></div>
+</div>
+<div style="display:flex;flex-direction:column;font-size:14px;line-height:1.45">
+<sc-for list="{{ tierBasic }}" as="t" hint-placeholder-count="8"><div style="display:flex;gap:10px;padding:8px 0;border-bottom:1px solid #CFC6B5;color:{{ t.c }}"><span style="display:flex;font-size:16px;margin-top:1px">{{ t.ic }}</span><span>{{ t.l }}</span></div></sc-for>
+</div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:12px;width:360px">
+<div style="display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid #1C2433;padding-bottom:8px"><span style="font-family:'Playfair Display',serif;font-size:28px;font-weight:600">Professional</span><span style="font-size:14px;color:#5C5761">advocateid.in/rahul-nair</span></div>
+<div style="background:#F6F1E7;border:1px solid #CFC6B5">
+<div style="display:flex;align-items:center;justify-content:space-between;padding:6px 8px 6px 16px;background:#FFFCF6;border-bottom:1px solid #E3D9C6"><div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:600;color:#5A1A22">Advocate<span style="font-style:italic;font-weight:400">ID</span></div><span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;font-size:22px">{{ i.menu }}</span></div>
+<div style="aspect-ratio:12 / 5;background:#5A1A22;border-bottom:3px solid #9A7B4F"></div>
+<div style="padding:0 16px 16px;display:flex;flex-direction:column;gap:10px">
+<div style="width:96px;height:120px;margin-top:-56px;background:#CFC6B5;border:4px solid #F6F1E7;display:flex;align-items:center;justify-content:center;font-size:22px">{{ i.image }}</div>
+<h1 style="font-family:'Playfair Display',serif;font-size:40px;line-height:1.02;font-weight:600">Rahul <span style="font-style:italic;font-weight:400;color:#5A1A22">Nair</span></h1>
+<div style="display:flex;gap:6px"><sc-for list="{{ links }}" as="l" hint-placeholder-count="5"><div style="width:40px;height:40px;border:1px solid #1C2433;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:18px">{{ l.icon }}</div></sc-for></div>
+<div style="display:flex;overflow:hidden;border-top:1px solid #9A7B4F;border-bottom:1px solid #9A7B4F"><sc-for list="{{ advStats }}" as="s" hint-placeholder-count="5"><div style="flex:0 0 auto;padding:8px 12px 8px 0;margin-right:12px;border-right:1px solid #9A7B4F;display:flex;flex-direction:column"><span style="font-family:'Playfair Display',serif;font-size:19px;font-weight:600;white-space:nowrap">{{ s.v }}</span><span style="font-size:13px;color:#5C5761;white-space:nowrap">{{ s.l }}</span></div></sc-for></div>
+<div style="height:48px;background:#1E6B43;color:#fff;display:flex;align-items:center;gap:10px;padding:0 16px;font-weight:600;border-radius:2px;font-size:20px"><span style="display:flex">{{ i.chat }}</span><span style="font-size:16px">Connect</span></div>
+</div>
+<div style="display:flex;gap:22px;padding:0 16px;background:#FFFCF6;border-top:1px solid #E3D9C6;font-size:15px"><div style="padding:12px 0;border-bottom:3px solid #5A1A22;font-weight:600">Overview</div><div style="padding:12px 0">Posts</div><div style="padding:12px 0">Offices</div></div>
+<div style="padding:16px;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#9A7B4F"><div style="background:#FFFCF6;padding:10px"><span style="font-family:'Playfair Display',serif;font-size:30px;color:#5A1A22">104</span><div style="font-size:13px">Articles published</div></div><div style="background:#FFFCF6;padding:10px"><span style="font-family:'Playfair Display',serif;font-size:30px;color:#5A1A22">12</span><div style="font-size:13px">Years as notary</div></div></div>
+</div>
+<div style="display:flex;flex-direction:column;font-size:14px;line-height:1.45">
+<sc-for list="{{ tierPro }}" as="t" hint-placeholder-count="8"><div style="display:flex;gap:10px;padding:8px 0;border-bottom:1px solid #CFC6B5;color:{{ t.c }}"><span style="display:flex;font-size:16px;margin-top:1px">{{ t.ic }}</span><span>{{ t.l }}</span></div></sc-for>
+</div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:12px;width:360px">
+<div style="display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid #1C2433;padding-bottom:8px"><span style="font-family:'Playfair Display',serif;font-size:28px;font-weight:600">Premium</span><span style="font-size:14px;color:#5C5761">rahulnair.in</span></div>
+<div style="background:#FFFCF6;border:1px solid #CFC6B5">
+<div style="background:#E6DED0;padding:8px 12px;font-size:13px;color:#1C2433;display:flex;gap:8px;align-items:center;border-bottom:1px solid #CFC6B5"><span style="display:flex;font-size:14px">{{ i.globe }}</span>rahulnair.in</div>
+<div style="background:#1F3D30;color:#FFFFFF">
+<div style="display:flex;align-items:center;justify-content:space-between;padding:6px 8px 6px 16px"><div style="font-family:'Playfair Display',serif;font-size:21px">Rahul <span style="font-style:italic">Nair</span></div><span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;font-size:22px">{{ i.menu }}</span></div>
+<div style="padding:12px 16px 0;display:flex;flex-direction:column;gap:10px">
+<div style="font-size:13px;letter-spacing:.08em;text-transform:uppercase">Advocate · High Court of Kerala</div>
+<div style="font-family:'Playfair Display',serif;font-size:38px;line-height:1.04;font-weight:600">Civil and property <span style="font-style:italic;font-weight:400">practice</span> in Ernakulam</div>
+<div style="height:48px;background:#1E6B43;color:#fff;display:flex;align-items:center;gap:10px;padding:0 16px;font-weight:600;border-radius:2px;font-size:20px;box-shadow:0 0 0 1px #FFFFFF;align-self:flex-start"><span style="display:flex">{{ i.chat }}</span><span style="font-size:16px">Connect</span></div>
+<div style="height:200px;margin-top:6px;background:#B3BDB7;color:#1C2433;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px"><span style="display:flex;font-size:24px">{{ i.image }}</span><span style="font-size:13px">Portrait, full width</span></div>
+</div>
+</div>
+<div style="padding:16px;display:flex;flex-direction:column"><div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:600;padding-bottom:8px;border-bottom:2px solid #1F3D30">Areas of <span style="font-style:italic;font-weight:400">practice</span></div><div style="padding:12px 0;border-bottom:1px solid #E3D9C6;display:flex;justify-content:space-between;font-family:'Playfair Display',serif;font-size:18px">Property and land<span style="display:flex;font-size:18px;color:#1F3D30">{{ i.arrowUR }}</span></div></div>
+<div style="background:#13261E;color:#FFFFFF;padding:16px;font-size:13px;line-height:1.5">Listed on AdvocateID, a technology and directory service. Not a law firm. Not a referral service. Terms · Privacy · Grievance</div>
+</div>
+<div style="display:flex;flex-direction:column;font-size:14px;line-height:1.45">
+<sc-for list="{{ tierPrem }}" as="t" hint-placeholder-count="8"><div style="display:flex;gap:10px;padding:8px 0;border-bottom:1px solid #CFC6B5;color:{{ t.c }}"><span style="display:flex;font-size:16px;margin-top:1px">{{ t.ic }}</span><span>{{ t.l }}</span></div></sc-for>
+</div>
+</div>
+
+</div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;annotations&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  static P = {
+    chat: '<path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/>',
+    bookmark: '<path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>',
+    chevR: '<path d="m9 18 6-6-6-6"/>',
+    arrowR: '<path d="M5 12h14M12 5l7 7-7 7"/>',
+    arrowUR: '<path d="M7 7h10v10M7 17 17 7"/>',
+    pin: '<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>',
+    court: '<path d="M3 22h18M6 18v-7M10 18v-7M14 18v-7M18 18v-7M12 2l8 5H4z"/>',
+    flag: '<path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1zM4 22v-7"/>',
+    search: '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>',
+    menu: '<path d="M4 6h16M4 12h16M4 18h16"/>',
+    image: '<rect width="18" height="18" x="3" y="3"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.1-3.1a2 2 0 0 0-2.8 0L6 21"/>',
+    share: '<path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="m16 6-4-4-4 4"/><path d="M12 2v13"/>',
+    phone: '<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/>',
+    linkedin: '<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/>',
+    facebook: '<path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>',
+    youtube: '<path d="M2.5 17a24 24 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.6 49.6 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24 24 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.6 49.6 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/>',
+    xlogo: '<path d="M4 4l6.5 8.5L4 20h2l5.4-6.3L16 20h4l-6.8-9L19.5 4h-2l-5 5.8L8 4z"/>',
+    globe: '<circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>',
+    check: '<path d="M20 6 9 17l-5-5"/>',
+    minus: '<path d="M5 12h14"/>'
+  };
+  state = { notes: null };
+  icon(n) {
+    return React.createElement('svg', { width: '1em', height: '1em', viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round', style: { display: 'block', flexShrink: 0 }, dangerouslySetInnerHTML: { __html: Component.P[n] } });
+  }
+  renderVals() {
+    const i = {};
+    Object.keys(Component.P).forEach(n => { i[n] = this.icon(n); });
+    const notes = this.state.notes ?? (this.props.annotations ?? true);
+    const law = (n1, n2, ini, title, office, intro, tags, photo) => ({ n1, n2, ini, title, office, intro, tags, photo: !!photo, mono: !photo });
+    const lawyers = [
+      law('Priya', 'Menon', 'PM', 'Partner', 'Ernakulam office', 'Leads the firm\'s property and land acquisition work at the High Court of Kerala. Advises families and developers on title, partition and conversion of land.', ['Property and land', 'Writ'], true),
+      law('Meera', 'Pillai', 'MP', 'Senior associate', 'Ernakulam office', 'Handles company law filings and commercial suits at the High Court of Kerala. Drafts shareholder and lease agreements. Speaks English, Malayalam and Tamil.', ['Corporate', 'Commercial suits']),
+      law('George', 'Thomas', 'GT', 'Partner', 'Thrissur office', 'Heads the Thrissur office. Civil and succession matters before the District Court, Thrissur, and appeals at the High Court.', ['Civil', 'Succession'], true),
+      law('Abdul', 'Rahman', 'AR', 'Associate', 'Kozhikode office', 'Arbitration and consumer matters in Kozhikode. Assists on construction disputes referred to arbitration.', ['Arbitration', 'Consumer']),
+      law('Lakshmi', 'Iyer', 'LI', 'Associate', 'Ernakulam office', 'Service and writ matters at the High Court of Kerala.', ['Service', 'Writ'], true),
+      law('Vivek', 'Nair', 'VN', 'Associate', 'Thrissur office', 'Rent control and civil suits in Thrissur.', ['Rent control', 'Civil']),
+      law('Shabna', 'K.', 'SK', 'Associate', 'Kozhikode office', 'Family and consumer matters in Kozhikode.', ['Family law', 'Consumer'], true),
+      law('Ravi', 'Shankar', 'RS', 'Of counsel', 'Ernakulam office', 'Tax appeals and commercial arbitration.', ['Tax', 'Arbitration'])
+    ];
+    return {
+      i, notes,
+      toggleNotes: () => this.setState({ notes: !notes }),
+      notesLabel: notes ? 'shown' : 'hidden', notesBg: notes ? '#2F5BD3' : '#FFFFFF', notesFg: notes ? '#FFFFFF' : '#2F5BD3',
+      links: ['linkedin', 'facebook', 'youtube', 'xlogo', 'globe'].map(n => ({ icon: i[n] })),
+      advStats: [['18', 'Years at the bar'], ['K/912/2008', 'Enrolment, as declared'], ['6', 'Courts'], ['3', 'Languages'], ['1', 'Firm']].map(([v, l]) => ({ v, l })),
+      firmStats: [['1998', 'Founded'], ['3', 'Offices'], ['12', 'Lawyers'], ['8', 'Courts'], ['4', 'Languages']].map(([v, l]) => ({ v, l })),
+      highlights: [['104', 'Articles published'], ['12', 'Years as notary'], ['40', 'Law college lectures'], ['2', 'Books co-authored']].map(([n, l]) => ({ n, l })),
+      firmHighlights: [['26', 'Years in practice'], ['3', 'Offices in Kerala'], ['4', 'Languages'], ['60', 'Articles published']].map(([n, l]) => ({ n, l })),
+      practice: [['Property and land', '4 posts by Rahul in this category'], ['Writ and constitutional', '3 posts'], ['Land acquisition', 'No posts yet: opens search'], ['Service', '1 post']].map(([n, d]) => ({ n, d })),
+      firmPractice: [['Property and land', 'Posts by the firm in this category'], ['Corporate', 'Posts by the firm'], ['Arbitration', 'Posts by the firm'], ['Succession', 'Posts by the firm']].map(([n, d]) => ({ n, d })),
+      courts: ['High Court of Kerala', 'District and Sessions Court, Ernakulam', 'Sub Court, Ernakulam', 'Munsiff Court, Ernakulam', 'Land Acquisition Court, Ernakulam', 'Kerala Administrative Tribunal'],
+      career: [['2014 –', 'Independent practice', 'High Court of Kerala'], ['2019 –', 'Guest lecturer, property law', 'Government Law College, Ernakulam'], ['2008 – 2014', 'Junior to Adv. K. P. Varma', 'Civil side, Ernakulam'], ['2008', 'Enrolled', 'Bar Council of Kerala'], ['2005 – 2008', 'LL.B.', 'Government Law College, Ernakulam']].map(([y, t, d]) => ({ y, t, d })),
+      journey: [['1998', 'Founded by Adv. P. Menon', 'Civil practice, Ernakulam'], ['2006', 'Thrissur office opens', 'District Court, Thrissur'], ['2015', 'Arbitration practice added', 'Commercial and construction'], ['2021', 'Kozhikode office opens', 'Malabar courts']].map(([y, t, d]) => ({ y, t, d })),
+      outcomes: [['2024', 'Represented the appellant.', 'High Court of Kerala', 'Appeal partly allowed', true], ['2023', 'Represented the petitioner.', 'Land Acquisition Court, Ernakulam', 'Compensation enhanced', false], ['2022', 'Represented the respondent.', 'High Court of Kerala', 'Writ petition dismissed', true]].map(([y, role, court, out, hasPost]) => ({ y, role, court, out, hasPost })),
+      firmOutcomes: [['2024', 'Represented the claimant.', 'Arbitral tribunal, Kochi', 'Award passed'], ['2023', 'Represented the plaintiffs.', 'Sub Court, Thrissur', 'Decree for partition'], ['2022', 'Represented the respondent company.', 'High Court of Kerala', 'Settled']].map(([y, role, court, out]) => ({ y, role, court, out, hasPost: false })),
+      members: [['Kerala High Court Advocates\' Association', 'Member, executive committee, 2023 to 2025'], ['Bar Council of Kerala', 'Enrolled advocate'], ['Indian Law Institute, Kerala chapter', 'Life member']].map(([o, t]) => ({ o, t })),
+      posts: [['Property and land', '21 Sep 2026', 'Partition suits: what the court asks for first', 'The documents most often called for at the first hearing, and the order in which to file them.'], ['Writ', '2 Sep 2026', 'Service writs after the 2025 amendment to the KS&SSR', 'What changed for promotion disputes and where the High Court has drawn the line.'], ['Property and land', '14 Aug 2026', 'Conversion of paddy land: a short note', 'The sequence of applications and the authorities that decide each one.']].map(([c, d, t, x]) => ({ c, d, t, x })),
+      advOffices: [
+        { n: 'Chambers, Ernakulam', a: 'Room 4, Banerji Road, Ernakulam 682018', f: 'High Court of Kerala · District Court, Ernakulam', h: 'Monday to Saturday, 9:00 to 19:00', main: true },
+        { n: 'Thrissur office', a: 'Round North, Thrissur 680001', f: 'District Court, Thrissur', h: 'Saturdays, 10:00 to 14:00', main: false }
+      ],
+      firmOffices: [
+        { n: 'Ernakulam office', a: 'MG Road, Ernakulam 682016', f: 'High Court of Kerala · Commercial Court, Ernakulam', h: '6 lawyers', main: true },
+        { n: 'Thrissur office', a: 'Round North, Thrissur 680001', f: 'District Court, Thrissur', h: '4 lawyers', main: false },
+        { n: 'Kozhikode office', a: 'Mavoor Road, Kozhikode 673004', f: 'District Court, Kozhikode', h: '2 lawyers', main: false }
+      ],
+      ...(() => {
+        const row = (on, l) => ({ ic: on ? i.check : i.minus, c: on ? '#1C2433' : '#5C5761', l });
+        const T = [
+          ['Banner image', 0, 1, 1], ['Stat strip', 0, 1, 1], ['Highlight tiles, up to 4', 0, 1, 1], ['Link icons, up to 5', 0, 1, 1],
+          ['Tabs: Overview, Posts, Offices', 0, 1, 1], ['Courts, practice areas', '5 each', '10 each', '10 each'], ['Case summaries', '2', '10', '10'],
+          ['Other advocates nearby, similar advocates', 1, 0, 0], ['Own website on own domain, brand colour', 0, 0, 1]
+        ];
+        const col = k => T.map(r => { const v = r[k]; return typeof v === 'string' ? row(true, `${r[0]}: ${v}`) : row(!!v, v ? r[0] : `No ${r[0].charAt(0).toLowerCase() + r[0].slice(1)}`); });
+        return { tierBasic: col(1), tierPro: col(2), tierPrem: col(3) };
+      })(),
+      lawyers, lawyers360: lawyers.slice(0, 3), thinLawyers: [law('Arun', 'Jose', 'AJ', 'Founder', 'Aluva office', 'Civil and family matters at the courts in Aluva.', ['Civil', 'Family law'])],
+      officeChips: [['All', 12, true], ['Ernakulam', 6], ['Thrissur', 4], ['Kozhikode', 2]].map(([n, c, on]) => ({ n, c, bg: on ? '#1C2433' : '#FFFCF6', fg: on ? '#FFFCF6' : '#1C2433' })),
+      notesList: [
+        ['1', 'Routes: advocate /{slug} (Overview), /{slug}/posts, /{slug}/offices. Firm adds /{slug}/lawyers. Each office: /{slug}/o/{id}/{office-name-location-seo}. Tabs are real links, server-rendered; the active tab sets the canonical.'],
+        ['2', 'All content is in the initial HTML: no tab panel, list or "Read more" is fetched after load. Read more expands text that is already present.'],
+        ['3', 'Banner keeps its space with aspect-ratio 12:5 and fixed width and height on the img, so nothing shifts when it loads (CLS 0). With no banner, a maroon field with a brass rule fills the same box.'],
+        ['4', 'Structured data. Advocate: Attorney with name, image, jobTitle, knowsLanguage, memberOf, address, sameAs = the link icons. Firm: LegalService with department = each office (LegalService, address, geo). Posts: Article. No telephone, rating, review or price.'],
+        ['5', 'Stat strip, career timeline, journey and case outcomes are real text in <dl> and <ol>, never images. Stats are computed from the page data, except enrolment, shown as declared.'],
+        ['6', 'Practice-area rows open /posts?author={pageId}&category={code} (noindex). With no posts in that category, the row opens search with this page first.'],
+        ['7', 'No competitors: Professional and Premium pages render no nearby, similar or "others" blocks. Sticky Connect bar on phones only. Call buttons use the office\'s own number through tel: on tap, and the number is not printed.'],
+        ['8', 'Lawyers tab: office chips filter in place. Each chip is also a link (/{slug}/lawyers?o={id}), noindex with canonical to /{slug}/lawyers. Lawyers are listed in the owner\'s order.']
+      ].map(([k, t]) => ({ k, t }))
+    };
+  }
+}
+</script>
+</body>
+</html>
